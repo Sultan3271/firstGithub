@@ -1,8 +1,9 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { styles } from '../styles/Styles'
-
+import {useNavigation} from '@react-navigation/native'
 const Login = () => {
+  const navigation= useNavigation();
   return (
     <View style={styles.container}>
     
@@ -14,8 +15,11 @@ const Login = () => {
          <TextInput style={styles.formField} placeholder='Enter Password...'></TextInput>
       </View>
       <View style={styles.submitBtnContainer}>
-        <TouchableOpacity style={styles.submitBtn}>
+        <TouchableOpacity style={styles.submitBtn} onPress={()=>navigation.navigate('UserProfile')}>
             <Text style={styles.btnText}>Log in</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={{alignItems:'center'}} onPress={()=>navigation.navigate('SignUp')}>
+            <Text style={[styles.btnText,{fontWeight:'500',fontSize:16,color:'green'}]}>Don't have an account? SignUp</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.profilePicBox}>

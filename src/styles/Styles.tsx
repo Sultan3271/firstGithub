@@ -57,8 +57,9 @@ export const styles= StyleSheet.create({
     alignItems:'center',
     backgroundColor:'#adb5bd',
     width:'90%',
-    height:'65%',
+    height:'auto',
     borderRadius:10,
+    paddingBottom:20,
   },
   inputFieldsContainer:{
     margin:5,

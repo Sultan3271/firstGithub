@@ -1,12 +1,20 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from '../screens/Login';
+import UserProfile from '../screens/UserProfile';
+import SignUp from '../screens/SignUp';
 
-const Navigator = () => {
+const Stack = createNativeStackNavigator();
+
+function MyStack() {
   return (
-    <View>
-      <Text>navigatoN</Text>
-    </View>
-  )
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
+      <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}} />
+      <Stack.Screen name="UserProfile" component={UserProfile} options={{headerShown:false}} />
+      {/* <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} /> */}
+    </Stack.Navigator>
+  );
 }
 
-export default Navigator
+export default MyStack;
