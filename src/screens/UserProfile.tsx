@@ -1,8 +1,10 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { styles } from '../styles/Styles'
+import {t} from 'react-native-tailwindcss'
 
 const UserProfile = () => {
+
   return (
     <View style={styles.container}>
         <View style={styles.boxContainer}>
@@ -24,7 +26,10 @@ const UserProfile = () => {
 
         </View>
         </View>
-     
+        <View style={[t.p2, t.flex , t.flexWrap, t.justifyCenter, t.alignCenter]}>
+        <Text style={[t.fontBold,t.textBlue600,t.p10,t.bgIndigo200]}>Hi,</Text>
+        </View>
+ 
     </View>
   )
 }
