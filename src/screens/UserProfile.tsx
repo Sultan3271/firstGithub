@@ -1,7 +1,8 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image,ScrollView } from 'react-native'
 import React from 'react'
 import { styles } from '../styles/Styles'
 import {t} from 'react-native-tailwindcss'
+import FriendBox from '../Components/FriendBox'
 
 const UserProfile = () => {
 
@@ -23,15 +24,29 @@ const UserProfile = () => {
            <Image style={styles.profileImage} source={{uri:'https://cdn-icons-png.flaticon.com/128/6555/6555160.png'}} />
         </View>
         <View style={[styles.underLine,{width:'25%'}]}>
-
         </View>
         </View>
-        <View style={[t.p2, t.flex , t.flexWrap, t.justifyCenter, t.alignCenter]}>
-        <Text style={[t.fontBold,t.textBlue600,t.p10,t.bgIndigo200]}>Hi,</Text>
+        <View>
+          <View>
+            <Text style={styles.friendTextStyle}>
+              Friends
+            </Text>
+          </View>
+            <View style={styles.friendBoxContainer}>
+            <ScrollView
+            horizontal={true}>
+              <FriendBox/>
+              <FriendBox/>
+              <FriendBox/>
+              <FriendBox/>
+              <FriendBox/>
+              <FriendBox/>
+            </ScrollView>
+            </View>
         </View>
  
     </View>
   )
 }
 
-export default UserProfile
+export default UserProfile;
