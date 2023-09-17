@@ -5,18 +5,18 @@ export const styles= StyleSheet.create({
     container:{
         padding:10,
         alignItems:'center',
-        backgroundColor:'brown',
+        backgroundColor:'#e1e8ff',
         flex:1,
     },
     firstName:{
-        color:'#FFFF',
+        color:'black',
         fontSize:38,
         fontWeight:'700',
         padding:10,
         
     },
   lastName:{
-    color:'#FFFF',
+    color:'black',
     fontSize:20,
     fontWeight:'600',
     marginTop:15,
@@ -35,7 +35,7 @@ export const styles= StyleSheet.create({
   underLine:{
     width:'90%',
     height:.7,
-    backgroundColor:'#FFFF',
+    backgroundColor:'black',
 
   },
   profilePicBox:{
@@ -92,5 +92,35 @@ export const styles= StyleSheet.create({
     color:'#FFFF',
     fontSize:18,
 
+  },
+  friendBoxStyle:{
+    padding:10,
+    backgroundColor:'black',
+    alignItems:'center',
+    justifyContent:'center',
+    alignContent:'center',
+    borderRadius:20,
+    margin:3
+  },
+  friendBoxTextStyle:{
+    color:'#FFFF',
+    fontSize:20,
+    fontWeight:'bold',
+  },
+  friendBoxContainer:{
+    flexDirection:'row',
+    flexWrap:"wrap",
+  },
+  friendBoxButton:{
+    padding:5,
+    backgroundColor:'#e1e8ff',
+    margin:5,
+    borderRadius:10,
+    height:30,
+    width:100,
+  },
+  friendTextStyle:{
+    color:'black',
+    fontSize:25,
   }
 })
