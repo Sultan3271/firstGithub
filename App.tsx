@@ -4,6 +4,7 @@ import UserProfile from './src/screens/UserProfile'
 import Login from './src/screens/Login'
 import MyStack from './src/navigation/navigator'
 import { NavigationContainer } from '@react-navigation/native'
+import MyTabs from './src/navigation/TabNavigator'
 const App = () => {
   return(
     <NavigationContainer>

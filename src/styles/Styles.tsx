@@ -161,5 +161,13 @@ export const styles= StyleSheet.create({
     fontFamily:'arial',
 
   }
+,
 
+  /**** For Tab Navigator */
+  tabIcon:{
+    width:30,
+    height:30,
+    padding:5,
+  },
+  
 })
