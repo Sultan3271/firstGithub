@@ -27,7 +27,11 @@ const UserProfile = () => {
         </View>
         </View>
         <View>
+
+          <View style={styles.heading}>
+
           <View>
+
             <Text style={styles.friendTextStyle}>
               Friends
             </Text>
@@ -40,6 +44,55 @@ const UserProfile = () => {
               <FriendBox/>
               <FriendBox/>
               <FriendBox/>
+
+              <FriendBox/> 
+            </ScrollView>
+            </View>
+        /**  resolved conflicts  */
+            <View style={styles.infoContainer}>
+            <View style={styles.infoBox}>
+                <View style={styles.infoHeadBox}>
+                   <Text style={styles.headingField}>
+                    College:
+                   </Text>
+                </View>
+                <View style={styles.textField}>
+                   <Text style={styles.nameText}>
+                     University Of West Florida
+                         
+                   </Text>
+                </View>
+                
+               </View>
+               <View style={styles.infoBox}>
+                <View style={styles.infoHeadBox}>
+                   <Text style={styles.headingField}>
+                    College:
+                   </Text>
+                </View>
+                <View style={styles.textField}>
+                   <Text style={styles.nameText}>
+                     University Of West Florida
+                         
+                   </Text>
+                </View>
+                
+               </View>
+               <View style={styles.infoBox}>
+                <View style={styles.infoHeadBox}>
+                   <Text style={styles.headingField}>
+                    College:
+                   </Text>
+                </View>
+                <View style={styles.textField}>
+                   <Text style={styles.nameText}>
+                     University Of West Florida
+                         
+                   </Text>
+                </View>
+                
+               </View>
+            </View>
               <FriendBox/>
             </ScrollView>
             </View>

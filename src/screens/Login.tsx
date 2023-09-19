@@ -4,18 +4,18 @@ import { styles } from '../styles/Styles'
 import {useNavigation} from '@react-navigation/native'
 const Login = () => {
   const navigation= useNavigation();
-  return (
+  return ( 
     <View style={styles.container}>
     
-      <Image style={styles.profileImage} source={{uri:"https://i.ibb.co/s5Lg63K/nerd-Up-logo.jpg"}} />
-      <View style={styles.formContainer}>
+      <Image style={styles.profileImage} source={require('../images/nerdUpLogo.jpg')} />
+      <View style={styles.formContainer}>  
       <Text style={[styles.firstName,{color:'gray'}]}>Login</Text>
-      <View style={styles.inputFieldsContainer}>
+      <View style={styles.inputFieldsContainer}> 
          <TextInput style={styles.formField} placeholder='Enter email...'></TextInput>
          <TextInput style={styles.formField} placeholder='Enter Password...'></TextInput>
       </View>
       <View style={styles.submitBtnContainer}>
-        <TouchableOpacity style={styles.submitBtn} onPress={()=>navigation.navigate('UserProfile')}>
+        <TouchableOpacity style={styles.submitBtn} onPress={()=>navigation.navigate('Splash')}>
             <Text style={styles.btnText}>Log in</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{alignItems:'center'}} onPress={()=>navigation.navigate('SignUp')}>

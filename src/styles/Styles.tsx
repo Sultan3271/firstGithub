@@ -1,6 +1,6 @@
 import { StyleSheet, Text } from "react-native";
 import React from "react";
-
+import {t} from 'react-native-tailwindcss'
 export const styles= StyleSheet.create({
     container:{
         padding:10,
@@ -110,6 +110,7 @@ export const styles= StyleSheet.create({
   friendBoxContainer:{
     flexDirection:'row',
     flexWrap:"wrap",
+    margin:10,
   },
   friendBoxButton:{
     padding:5,
@@ -119,8 +120,52 @@ export const styles= StyleSheet.create({
     height:30,
     width:100,
   },
+
+  heading:{
+   margin:10,
+   justifyContent:'center',
+   padding:5,
+  },
   friendTextStyle:{
     color:'black',
     fontSize:25,
+  },
+
+
+  infoContainer:{
+     margin:10,
+     marginTop:15,
+  },
+  infoBox:{
+    
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  infoHeadBox:{
+    alignItems:'center',
+
+  },
+  headingField:{
+    fontSize:20,
+    fontFamily:'arial',
+    fontWeight:'bold',
+    margin:1,
+    padding:5,
+  },
+  textField:{
+    padding:2,
+    margin:1,
   }
+  ,
+  nameText:{
+    fontSize:16,
+    fontFamily:'arial',
+
+
+  friendTextStyle:{
+    color:'black',
+    fontSize:25,
+
+  }
+
 })
