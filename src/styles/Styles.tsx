@@ -120,6 +120,7 @@ export const styles= StyleSheet.create({
     height:30,
     width:100,
   },
+
   heading:{
    margin:10,
    justifyContent:'center',
@@ -159,6 +160,11 @@ export const styles= StyleSheet.create({
   nameText:{
     fontSize:16,
     fontFamily:'arial',
+
+
+  friendTextStyle:{
+    color:'black',
+    fontSize:25,
 
   }
 
