@@ -1,5 +1,12 @@
+/**
+ * @file TabNavigator.tsx
+ * @description This script is responsible for controling tab navigation.
+ * @ownership ?
+ * @last modified 9/20/2023
+ */
+
 import React from 'react';
-import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
+import { Text, TouchableOpacity, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Friends from '../screens/Friends';
@@ -7,13 +14,15 @@ import UserProfile from '../screens/UserProfile';
 
 const Tab = createBottomTabNavigator();
 
-const data = [
-  { key: 'Home', iconUrl: 'https://cdn-icons-png.flaticon.com/128/1946/1946436.png' },
-  { key: 'Friends', iconUrl: 'https://cdn-icons-png.flaticon.com/128/8138/8138685.png' },
-  { key: 'UserProfile', iconUrl: 'https://cdn-icons-png.flaticon.com/128/1077/1077114.png' },
-];
+const routeIconUrls: { [key: string]: any } = {
+  'Home': 'https://cdn-icons-png.flaticon.com/128/1946/1946436.png',
+  'Friends': 'https://cdn-icons-png.flaticon.com/128/8138/8138685.png',
+  'UserProfile': 'https://cdn-icons-png.flaticon.com/128/1077/1077114.png'
+};
 
-const TabBarIcon = ({ iconUrl, focused }) => {
+// NOTE: icon should probably be built in and not retrieved from the internet
+// If the user ever wanted to look at the app offline icons would not appear
+const TabBarIcon = ({ iconUrl, focused }: any) => {
   return (
     <Image
       source={{ uri: iconUrl }}
@@ -27,7 +36,7 @@ const TabBarIcon = ({ iconUrl, focused }) => {
   );
 };
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item }: any) => {
   return (
     <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <TabBarIcon iconUrl={item.iconUrl} />
@@ -36,21 +45,18 @@ const renderItem = ({ item }) => {
   );
 };
 
-function MyTabs() {
+function ScholarTabs() {
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        style: {
+      screenOptions={({ route }) => ({
+        tabBarStyle: {
           height: 60,
           backgroundColor: 'white',
           borderTopWidth: 0,
         },
-      }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused }) => {
-          const item = data.find((d) => d.key === route.name);
-          return <TabBarIcon iconUrl={item.iconUrl} focused={focused} />;
-        },
+        tabBarIcon: ({ focused }: any) => {
+           return <TabBarIcon iconUrl={ routeIconUrls[route.name] } focused={focused} />
+        }
       })}
     >
       <Tab.Screen name="Home" component={Home} options={{headerShown:false, tabBarShowLabel:false}}/>
@@ -61,6 +67,4 @@ function MyTabs() {
   );
 }
 
-
-
-export default MyTabs;
+export default ScholarTabs;

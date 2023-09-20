@@ -1,3 +1,10 @@
+/**
+ * @file Navigator.tsx
+ * @description This script is responsible for controling page navigation.
+ * @ownership ?
+ * @last modified 9/20/2023
+ */
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from '../screens/Login';
 import UserProfile from '../screens/UserProfile';
@@ -7,7 +14,7 @@ import Splash from '../screens/Splash';
 
 const Stack = createNativeStackNavigator();
 
-function MyStack() {
+function ScholarStack() {
   return ( 
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
@@ -21,4 +28,4 @@ function MyStack() {
   );
 }
 
-export default MyStack;
+export default ScholarStack;
