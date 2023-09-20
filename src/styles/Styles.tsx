@@ -167,5 +167,13 @@ export const styles= StyleSheet.create({
     fontSize:25,
 
   }
+,
 
+  /**** For Tab Navigator */
+  tabIcon:{
+    width:30,
+    height:30,
+    padding:5,
+  },
+  
 })
