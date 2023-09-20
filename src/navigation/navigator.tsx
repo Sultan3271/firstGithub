@@ -7,6 +7,7 @@ import Splash from '../screens/Splash';
 
 const Stack = createNativeStackNavigator();
 
+// NOTE: MyStack should probably be named something like NerdUpStack or ScholarStack
 function MyStack() {
   return ( 
     <Stack.Navigator>
