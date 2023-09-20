@@ -111,6 +111,7 @@ export const styles= StyleSheet.create({
     flexDirection:'row',
     flexWrap:"wrap",
     margin:10,
+    padding:3,
   },
   friendBoxButton:{
     padding:5,
@@ -128,46 +129,14 @@ export const styles= StyleSheet.create({
   },
   friendTextStyle:{
     color:'black',
-    fontSize:25,
-  },
-
-
-  infoContainer:{
-     margin:10,
-     marginTop:15,
-  },
-  infoBox:{
-    
-    flexDirection:'row',
-    alignItems:'center',
-  },
-  infoHeadBox:{
-    alignItems:'center',
-
-  },
-  headingField:{
-    fontSize:20,
-    fontFamily:'arial',
+    fontSize:22,
     fontWeight:'bold',
-    margin:1,
-    padding:5,
+    margin:2,
+    marginLeft:5,
+    padding:4,
   },
-  textField:{
-    padding:2,
-    margin:1,
-  }
-  ,
-  nameText:{
-    fontSize:16,
-    fontFamily:'arial',
 
-
-  friendTextStyle:{
-    color:'black',
-    fontSize:25,
-
-  }
-,
+ 
 
   /**** For Tab Navigator */
   tabIcon:{
