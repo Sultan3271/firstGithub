@@ -1,16 +1,18 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { styles } from '../styles/Styles'
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native';
+import {t} from 'react-native-tailwindcss';
 const SignUp = () => {
   const navigation= useNavigation();
   return (
     <View style={styles.container}>
-    
       <Image style={styles.profileImage} source={{uri:"https://i.ibb.co/s5Lg63K/nerd-Up-logo.jpg"}} />
       <View style={styles.formContainer}>
       <Text style={[styles.firstName,{color:'gray'}]}>SignUp</Text>
       <View style={styles.inputFieldsContainer}>
+      <Text style={[t.absolute,t.bgBlack,t.fontPadding]}>Nerd Up</Text>
+      
          <TextInput style={styles.formField} placeholder='Enter Name...'></TextInput>
          <TextInput style={styles.formField} placeholder='Enter Email...'></TextInput>
          <TextInput style={styles.formField} placeholder='Enter Password...'></TextInput>

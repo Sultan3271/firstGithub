@@ -27,7 +27,11 @@ const UserProfile = () => {
         </View>
         </View>
         <View>
+
           <View style={styles.heading}>
+
+          <View>
+
             <Text style={styles.friendTextStyle}>
               Friends
             </Text>
@@ -40,9 +44,11 @@ const UserProfile = () => {
               <FriendBox/>
               <FriendBox/>
               <FriendBox/>
+
               <FriendBox/> 
             </ScrollView>
             </View>
+        /**  resolved conflicts  */
             <View style={styles.infoContainer}>
             <View style={styles.infoBox}>
                 <View style={styles.infoHeadBox}>
@@ -86,6 +92,9 @@ const UserProfile = () => {
                 </View>
                 
                </View>
+            </View>
+              <FriendBox/>
+            </ScrollView>
             </View>
         </View>
  
