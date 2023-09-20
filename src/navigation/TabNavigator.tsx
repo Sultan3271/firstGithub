@@ -13,7 +13,7 @@ const data = [
   { key: 'UserProfile', iconUrl: 'https://cdn-icons-png.flaticon.com/128/1077/1077114.png' },
 ];
 
-const TabBarIcon = ({ iconUrl, focused }) => {
+const TabBarIcon = ({ iconUrl, focused }: any) => {
   return (
     <Image
       source={{ uri: iconUrl }}
@@ -27,7 +27,7 @@ const TabBarIcon = ({ iconUrl, focused }) => {
   );
 };
 
-const renderItem = ({ item }) => {
+const renderItem = ({ item }: any) => {
   return (
     <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <TabBarIcon iconUrl={item.iconUrl} />
@@ -39,18 +39,14 @@ const renderItem = ({ item }) => {
 function MyTabs() {
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        style: {
-          height: 60,
-          backgroundColor: 'white',
-          borderTopWidth: 0,
-        },
-      }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused }) => {
-          const item = data.find((d) => d.key === route.name);
-          return <TabBarIcon iconUrl={item.iconUrl} focused={focused} />;
-        },
+        screenOptions={({ route }) => ({
+          tabBarStyle: {
+            display: "flex"
+          },
+          tabBarIcon: ({ focused }) => {
+            const item = data.find((d) => d.key === route.name);
+            return <TabBarIcon iconUrl={item!.iconUrl} focused={focused} />;
+          },
       })}
     >
       <Tab.Screen name="Home" component={Home} options={{headerShown:false, tabBarShowLabel:false}}/>
@@ -60,7 +56,5 @@ function MyTabs() {
     </Tab.Navigator>
   );
 }
-
-
 
 export default MyTabs;
