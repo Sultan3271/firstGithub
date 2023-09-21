@@ -1,14 +1,18 @@
+/**
+ * @file Home.tsx
+ * @description ?
+ * @ownership ?
+ * @last modified 9/20/2023
+ */
+
 import { View, Text } from 'react-native'
 import React from 'react'
-import MyTabs from '../navigation/TabNavigator'
 
-
-const Home = () => {
+const Home = ({ navigation }: any) => {
   return (
-   <View>
-    <Text>Home</Text>
-    
-   </View>
+    <View>
+      <Text>Home</Text>
+    </View>
   )
 }
 
