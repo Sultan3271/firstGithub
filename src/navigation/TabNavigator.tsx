@@ -56,7 +56,7 @@ function ScholarTabs() {
         },
         tabBarIcon: ({ focused }: any) => {
            return <TabBarIcon iconUrl={ routeIconUrls[route.name] } focused={focused} />
-        }
+        },
       })}
     >
       <Tab.Screen name="Home" component={Home} options={{headerShown:false, tabBarShowLabel:false}}/>

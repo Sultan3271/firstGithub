@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "49291939058",
+    "project_id": "scholars-ca278",
+    "storage_bucket": "scholars-ca278.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49291939058:android:6cc933a2dab2839392546b",
+        "android_client_info": {
+          "package_name": "com.nerdup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRi4verYLIi-oKMuJOwxKpFKK2Z_52yVc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

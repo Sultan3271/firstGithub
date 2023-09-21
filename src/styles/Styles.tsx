@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   container: {
     padding:10,
     alignItems:'center',
-    backgroundColor:'#e1e8ff',
+    backgroundColor:'#FFFFFF',
     flex:1,
   },
 
@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
     margin:10,
     padding:10,
     alignItems:'center',
-    backgroundColor:'#adb5bd',
+    // backgroundColor:'#ecf0f1',
     width:'90%',
     height:'auto',
     borderRadius:10,

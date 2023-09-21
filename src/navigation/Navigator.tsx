@@ -11,6 +11,7 @@ import UserProfile from '../screens/UserProfile';
 import SignUp from '../screens/SignUp';
 import Home from '../screens/Home';
 import Splash from '../screens/Splash';
+import config from '../navigation/NavigationAnimation'
 
 const Stack = createNativeStackNavigator();
 
