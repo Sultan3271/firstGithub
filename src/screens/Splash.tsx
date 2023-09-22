@@ -1,12 +1,16 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import MyTabs from '../navigation/TabNavigator'
-import { NavigationContainer } from '@react-navigation/native'
+/**
+ * @file Splash.tsx
+ * @description ?
+ * @ownership ?
+ * @last modified 9/20/2023
+ */
 
-const Splash = () => {
+import React from 'react'
+import ScholarTabs from '../navigation/TabNavigator'
+
+const Splash = ({ navigation }: any) => {
   return (
-    <MyTabs />
-    
+    <ScholarTabs />
   )
 }
 

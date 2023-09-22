@@ -1,49 +1,57 @@
 import { StyleSheet, Text } from "react-native";
 import React from "react";
 import {t} from 'react-native-tailwindcss'
-export const styles= StyleSheet.create({
-    container:{
-        padding:10,
-        alignItems:'center',
-        backgroundColor:'#e1e8ff',
-        flex:1,
-    },
-    firstName:{
-        color:'black',
-        fontSize:38,
-        fontWeight:'700',
-        padding:10,
-        
-    },
-  lastName:{
+
+export const styles = StyleSheet.create({
+  
+  container: {
+    padding:10,
+    alignItems:'center',
+    backgroundColor:'#e1e8ff',
+    flex:1,
+  },
+
+  firstName: {
+    color:'black',
+    fontSize:38,
+    fontWeight:'700',
+    padding:10,
+  },
+
+  lastName: {
     color:'black',
     fontSize:20,
     fontWeight:'600',
     marginTop:15,
   },
-  starIcon:{
+
+  starIcon: {
     width:60,
     height:60,
     margin:10,
     marginLeft:35,
   },
-  boxContainer:{
+
+  boxContainer: {
     flexDirection:'row',
     alignItems:'center',
     width:'90%'
   },
-  underLine:{
+
+  underLine: {
     width:'90%',
     height:.7,
     backgroundColor:'black',
 
   },
-  profilePicBox:{
+
+  profilePicBox: {
     flexDirection:'row',
     margin:5,
     alignItems:'center',
   },
-  profileImage:{
+
+  profileImage: {
     width:130,
     height:130,
     padding:10,
@@ -51,7 +59,8 @@ export const styles= StyleSheet.create({
     borderRadius:50,
     margin:10,
   },
-  formContainer:{
+
+  formContainer: {
     margin:10,
     padding:10,
     alignItems:'center',
@@ -61,26 +70,26 @@ export const styles= StyleSheet.create({
     borderRadius:10,
     paddingBottom:20,
   },
-  inputFieldsContainer:{
+
+  inputFieldsContainer: {
     margin:5,
     padding:5,
-
   },
-  formField:{
+
+  formField: {
     width:300,
     borderWidth:.8,
     margin:10,
-   padding:10,
-   borderRadius:10,
-   borderCurve:'circular',
-
-
+    padding:10,
+    borderRadius:10,
+    borderCurve:'circular',
   },
-  submitBtnContainer:{
+
+  submitBtnContainer: {
     margin:5,
-
   },
-  submitBtn:{
+
+  submitBtn: {
     backgroundColor:'brown',
     padding:15,
     width:300,
@@ -88,12 +97,13 @@ export const styles= StyleSheet.create({
     borderRadius:10,
     margin:10,
   },
-  btnText:{
+
+  btnText: {
     color:'#FFFF',
     fontSize:18,
-
   },
-  friendBoxStyle:{
+
+  friendBoxStyle: {
     padding:10,
     backgroundColor:'black',
     alignItems:'center',
@@ -102,18 +112,21 @@ export const styles= StyleSheet.create({
     borderRadius:20,
     margin:3
   },
-  friendBoxTextStyle:{
+
+  friendBoxTextStyle: {
     color:'#FFFF',
     fontSize:20,
     fontWeight:'bold',
   },
-  friendBoxContainer:{
+
+  friendBoxContainer: {
     flexDirection:'row',
     flexWrap:"wrap",
     margin:10,
     padding:3,
   },
-  friendBoxButton:{
+
+  friendBoxButton: {
     padding:5,
     backgroundColor:'#e1e8ff',
     margin:5,
@@ -122,12 +135,13 @@ export const styles= StyleSheet.create({
     width:100,
   },
 
-  heading:{
+  heading: {
    margin:10,
    justifyContent:'center',
    padding:5,
   },
-  friendTextStyle:{
+
+  friendTextStyle: {
     color:'black',
     fontSize:22,
     fontWeight:'bold',
@@ -136,13 +150,11 @@ export const styles= StyleSheet.create({
     padding:4,
   },
 
- 
-
-  /**** For Tab Navigator */
-  tabIcon:{
+  // For Tab Navigator
+  tabIcon: {
     width:30,
     height:30,
     padding:5,
   },
   
-})
+});
