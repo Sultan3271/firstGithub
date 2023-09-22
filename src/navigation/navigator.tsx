@@ -12,8 +12,6 @@ function MyStack() {
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
       <Stack.Screen name="SignUp" component={SignUp} options={{headerShown:false}} />
-      <Stack.Screen name="UserProfile" component={UserProfile} options={{headerShown:false}} />
-      <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
       <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}} />
       {/* <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} /> */}
