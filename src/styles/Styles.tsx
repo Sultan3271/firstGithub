@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
   
   container: {
     padding:10,
-    alignItems:'center',
     backgroundColor:'#e1e8ff',
     flex:1,
   },
@@ -120,12 +119,13 @@ export const styles = StyleSheet.create({
   },
 
   friendBoxContainer: {
-    flexDirection:'row',
-    flexWrap:"wrap",
     margin:10,
     padding:3,
   },
-
+  friendBoxes:{
+    flexDirection:'row',
+  }
+,
   friendBoxButton: {
     padding:5,
     backgroundColor:'#e1e8ff',
@@ -157,4 +157,91 @@ export const styles = StyleSheet.create({
     padding:5,
   },
   
+
+
+/**
+ * For The Home Screen 
+ */
+  
+  headBox:{
+    margin:2,
+    padding:5,
+    flexDirection:'row',
+    alignItems:'center'
+  }
+  ,
+  logoContainer:{
+   padding:5,
+  },
+  titleContainer:{
+    margin:1,
+    padding:5,
+  }
+  ,
+  screenTitle:{
+    fontSize:38,
+    fontWeight:'bold',
+    fontFamily:'times new roman',
+  },
+  bodyContainer:{
+   margin:5,
+  },
+  
+  feedContainer:{
+    margin:5,
+    padding:5,
+  }
+  ,
+  post:{
+    flexDirection:'row',
+    margin:5,
+    marginTop:7,
+    alignItems:'center',
+    justifyContent:'space-between',
+    width:'auto',
+    padding:5,
+    borderRadius:5,
+    overflow:'hidden',
+    borderWidth:.5,
+    borderColor:'#0096c7',
+    
+  },
+   postLeft:{
+  justifyContent:'center',
+   }
+  ,
+  postHolder:{
+    backgroundColor:'gray',
+  borderRadius:5,
+    justifyContent:'center',
+    alignItems:'center',
+    height:70,
+    width:70,
+  },
+  postRight:
+  {
+    padding:5,
+    marginLeft:5,
+  }
+,
+postAdmin:{
+ padding:1,
+ marginLeft:1,
+},
+postAdminName:{
+ fontWeight:'bold',
+ fontSize:16,
+},
+  postDescription:{
+    padding:2,
+    width:'95%',
+  },
+  postDescText:{
+    color:'gray',
+    fontSize:15,
+  }
+
+
+
+
 });
