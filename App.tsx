@@ -1,10 +1,9 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import UserProfile from './src/screens/UserProfile'
-import Login from './src/screens/Login'
+import { } from 'react-native'
+import React, { useEffect } from 'react'
 import ScholarStack from './src/navigation/Navigator'
 import { NavigationContainer } from '@react-navigation/native'
-import ScholarTabs from './src/navigation/TabNavigator'
+import firestore, { firebase } from '@react-native-firebase/firestore'
+import auth from '@react-native-firebase/auth';
 
 const App = () => {
   return(
@@ -15,4 +14,3 @@ const App = () => {
 }
 
 export default App
-
