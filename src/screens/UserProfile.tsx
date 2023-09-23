@@ -36,12 +36,14 @@ const UserProfile = ({ navigation }: any) => {
           <Text style={styles.friendTextStyle}>Friends</Text>
         </View>
         <ScrollView horizontal={true}>
+          <View style={styles.friendBoxes}>
           <FriendBox/>
           <FriendBox/>
           <FriendBox/>
           <FriendBox/>
           <FriendBox/>
           <FriendBox/> 
+          </View>
         </ScrollView>
       </View>
     </View>

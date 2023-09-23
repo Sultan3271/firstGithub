@@ -25,7 +25,8 @@ const routeIconUrls: { [key: string]: any } = {
 const TabBarIcon = ({ name, focused }: any) => {
   return (
    
-    <Icon name={name} color= {focused? 'green' : 'gray'} size={30} />
+    <Icon name={name} color= {focused? 'green' : 'gray'} size={focused?35:30} 
+     />
   );
 };
 
