@@ -5,15 +5,25 @@
  * @last modified 9/20/2023
  */
 
+
 import { View, Text } from 'react-native'
 import React from 'react'
 import Animated from 'react-native-reanimated';
 import { styles } from '../styles/Styles';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { View, Text } from 'react-native';
+import React from 'react';
+import { styles } from '../styles/Styles';
+
+
 const Home = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
+
+      <Text>Home</Text>
+      
+
 
       {/* 
       * this is head part of a screen like other screens having titl and logo
