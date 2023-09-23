@@ -8,7 +8,7 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { styles } from '../styles/Styles';
-import {t} from 'react-native-tailwindcss';
+import { SignInForm } from '../utils/AuthServices';
 
 const SignUp = ({ navigation }: any) => {
   return (
@@ -19,26 +19,7 @@ const SignUp = ({ navigation }: any) => {
       <View style={styles.formContainer}>
       <Text style={[styles.firstName,{color:'gray'}]}>SignUp</Text>
 
-        {/* Input Fields */}
-        <View style={styles.inputFieldsContainer}>
-          <Text style={[t.absolute,t.bgBlack,t.fontPadding]}>Nerd Up</Text>
-
-          <TextInput style={styles.formField} placeholder='Enter Name...'></TextInput>
-          <TextInput style={styles.formField} placeholder='Enter Email...'></TextInput>
-          <TextInput style={styles.formField} placeholder='Enter Password...'></TextInput>
-          <TextInput style={styles.formField} placeholder='Confirm Password...'></TextInput>
-        </View>
-
-        {/* Submit Button */}
-        <View style={styles.submitBtnContainer}>
-          <TouchableOpacity style={styles.submitBtn} onPress={()=>navigation.navigate('UserProfile')}>
-          <Text style={styles.btnText}>SignUp</Text>
-
-          </TouchableOpacity>
-            <TouchableOpacity style={{alignItems:'center'}} onPress={()=>navigation.navigate('Login')}>
-            <Text style={[styles.btnText,{fontWeight:'500',fontSize:16,color:'green'}]}>Already have an account? SignIn</Text>
-          </TouchableOpacity>
-        </View>
+        <SignInForm nav={navigation}/>
 
         {/* Divider */}
         <View style={styles.profilePicBox}>
