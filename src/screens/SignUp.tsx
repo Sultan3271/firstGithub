@@ -3,6 +3,7 @@ import React from 'react'
 import { styles } from '../styles/Styles'
 import {useNavigation} from '@react-navigation/native';
 import {t} from 'react-native-tailwindcss';
+
 const SignUp = () => {
   const navigation= useNavigation();
   return (
