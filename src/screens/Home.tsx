@@ -13,6 +13,8 @@ const Home = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
       <Text>Home</Text>
+      
+
     </View>
   )
 }

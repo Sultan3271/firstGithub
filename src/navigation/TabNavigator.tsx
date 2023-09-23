@@ -11,28 +11,21 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Friends from '../screens/Friends';
 import UserProfile from '../screens/UserProfile';
-
+import Icon from   'react-native-vector-icons/Ionicons';
 const Tab = createBottomTabNavigator();
 
 const routeIconUrls: { [key: string]: any } = {
-  'Home': 'https://cdn-icons-png.flaticon.com/128/1946/1946436.png',
-  'Friends': 'https://cdn-icons-png.flaticon.com/128/8138/8138685.png',
-  'UserProfile': 'https://cdn-icons-png.flaticon.com/128/1077/1077114.png'
+  'Home': 'home',
+  'Friends': 'people',
+  'UserProfile': 'person'
 };
 
-// NOTE: icon should probably be built in and not retrieved from the internet
-// If the user ever wanted to look at the app offline icons would not appear
-const TabBarIcon = ({ iconUrl, focused }: any) => {
+// we are using builtin icons
+
+const TabBarIcon = ({ name, focused }: any) => {
   return (
-    <Image
-      source={{ uri: iconUrl }}
-      style={{
-        width: 24,
-        height: 24,
-        tintColor: focused ? 'green' : 'gray',
-        marginBottom: -3,
-      }}
-    />
+   
+    <Icon name={name} color= {focused? 'green' : 'gray'} size={30} />
   );
 };
 

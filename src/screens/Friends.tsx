@@ -10,6 +10,7 @@ import React from 'react';
 import { styles } from '../styles/Styles';
 
 const Friends = ({ navigation }: any) => {
+
   return (
     <View style={styles.container}>
       <Text>Friends</Text>
@@ -17,4 +18,4 @@ const Friends = ({ navigation }: any) => {
   )
 }
 
-export default Friends
+export default Friends;
