@@ -8,18 +8,24 @@
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { styles } from '../styles/Styles';
-import { SignInForm } from '../utils/AuthServices';
+import SignUpForm from '../components/SignUpForm';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { ScrollView } from 'react-native';
 
-const SignUp = ({ navigation }: any) => {
+function SignUp({ navigation }: any)
+{
   return (
-    <View style={styles.container}>
-      <Image style={styles.profileImage} source={{uri:"https://i.ibb.co/s5Lg63K/nerd-Up-logo.jpg"}} />
-      
+    <ScrollView style={styles.container}>
+
       {/* Form */}
       <View style={styles.formContainer}>
-      <Text style={[styles.firstName,{color:'gray'}]}>SignUp</Text>
 
-        <SignInForm nav={navigation}/>
+        <View style={{flexDirection: "row", marginBottom: 50}}>
+          <Icon name={"school-outline"} size={100} color="black"/>
+          <Text style={[styles.firstName,{textAlignVertical: "center"}]}>Sign Up</Text>
+        </View>
+
+        <SignUpForm nav={navigation}/>
 
         {/* Divider */}
         <View style={styles.profilePicBox}>
@@ -43,7 +49,7 @@ const SignUp = ({ navigation }: any) => {
             </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
