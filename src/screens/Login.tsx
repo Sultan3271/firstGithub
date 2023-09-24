@@ -9,8 +9,8 @@ import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-nat
 import React, { useRef, useState } from 'react';
 import { styles } from '../styles/Styles';
 import auth from '@react-native-firebase/auth';
-import LoginForm from '../components/LoginForm'
-import Icon from 'react-native-vector-icons/Ionicons'
+import LoginForm from '../components/LoginForm';
+import Icon from 'react-native-vector-icons/Ionicons';
 import { ScrollView } from 'react-native';
 
 function Login({ navigation }: any) 
@@ -23,7 +23,7 @@ function Login({ navigation }: any)
 
         <View style={{flexDirection: "row", marginBottom: 50}}>
           <Icon name={"school-outline"} size={100} color="black"/>
-          <Text style={[styles.firstName,{textAlignVertical: "center"}]}>Login</Text>
+          <Text style={styles.iconHeaderText}>Login</Text>
         </View>
 
         <LoginForm nav={ navigation }/>
