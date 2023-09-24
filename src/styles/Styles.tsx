@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
 
   container: {
     padding: 10,
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     fontFamily: "JustAnotherHand-Regular",
     textAlignVertical: "center",
     fontSize: 80,
-    color: "black",
+    color: "#006CA2",
     paddingLeft: 20
   },
 
@@ -57,6 +57,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  dividerContainer: {
+    flexDirection: 'row',
+    margin: 5,
+    alignItems: 'center',
+  },
+
   profileImage: {
     width: 130,
     height: 130,
@@ -64,22 +70,6 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFF',
     borderRadius: 50,
     margin: 10,
-  },
-
-  formContainer: {
-    margin: 10,
-    padding: 10,
-    alignItems: 'center',
-    // backgroundColor:'#ecf0f1',
-    width: '90%',
-    height: 'auto',
-    borderRadius: 10,
-    paddingBottom: 20,
-  },
-
-  inputFieldsContainer: {
-    margin: 5,
-    padding: 5,
   },
 
   formField: {
@@ -91,22 +81,9 @@ export const styles = StyleSheet.create({
     borderCurve: 'circular',
   },
 
-  submitBtnContainer: {
-    margin: 5,
-  },
-
-  submitBtn: {
-    backgroundColor: 'brown',
-    padding: 15,
-    width: 300,
-    alignItems: 'center',
-    borderRadius: 10,
-    margin: 10,
-  },
-
   btnText: {
     color: '#FFFF',
-    fontSize: 18,
+    fontSize: 18
   },
 
   friendBoxStyle: {
@@ -252,3 +229,5 @@ export const styles = StyleSheet.create({
 
 
 });
+
+export default styles;

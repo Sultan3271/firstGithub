@@ -7,8 +7,9 @@
 
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { styles } from '../styles/Styles';
+import styles from '../styles/Styles';
 import auth from '@react-native-firebase/auth';
+import formStyles from '../styles/formStyles';
 
 /**
  * Used to create a login in form that connects with Firebase.
@@ -55,21 +56,22 @@ export default function LoginForm(props: any)
     }
 
     return (
-        <View>
-            <View style={styles.inputFieldsContainer}>
+        <View style={formStyles.submitContainer}>
+            <View>
                 <TextInput style={styles.formField} placeholder='Enter email...' onChangeText={text=>setUserEmail(text)}></TextInput>
-                <TextInput style={styles.formField} placeholder='Enter Password...' onChangeText={text=>setUserPassword(text)}></TextInput>
+                <TextInput style={styles.formField} placeholder='Enter Password...' onChangeText={text=>setUserPassword(text)} secureTextEntry={true}></TextInput>
             </View>
 
             <Text style={{color: "red"}}>{ errorMsg.toString() }</Text>
 
             {/* Submit Button */}
-            <View style={styles.submitBtnContainer}>
-                <TouchableOpacity style={styles.submitBtn} onPress={()=>tryAndLogIn()} disabled={isSubmitDisabled}>
-                    <Text style={styles.btnText}>Log in</Text>
+            <View style={formStyles.submitBtnContainer}>
+                <TouchableOpacity style={formStyles.submitBtn} onPress={()=>tryAndLogIn()} disabled={isSubmitDisabled}>
+                    <Text style={[formStyles.btnText, {color: "white"}]}>Log in</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{alignItems:'center'}} onPress={()=>props.nav.navigate('SignUp')}>
-                    <Text style={[styles.btnText,{fontWeight:'500',fontSize:16,color:'green'}]}>Don't have an account? SignUp</Text>
+
+                <TouchableOpacity onPress={()=>props.nav.navigate('SignUp')}>
+                    <Text style={formStyles.btnText}>Don't have an account? SignUp</Text>
                 </TouchableOpacity>
             </View>
         </View>
