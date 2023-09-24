@@ -13,6 +13,8 @@ import { LoginForm } from '../utils/AuthServices'
 
 const Login = ({ navigation }: any) => {
 
+  // navigation.navigate('Home');
+
   return (
     <View style={styles.container}>
       
