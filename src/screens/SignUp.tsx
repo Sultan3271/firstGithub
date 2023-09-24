@@ -22,7 +22,7 @@ function SignUp({ navigation }: any)
 
         <View style={{flexDirection: "row", marginBottom: 50}}>
           <Icon name={"school-outline"} size={100} color="black"/>
-          <Text style={[styles.firstName,{textAlignVertical: "center"}]}>Sign Up</Text>
+          <Text style={styles.iconHeaderText}>Sign Up</Text>
         </View>
 
         <SignUpForm nav={navigation}/>

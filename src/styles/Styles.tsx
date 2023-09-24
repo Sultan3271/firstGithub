@@ -9,6 +9,14 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
 
+  iconHeaderText: {
+    fontFamily: "JustAnotherHand-Regular",
+    textAlignVertical: "center",
+    fontSize: 80,
+    color: "black",
+    paddingLeft: 20
+  },
+
   firstName: {
     color: 'black',
     fontSize: 38,
