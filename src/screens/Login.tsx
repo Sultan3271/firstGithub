@@ -9,21 +9,22 @@ import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-nat
 import React, { useRef, useState } from 'react';
 import { styles } from '../styles/Styles';
 import auth from '@react-native-firebase/auth';
-import { LoginForm } from '../utils/AuthServices'
+import LoginForm from '../components/LoginForm'
+import Icon from 'react-native-vector-icons/Ionicons'
+import { ScrollView } from 'react-native';
 
-const Login = ({ navigation }: any) => {
-
-  // navigation.navigate('Home');
-
+function Login({ navigation }: any) 
+{
   return (
-    <View style={styles.container}>
-      
-      {/* Company Icon */}
-      <Image style={styles.profileImage} source={require('../images/NerdUpLogo.jpg')} />
+    <ScrollView style={styles.container}>
       
       {/* Form */}
       <View style={styles.formContainer}>  
-        <Text style={[styles.firstName,{color:'gray'}]}>Login</Text>
+
+        <View style={{flexDirection: "row", marginBottom: 50}}>
+          <Icon name={"school-outline"} size={100} color="black"/>
+          <Text style={[styles.firstName,{textAlignVertical: "center"}]}>Login</Text>
+        </View>
 
         <LoginForm nav={ navigation }/>
 
@@ -49,7 +50,7 @@ const Login = ({ navigation }: any) => {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 

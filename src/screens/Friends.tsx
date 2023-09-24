@@ -13,7 +13,7 @@ const Friends = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <Text>Friends</Text>
+      
     </View>
   )
 }
