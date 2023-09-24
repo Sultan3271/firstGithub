@@ -9,7 +9,7 @@ import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { View, Text } from 'react-native';
 import React from 'react';
-import { styles } from '../styles/Styles';
+import styles from '../styles/Styles';
 import FeedBox from '../components/FeedBox';
 
 

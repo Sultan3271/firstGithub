@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
-import { styles } from '../styles/Styles';
+import styles from '../styles/Styles';
 
 export default function FeedBox() 
 {

@@ -7,9 +7,10 @@
 
 import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { styles } from '../styles/Styles';
+import styles from '../styles/Styles';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import formStyles from '../styles/formStyles';
 
 /**
  * Used to create a sign in form that connects with Firebase.
@@ -80,7 +81,7 @@ export default function SignUpForm(props: any)
                     })
                     .then(() => {
                         Alert.alert("Success creating account!");
-                        props.nav.navigate('UserProfile');
+                        props.nav.navigate('Splash');
                         console.log(result);
                     })
                     .catch(error => {
@@ -100,25 +101,25 @@ export default function SignUpForm(props: any)
     }
 
     return (
-        <View>
+        <View style={formStyles.submitContainer}>
             {/* Input Fields */}
-            <View style={styles.inputFieldsContainer}>
+            <View>
                 <TextInput style={styles.formField} placeholder='Enter Name...' onChangeText={text=>setUserName(text)}></TextInput>
                 <TextInput style={styles.formField} placeholder='Enter Email...' onChangeText={text=>setUserEmail(text)}></TextInput>
-                <TextInput style={styles.formField} placeholder='Enter Password...' onChangeText={text=>setUserPassword1(text)}></TextInput>
-                <TextInput style={styles.formField} placeholder='Confirm Password...' onChangeText={text=>setUserPassword2(text)}></TextInput>
+                <TextInput style={styles.formField} placeholder='Enter Password...' onChangeText={text=>setUserPassword1(text)} secureTextEntry={true}></TextInput>
+                <TextInput style={styles.formField} placeholder='Confirm Password...' onChangeText={text=>setUserPassword2(text)} secureTextEntry={true}></TextInput>
             </View>
 
             <Text style={{color: "red"}}>{ errorMsg.toString() }</Text>
 
             {/* Submit Button */}
-            <View style={styles.submitBtnContainer}>
-                <TouchableOpacity style={styles.submitBtn} onPress={()=>tryAndSignIn()} disabled={isSubmitDisabled}>
-                <Text style={styles.btnText}>SignUp</Text>
-
+            <View style={formStyles.submitBtnContainer}>
+                <TouchableOpacity style={formStyles.submitBtn} onPress={() => tryAndSignIn()} disabled={isSubmitDisabled}>
+                    <Text style={[formStyles.btnText, {color: "white"}]}>SignUp</Text>
                 </TouchableOpacity>
-                    <TouchableOpacity style={{alignItems:'center'}} onPress={()=>props.nav.navigate('Login')}>
-                    <Text style={[styles.btnText,{fontWeight:'500',fontSize:16,color:'green'}]}>Already have an account? Login</Text>
+
+                <TouchableOpacity onPress={() => props.nav.navigate('Login')}>
+                    <Text style={formStyles.btnText}>Already have an account? Login</Text>
                 </TouchableOpacity>
             </View>
         </View>
