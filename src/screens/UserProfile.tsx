@@ -7,8 +7,9 @@
 
 import { View, Text, Image,ScrollView } from 'react-native'
 import React from 'react'
-import { styles } from '../styles/Styles'
-import FriendBox from '../Components/FriendBox'
+import FriendBox from '../components/FriendBox'
+import styles from '../styles/Styles'
+
 const UserProfile = ({ navigation }: any) => {
   return (
     <View style={styles.container}>

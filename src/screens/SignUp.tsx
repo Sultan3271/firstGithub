@@ -7,43 +7,40 @@
 
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { styles } from '../styles/Styles';
-import { SignInForm } from '../utils/AuthServices';
+import styles from '../styles/Styles';
+import SignUpForm from '../components/SignUpForm';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { ScrollView } from 'react-native';
+import formStyles from '../styles/formStyles';
+import Divider from '../components/Divider';
+import ScholarBanner from '../components/ScholarBanner';
 
-const SignUp = ({ navigation }: any) => {
+function SignUp({ navigation }: any)
+{
   return (
-    <View style={styles.container}>
-      <Image style={styles.profileImage} source={{uri:"https://i.ibb.co/s5Lg63K/nerd-Up-logo.jpg"}} />
-      
+    <ScrollView style={styles.container}>
+
       {/* Form */}
-      <View style={styles.formContainer}>
-      <Text style={[styles.firstName,{color:'gray'}]}>SignUp</Text>
+      <View style={formStyles.container}>
 
-        <SignInForm nav={navigation}/>
-
-        {/* Divider */}
-        <View style={styles.profilePicBox}>
-          <View style={[styles.underLine,{width:'25%',}]}></View>
-
-          <View >
-            <Text>OR</Text>
-          </View>
-
-          <View style={[styles.underLine,{width:'25%',}]}></View>
-        </View>
+        <ScholarBanner text="Sign Up"/>
+        <SignUpForm nav={navigation}/>
+        <Divider text="OR"/>
 
         {/* Other Sign In Options */}
         <View>
-          <TouchableOpacity style={[styles.submitBtn,{backgroundColor:'#d00000',padding:10,}]}>
+          <TouchableOpacity style={[formStyles.submitBtn, { backgroundColor: '#d00000', flexDirection: "row", justifyContent: "center", columnGap: 10 }]}>
+            <Icon name='logo-google' size={30} color="white"></Icon>
+            <Text style={styles.btnText}>Sign In with Google</Text>
+          </TouchableOpacity>
 
-          <Text style={styles.btnText}>Sign Up with Google</Text>
-            </TouchableOpacity>
-              <TouchableOpacity style={[styles.submitBtn,{backgroundColor:'#023e8a',padding:10,}]}>
-              <Text style={styles.btnText}>Sign Up With Facebook</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={[formStyles.submitBtn, { backgroundColor: '#023e8a', flexDirection: "row", justifyContent: "center", columnGap: 10 }]}>
+            <Icon name='logo-facebook' size={30} color="white" />
+            <Text style={styles.btnText}>Sign In With Facebook</Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 
