@@ -16,7 +16,7 @@ const Home = ({ navigation }: any) => {
   return (
     <View style={styles.container}>
 
-      <Text>Home</Text>
+      
       
       {/* 
       * this is head part of a screen like other screens having title and logo

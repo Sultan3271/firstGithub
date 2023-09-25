@@ -30,14 +30,14 @@ const TabBarIcon = ({ name, focused }: any) => {
   );
 };
 
-const renderItem = ({ item }: any) => {
-  return (
-    <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TabBarIcon iconUrl={item.iconUrl} />
-      <Text style={{ color: 'gray', fontSize: 12, marginTop: 4 }}>{item.key}</Text>
-    </TouchableOpacity>
-  );
-};
+// const renderItem = ({ item }: any) => {
+//   return (
+//     <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//       <TabBarIcon iconUrl={item.iconUrl} />
+//       <Text style={{ color: 'gray', fontSize: 12, marginTop: 4 }}>{item.key}</Text>
+//     </TouchableOpacity>
+//   );
+// };
 
 function ScholarTabs() {
   return (
@@ -49,7 +49,7 @@ function ScholarTabs() {
           borderTopWidth: 0,
         },
         tabBarIcon: ({ focused }: any) => {
-           return <TabBarIcon iconUrl={ routeIconUrls[route.name] } focused={focused} />
+           return <TabBarIcon name={routeIconUrls[route.name] } focused={focused} />
         },
       })}
     >
