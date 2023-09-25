@@ -11,7 +11,7 @@ import Home from '../screens/Home';
 import Friends from '../screens/Friends';
 import UserProfile from '../screens/UserProfile';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { Text, View } from 'react-native';
+import { Text, View,TouchableOpacity } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
