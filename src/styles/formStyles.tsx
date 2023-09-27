@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import Colors from "../Theme/ScholarColors";
 
 const formStyles = StyleSheet.create({
     submitContainer: {
@@ -8,7 +9,7 @@ const formStyles = StyleSheet.create({
         justifyContent: "center"
     },
     submitBtn: {
-        backgroundColor: '#006CA2',
+        backgroundColor: Colors.secondary,
         padding: 10,
         width: 300,
         alignItems: 'center',
@@ -22,9 +23,9 @@ const formStyles = StyleSheet.create({
     },
     btnText: {
         fontSize: 15,
-        color: "#006CA2",
-    },
-    container: {
+        color: Colors.linkColor,
+    }, 
+    container: { 
         margin: 10,
         padding: 10,
         alignItems: 'center',

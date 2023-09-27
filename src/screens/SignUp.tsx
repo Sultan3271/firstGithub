@@ -20,10 +20,11 @@ function SignUp({ navigation }: any)
   return (
     <ScrollView style={styles.container}>
 
+<ScholarBanner text="Sign Up"/>
       {/* Form */}
       <View style={formStyles.container}>
 
-        <ScholarBanner text="Sign Up"/>
+        
         <SignUpForm nav={navigation}/>
         <Divider text="OR"/>
 

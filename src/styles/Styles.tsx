@@ -1,19 +1,21 @@
 import { StyleSheet } from "react-native";
+import Colors from "../Theme/ScholarColors";
+import { Fonts } from "../Theme/Fonts";
 
 const styles = StyleSheet.create({
 
   container: {
     padding: 10,
-    // backgroundColor: '#e1e8ff',
-    backgroundColor:'#FFFFFF',
+    backgroundColor:Colors.background,
     flex: 1,
+    
   },
 
   iconHeaderText: {
     fontFamily: "JustAnotherHand-Regular",
     textAlignVertical: "center",
     fontSize: 80,
-    color: "#006CA2",
+    color: Colors.secondary,
     paddingLeft: 20
   },
   underLine: {
@@ -134,70 +136,74 @@ const styles = StyleSheet.create({
     padding: 5,
   }
   ,
-  screenTitle: {
-    fontSize: 38,
-    fontWeight: 'bold',
-    fontFamily: 'times new roman',
-  },
-  bodyContainer: {
-    margin: 5,
-  },
-
-  feedContainer: {
-    margin: 5,
-    padding: 5,
-  }
-  ,
+  
   post: {
-    flexDirection: 'row',
-    margin: 5,
-    marginTop: 7,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 'auto',
-    padding: 5,
-    borderRadius: 5,
+   justifyContent:'center',
+   position:'relative',
+    width: '100%',
     overflow: 'hidden',
-    borderWidth: .5,
-    borderColor: '#0096c7',
-
+    backgroundColor:Colors.background,
+    padding:6,
+    marginTop:6,
   },
-  postLeft: {
-    justifyContent: 'center',
-  }
-  ,
+  
   postHolder: {
     backgroundColor: 'gray',
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 70,
-    width: 70,
+    height: 250,
+    width: '100%',
+    resizeMode:'cover',
+    
   },
-  postRight:
-  {
-    padding: 5,
-    marginLeft: 5,
-  }
-  ,
+  
   postAdmin: {
     padding: 1,
     marginLeft: 1,
+    flexDirection:'row',
+    alignItems:'center',
+  },
+  avatarSection:{
+   borderWidth:.5,
+   borderRadius:50,
+   padding:5,
+   margin:1,
+   borderColor:Colors.primary,
+  },
+  adminSection:{
+   marginLeft:5,
+   padding:5,
   },
   postAdminName: {
-    fontWeight: 'bold',
+    fontWeight:'bold',
     fontSize: 16,
   },
   postDescription: {
     padding: 2,
-    width: '95%',
   },
   postDescText: {
-    color: 'gray',
+    color: Colors.text,
     fontSize: 15,
+    fontFamily:Fonts.regular,
   }
+,
+  postBottom:{
+  backgroundColor:'transparent',
+   flexDirection:'row',
+   justifyContent:'space-between',
+   width:'auto',
+   padding:2,
+   paddingLeft:10,
+   paddingRight:10,
+   borderBottomRightRadius:5,
+   borderBottomLeftRadius:5,
 
+  },
 
+  actionBtn:{
+    padding:2,
+  }
 
 
 });
