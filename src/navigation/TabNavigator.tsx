@@ -10,32 +10,26 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
 import Friends from '../screens/Friends';
 import UserProfile from '../screens/UserProfile';
-import Icon from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcon from 'react-native-vector-icons//MaterialCommunityIcons';
 import { Text, View,TouchableOpacity } from 'react-native';
+import Colors from '../Theme/ScholarColors';
 
 const Tab = createBottomTabNavigator();
 
 const routeIconUrls: { [key: string]: any } = {
-  'Home': 'home-outline',
-  'Friends': 'people-outline',
-  'UserProfile': 'person-outline'
+  'Home': 'home',
+  'Friends': 'account-multiple',
+  'UserProfile': 'account'
 };
 
 function TabBarIcon({ iconName, focused }: any) 
 {
   return (
-    <Icon name={iconName} color={focused ? 'green' : 'gray'} size={focused ? 35 : 30} />
+    <MaterialCommunityIcon name={iconName} color={focused ? Colors.secondary : 'gray'}  size={focused ? 35 : 30} />
   );
 };
 
-const renderItem = ({ item }: any) => {
-  return (
-    <TouchableOpacity style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <TabBarIcon iconUrl={item.iconUrl} />
-      <Text style={{ color: 'gray', fontSize: 12, marginTop: 4 }}>{item.key}</Text>
-    </TouchableOpacity>
-  );
-};
+
 
 function ScholarTabs() {
   return (
@@ -47,7 +41,7 @@ function ScholarTabs() {
           borderTopWidth: 0,
         },
         tabBarIcon: ({ focused }: any) => {
-           return <TabBarIcon iconUrl={ routeIconUrls[route.name] } focused={focused} />
+           return <TabBarIcon iconName={ routeIconUrls[route.name] } focused={focused} />
         },
       })}
     >
