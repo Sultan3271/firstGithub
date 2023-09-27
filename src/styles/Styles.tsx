@@ -16,34 +16,6 @@ const styles = StyleSheet.create({
     color: "#006CA2",
     paddingLeft: 20
   },
-
-  firstName: {
-    color: 'black',
-    fontSize: 38,
-    fontWeight: '700',
-    padding: 10,
-  },
-
-  lastName: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: '600',
-    marginTop: 15,
-  },
-
-  starIcon: {
-    width: 60,
-    height: 60,
-    margin: 10,
-    marginLeft: 35,
-  },
-
-  boxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '90%'
-  },
-
   underLine: {
     width: '90%',
     height: .7,
