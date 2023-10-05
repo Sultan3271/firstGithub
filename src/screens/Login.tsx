@@ -42,7 +42,7 @@ function Login({ navigation }: any)
           </TouchableOpacity>
           
         </View>
-        <MissionLine />
+        <MissionLine text = "Peer to Peer learning!"/>
       </View>
     </ScrollView>
   )

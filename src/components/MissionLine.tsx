@@ -3,10 +3,10 @@ import React from 'react'
 import formStyles from '../styles/formStyles'
 import styles from '../styles/Styles'
 
-const MissionLine = () => {
+const MissionLine = (props:any) => {
   return (
     <View style={{margin: 2, alignItems: 'center'}}>
-      <Text style={[styles.iconHeaderText, {fontSize: 32}]}>Peer To Peer Learning</Text>
+      <Text style={[styles.iconHeaderText, {fontSize: 32}]}>{props.text}</Text>
     </View>
   )
 }

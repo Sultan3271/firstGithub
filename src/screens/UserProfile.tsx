@@ -9,6 +9,7 @@ import { View, Text, Image,ScrollView } from 'react-native'
 import React from 'react'
 import FriendBox from '../components/FriendBox'
 import styles from '../styles/Styles'
+import MissionLine from '../components/MissionLine'
 
 const UserProfile = ({ navigation }: any) => {
   return (
@@ -46,6 +47,7 @@ const UserProfile = ({ navigation }: any) => {
           </View>
         </ScrollView>
       </View>
+      <MissionLine text="Be Nice and Have Fun Learning" /> 
     </View>
   )
 }
