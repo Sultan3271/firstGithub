@@ -15,6 +15,7 @@ import formStyles from '../styles/formStyles';
 import Divider from '../components/Divider';
 import ScholarBanner from '../components/ScholarBanner';
 import Button from '../components/Button';
+import MissionLine from '../components/MissionLine';
 
 function Login({ navigation }: any) 
 {
@@ -41,6 +42,7 @@ function Login({ navigation }: any)
           </TouchableOpacity>
           
         </View>
+        <MissionLine text = "Peer to Peer learning!"/>
       </View>
     </ScrollView>
   )
