@@ -13,13 +13,16 @@ import UserProfile from '../screens/UserProfile';
 import MaterialCommunityIcon from 'react-native-vector-icons//MaterialCommunityIcons';
 import { Text, View,TouchableOpacity } from 'react-native';
 import Colors from '../Theme/ScholarColors';
+import Notifications from '../screens/Notifications';
 
 const Tab = createBottomTabNavigator();
 
 const routeIconUrls: { [key: string]: any } = {
   'Home': 'home',
   'Friends': 'account-multiple',
-  'UserProfile': 'account'
+  'Notifications': 'bell',
+  'UserProfile': 'account',
+  
 };
 
 function TabBarIcon({ iconName, focused }: any) 
@@ -47,8 +50,9 @@ function ScholarTabs() {
     >
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false, tabBarShowLabel: false }} />
       <Tab.Screen name="Friends" component={Friends} options={{ headerShown: false, tabBarShowLabel: false }} />
+      <Tab.Screen name="Notifications" component={Notifications} options={{ headerShown: false, tabBarShowLabel: false }} />
       <Tab.Screen name="UserProfile" component={UserProfile} options={{ headerShown: false, tabBarShowLabel: false }} />
-
+     
     </Tab.Navigator>
   );
 }

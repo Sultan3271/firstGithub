@@ -5,16 +5,21 @@
  * @last modified 9/20/2023
  */
 
-import { View, Text, Image,ScrollView } from 'react-native'
-import React from 'react'
+import { View, Text, Image,ScrollView, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import FriendBox from '../components/FriendBox'
 import styles from '../styles/Styles'
 import MissionLine from '../components/MissionLine'
+import Colors from '../Theme/ScholarColors'
+import EditProfile from './EditProfile'
 
 const UserProfile = ({ navigation }: any) => {
+  const [edit,setEdit] = useState(false);
   return (
+    
+     
     <View style={styles.container}>
-
+       
       {/* Profile Name */}
       <View style={styles.boxContainer}>
         <Text style={styles.firstName}>BEN</Text>
@@ -24,6 +29,9 @@ const UserProfile = ({ navigation }: any) => {
 
       {/* Profile Image */}
       <View style={styles.profilePicBox}>
+        <TouchableOpacity style={{position:'absolute',left:300,backgroundColor:Colors.primary,padding:5,}}>
+          <Text>Edit</Text>
+        </TouchableOpacity>
         <View style={[styles.underLine,{width:'25%',}]}></View>
         <View>
           <Image style={styles.profileImage} source={{uri:'https://cdn-icons-png.flaticon.com/128/6555/6555160.png'}} />
@@ -49,6 +57,7 @@ const UserProfile = ({ navigation }: any) => {
       </View>
       <MissionLine text="Be Nice and Have Fun Learning" /> 
     </View>
+    
   )
 }
 

@@ -6,6 +6,7 @@
  * 
  */
 
+import firestore from '@react-native-firebase/firestore';
 
 /**
  * Dummy data
@@ -20,3 +21,55 @@ export const posts = [
     
     // Add more data items as needed
   ];
+
+ 
+
+ export const getProfile=(profileId)=>{
+     
+
+  console.log("inP", profileId);
+
+// Define a function that returns a Promise
+
+  return new Promise((resolve, reject) => {
+    const subscriber = firestore()
+      .collection('Profile')
+      .doc(profileId)
+      .onSnapshot(
+        (documentSnapshot) => {
+          if (documentSnapshot.exists) {
+            const userData = documentSnapshot.data();
+            console.log('User data:', userData);
+
+            // Resolve the Promise with the user data
+            resolve(userData);
+          } else {
+            console.log('User profile does not exist.');
+            
+          }
+        },
+        (error) => {
+          console.error('Error fetching user profile:', error);
+          // Reject the Promise with the error
+          reject(error);
+        }
+      );
+
+    // Return a cleanup function to unsubscribe from the listener when no longer needed
+    return () => subscriber();
+  });
+
+
+
+
+
+
+    
+  
+  }
+
+
+
+
+
+
