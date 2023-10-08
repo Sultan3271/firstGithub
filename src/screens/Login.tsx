@@ -25,7 +25,7 @@ function Login({ navigation }: any)
       {/* Form */}
       <View style={formStyles.container}>
         <LoginForm nav={navigation}/>
-        <Divider text="OR"/>
+        <Divider text="OR" width={'25%'}/>
 
         {/* Other Log In Options */}
         <View>

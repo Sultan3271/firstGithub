@@ -6,10 +6,10 @@
  */
 
 const Colors = {
-    primary: '#3498db',
+    primary: '#2a9d8f',
     // i'll suggest this color because it's more of education color, the above color is for business color
     // and social  
-    secondary: '#2a9d8f',
+    secondary: '#3498db',
     text: '#333333',
     background: '#f2f2f2',
 

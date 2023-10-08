@@ -13,9 +13,9 @@ export default function FeedBox(props: any) {
             <View style={styles.postAdmin}>
                 <View style={styles.avatarSection}>
                     <Icon name={props.avatar} size={30} color={Colors.primary} />
-                </View>
-                <View style={styles.adminSection}>
-
+                </View> 
+                   <View style={styles.adminSection}>
+                    
                     <Text style={styles.postAdminName}>{props.admin}</Text>
                     <Text style={{ color: 'gray' }}>
                         {props.time}
