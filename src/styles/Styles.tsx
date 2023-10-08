@@ -6,9 +6,9 @@ const styles = StyleSheet.create({
 
   container: {
     padding: 10,
-    backgroundColor:Colors.background,
+    backgroundColor: Colors.background,
     flex: 1,
-    
+
   },
 
   iconHeaderText: {
@@ -147,17 +147,17 @@ userNameStyle:{
     padding: 5,
   }
   ,
-  
+
   post: {
-   justifyContent:'center',
-   position:'relative',
+    justifyContent: 'center',
+    position: 'relative',
     width: '100%',
     overflow: 'hidden',
-    backgroundColor:Colors.background,
-    padding:6,
-    marginTop:6,
+    backgroundColor: Colors.background,
+    padding: 6,
+    marginTop: 6,
   },
-  
+
   postHolder: {
     backgroundColor: 'gray',
     borderRadius: 5,
@@ -165,29 +165,29 @@ userNameStyle:{
     alignItems: 'center',
     height: 250,
     width: '100%',
-    resizeMode:'cover',
-    
+    resizeMode: 'cover',
+
   },
-  
+
   postAdmin: {
     padding: 1,
     marginLeft: 1,
-    flexDirection:'row',
-    alignItems:'center',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
-  avatarSection:{
-   borderWidth:.5,
-   borderRadius:50,
-   padding:5,
-   margin:1,
-   borderColor:Colors.primary,
+  avatarSection: {
+    borderWidth: .5,
+    borderRadius: 50,
+    padding: 5,
+    margin: 1,
+    borderColor: Colors.primary,
   },
-  adminSection:{
-   marginLeft:5,
-   padding:5,
+  adminSection: {
+    marginLeft: 5,
+    padding: 5,
   },
   postAdminName: {
-    fontWeight:'bold',
+    fontWeight: 'bold',
     fontSize: 16,
   },
   postDescription: {
@@ -196,24 +196,24 @@ userNameStyle:{
   postDescText: {
     color: Colors.text,
     fontSize: 15,
-    fontFamily:Fonts.regular,
+    fontFamily: Fonts.regular,
   }
-,
-  postBottom:{
-  backgroundColor:'transparent',
-   flexDirection:'row',
-   justifyContent:'space-between',
-   width:'auto',
-   padding:2,
-   paddingLeft:10,
-   paddingRight:10,
-   borderBottomRightRadius:5,
-   borderBottomLeftRadius:5,
+  ,
+  postBottom: {
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 'auto',
+    padding: 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderBottomRightRadius: 5,
+    borderBottomLeftRadius: 5,
 
   },
 
-  actionBtn:{
-    padding:2,
+  actionBtn: {
+    padding: 2,
   }
 
 

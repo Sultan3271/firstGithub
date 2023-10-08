@@ -24,8 +24,8 @@ const formStyles = StyleSheet.create({
     btnText: {
         fontSize: 15,
         color: Colors.linkColor,
-    }, 
-    container: { 
+    },
+    container: {
         margin: 10,
         padding: 10,
         alignItems: 'center',

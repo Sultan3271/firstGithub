@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import styles from '../styles/Styles';
 import { posts } from '../services/DataService';
 import Icon from 'react-native-vector-icons/Ionicons';

@@ -1,5 +1,4 @@
 
-export default function ButtonsTab()
-{
-
+export default function ButtonsTab() {
+    
 }
