@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   profilePicBox: {
     flexDirection: 'row',
     margin: 5,
-    alignItems: 'center',
+    alignItems:'center'
   },
 
   dividerContainer: {
@@ -36,78 +36,89 @@ const styles = StyleSheet.create({
     margin: 5,
     alignItems: 'center',
   },
+//  profile page style
+profileImage: {
+  width: 120,
+  height: 120,
+  padding: 10,
+  backgroundColor: '#FFFF',
+  borderRadius: 50,
+  margin: 10,
+},
+formField: {
+  width: 300,
+  borderWidth: .8,
+  margin: 10,
+  padding: 10,
+  borderRadius: 10,
+  borderCurve: 'circular',
+},
+headingStyle:{
+  fontFamily: 'times new roman',
+  fontSize: 20,
+  color: 'black',
+  fontWeight:'bold' 
+},
+contentStyle:{
+  fontFamily: Fonts.regular,
+  fontSize: 20,
+  color: 'gray' 
+},
+btnText: {
+  color: '#FFFF',
+  fontSize: 18
+},
 
-  profileImage: {
-    width: 130,
-    height: 130,
-    padding: 10,
-    backgroundColor: '#FFFF',
-    borderRadius: 50,
-    margin: 10,
-  },
+friendBoxStyle: {
+  padding: 5,
+  backgroundColor: Colors.primary,
+  alignItems: 'center',
+  justifyContent: 'center',
+  alignContent: 'center',
+  borderRadius: 20,
+  margin: 2
+},
 
-  formField: {
-    width: 300,
-    borderWidth: .8,
-    margin: 10,
-    padding: 10,
-    borderRadius: 10,
-    borderCurve: 'circular',
-  },
+friendBoxTextStyle: {
+  color: '#FFFF',
+  fontSize: 20,
+  fontWeight: 'bold',
+},
 
-  btnText: {
-    color: '#FFFF',
-    fontSize: 18
-  },
+friendBoxContainer: {
+  margin: 5,
+  padding: 3,
+},
+friendBoxes: {
+  flexDirection: 'row',
+}
+,
+friendBoxButton: {
+  padding: 5,
+  backgroundColor: '#e1e8ff',
+  margin: 5,
+  borderRadius: 10,
+  height: 30,
+  width: 100,
+},
 
-  friendBoxStyle: {
-    padding: 10,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'center',
-    borderRadius: 20,
-    margin: 3
-  },
+heading: {
+  margin: 10,
+  justifyContent: 'center',
+  padding: 5,
+},
 
-  friendBoxTextStyle: {
-    color: '#FFFF',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-
-  friendBoxContainer: {
-    margin: 10,
-    padding: 3,
-  },
-  friendBoxes: {
-    flexDirection: 'row',
-  }
-  ,
-  friendBoxButton: {
-    padding: 5,
-    backgroundColor: '#e1e8ff',
-    margin: 5,
-    borderRadius: 10,
-    height: 30,
-    width: 100,
-  },
-
-  heading: {
-    margin: 10,
-    justifyContent: 'center',
-    padding: 5,
-  },
-
-  friendTextStyle: {
-    color: 'black',
-    fontSize: 22,
-    fontWeight: 'bold',
-    margin: 2,
-    marginLeft: 5,
-    padding: 4,
-  },
-
+friendTextStyle: {
+  color: 'black',
+  fontSize: 20,
+  fontWeight: 'bold',
+  fontFamily:Fonts.regular,
+},
+userNameStyle:{
+  fontFamily: Fonts.regular,
+   fontSize: 22,
+    color: 'black'
+},
   // For Tab Navigator
   tabIcon: {
     width: 30,
