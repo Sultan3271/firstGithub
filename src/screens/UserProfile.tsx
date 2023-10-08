@@ -5,8 +5,12 @@
  * @last modified 9/20/2023
  */
 
+
+import React, { useState } from 'react'
+
+import MissionLine from '../components/MissionLine'
+import EditProfile from './EditProfile'
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
 import styles from '../styles/Styles'
 import FriendBox from '../components/FriendBox'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -16,11 +20,14 @@ import { TextInput } from 'react-native-paper';
 import Colors from '../Theme/ScholarColors';
 import Divider from '../components/Divider';
 
+
 const UserProfile = ({ navigation }: any) => {
+  const [edit,setEdit] = useState(false);
   return (
+    
+     
     <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Profile Image */}
+
         <View>
           <View style={styles.profilePicBox}>
             <View style={styles.avatarSection}>
@@ -87,10 +94,11 @@ const UserProfile = ({ navigation }: any) => {
             likes={item.likes}
             contributes={item.contributes}
             description={item.description}
-          />)
+          />) 
         }
-      </ScrollView>
+     
     </View>
+    
   )
 }
 
