@@ -11,7 +11,6 @@ import Home from '../screens/Home';
 import Friends from '../screens/Friends';
 import UserProfile from '../screens/UserProfile';
 import MaterialCommunityIcon from 'react-native-vector-icons//MaterialCommunityIcons';
-import { Text, View,TouchableOpacity } from 'react-native';
 import Colors from '../Theme/ScholarColors';
 
 const Tab = createBottomTabNavigator();

@@ -22,9 +22,7 @@ function SignUp({ navigation }: any)
 
 <ScholarBanner text="Sign Up"/>
       {/* Form */}
-      <View style={formStyles.container}>
-
-        
+      <View style={formStyles.container}>        
         <SignUpForm nav={navigation}/>
         <Divider text="OR"/>
 

@@ -5,7 +5,6 @@
  * @purpose for storing colors so we can use anywhere
  */
 
-
 const Colors = {
     primary: '#3498db',
     // i'll suggest this color because it's more of education color, the above color is for business color

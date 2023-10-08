@@ -18,49 +18,42 @@ import formStyles from '../styles/formStyles';
  * On Submit: Adds the new user to the Users firestore database collection.
  * @param props (nav) property used to pass in the current navigation controls.
  */
-export default function SignUpForm(props: any)
-{
-    const [ usrName, setUserName ] = useState("");
-    const [ usrEmail, setUserEmail ] = useState("");
-    const [ usrPassword1, setUserPassword1 ] = useState("");
-    const [ usrPassword2, setUserPassword2 ] = useState("");
-    const [ errorMsg, setErrorMsg ] = useState("");
-    const [ isSubmitDisabled, setIsSubmitDisabled ] = useState(false);
+export default function SignUpForm(props: any) {
+    const [usrName, setUserName] = useState("");
+    const [usrEmail, setUserEmail] = useState("");
+    const [usrPassword1, setUserPassword1] = useState("");
+    const [usrPassword2, setUserPassword2] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
-    function tryAndSignIn()
-    {
+    function tryAndSignIn() {
         setIsSubmitDisabled(true);
 
-        if (usrName.length === 0)
-        {
+        if (usrName.length === 0) {
             Alert.alert("Name required!");
             setIsSubmitDisabled(false);
             return;
         }
-        
-        if (usrEmail.length === 0)
-        {
+
+        if (usrEmail.length === 0) {
             Alert.alert("Email required!");
             setIsSubmitDisabled(false);
             return;
         }
 
-        if (usrPassword1.length === 0)
-        {
+        if (usrPassword1.length === 0) {
             Alert.alert("Password required!");
             setIsSubmitDisabled(false);
             return;
         }
 
-        if (usrPassword1.length === 0)
-        {
+        if (usrPassword1.length === 0) {
             Alert.alert("Must re-type password!");
             setIsSubmitDisabled(false);
             return;
         }
 
-        if (usrPassword1 !== usrPassword2)
-        {
+        if (usrPassword1 !== usrPassword2) {
             Alert.alert("Passwords do not match!");
             setIsSubmitDisabled(false);
             return;
@@ -74,7 +67,7 @@ export default function SignUpForm(props: any)
                 // adds the new user to the Users firestore database collection
                 firestore()
                     .collection("Users").doc(user?.uid)
-                    .set({ 
+                    .set({
                         usrName: usrName,
                         usrEmail: usrEmail,
                         usrPassword: usrPassword1,
@@ -104,18 +97,18 @@ export default function SignUpForm(props: any)
         <View style={formStyles.submitContainer}>
             {/* Input Fields */}
             <View>
-                <TextInput style={styles.formField} placeholder='Enter Name...' onChangeText={text=>setUserName(text)}></TextInput>
-                <TextInput style={styles.formField} placeholder='Enter Email...' onChangeText={text=>setUserEmail(text)}></TextInput>
-                <TextInput style={styles.formField} placeholder='Enter Password...' onChangeText={text=>setUserPassword1(text)} secureTextEntry={true}></TextInput>
-                <TextInput style={styles.formField} placeholder='Confirm Password...' onChangeText={text=>setUserPassword2(text)} secureTextEntry={true}></TextInput>
+                <TextInput style={styles.formField} placeholder='Enter Name...' onChangeText={text => setUserName(text)}></TextInput>
+                <TextInput style={styles.formField} placeholder='Enter Email...' onChangeText={text => setUserEmail(text)}></TextInput>
+                <TextInput style={styles.formField} placeholder='Enter Password...' onChangeText={text => setUserPassword1(text)} secureTextEntry={true}></TextInput>
+                <TextInput style={styles.formField} placeholder='Confirm Password...' onChangeText={text => setUserPassword2(text)} secureTextEntry={true}></TextInput>
             </View>
 
-            <Text style={{color: "red"}}>{ errorMsg.toString() }</Text>
+            <Text style={{ color: "red" }}>{errorMsg.toString()}</Text>
 
             {/* Submit Button */}
             <View style={formStyles.submitBtnContainer}>
                 <TouchableOpacity style={formStyles.submitBtn} onPress={() => tryAndSignIn()} disabled={isSubmitDisabled}>
-                    <Text style={[formStyles.btnText, {color: "white"}]}>SignUp</Text>
+                    <Text style={[formStyles.btnText, { color: "white" }]}>SignUp</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => props.nav.navigate('Login')}>
@@ -123,5 +116,5 @@ export default function SignUpForm(props: any)
                 </TouchableOpacity>
             </View>
         </View>
-    ); 
+    );
 }

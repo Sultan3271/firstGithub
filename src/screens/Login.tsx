@@ -5,8 +5,8 @@
  * @last modified 9/20/2023
  */
 
-import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
-import React, { useRef, useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
 import styles from '../styles/Styles';
 import LoginForm from '../components/LoginForm';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -14,7 +14,6 @@ import { ScrollView } from 'react-native';
 import formStyles from '../styles/formStyles';
 import Divider from '../components/Divider';
 import ScholarBanner from '../components/ScholarBanner';
-import Button from '../components/Button';
 import MissionLine from '../components/MissionLine';
 
 function Login({ navigation }: any) 
@@ -24,9 +23,7 @@ function Login({ navigation }: any)
       
       <ScholarBanner text="Login"/>
       {/* Form */}
-      <View style={formStyles.container}>  
-
-        
+      <View style={formStyles.container}>
         <LoginForm nav={navigation}/>
         <Divider text="OR"/>
 
