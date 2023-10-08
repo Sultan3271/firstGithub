@@ -11,5 +11,4 @@ export const Fonts = {
     bold: 'HelveticaNeue-Bold',
     italic: 'HelveticaNeue-Italic',
     // Add more fonts if needed
-
   };
