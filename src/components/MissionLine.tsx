@@ -1,6 +1,5 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import formStyles from '../styles/formStyles'
 import styles from '../styles/Styles'
 
 const MissionLine = (props:any) => {
