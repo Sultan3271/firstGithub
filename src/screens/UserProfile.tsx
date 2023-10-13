@@ -1,7 +1,8 @@
 /**
  * @file UserProfile.tsx
  * @description ?
- * @ownership ?
+ * @ownership Shan Ayub
+ * 
  * @last modified 9/20/2023
  */
 
@@ -19,19 +20,19 @@ import FeedBox from '../components/FeedBox';
 import { TextInput } from 'react-native-paper';
 import Colors from '../Theme/ScholarColors';
 import Divider from '../components/Divider';
+import { useNavigation } from '@react-navigation/native'
 
 
 const UserProfile = ({ navigation }: any) => {
+  //navigation=useNavigation();
   const [edit,setEdit] = useState(false);
   return (
-    
-     
     <View style={styles.container}>
 
         <View>
           <View style={styles.profilePicBox}>
             <View style={styles.avatarSection}>
-              <Icon name={posts[0].avatar} size={90} color={Colors.primary} />
+              <Icon name={posts[0].avatar} size={90} color={Colors.primary}/>
             </View>
             <View style={{ flex: 1, margin: 5, justifyContent: 'center' }}>
               <Text style={styles.userNameStyle}>David Edwards</Text>
@@ -39,8 +40,8 @@ const UserProfile = ({ navigation }: any) => {
                 <Text style={{ fontFamily: 'Just Another Hand,Inter', fontSize: 20, color: 'black' }}>University of West Florida</Text>
               </View>
             </View>
-            <TouchableOpacity style={{ top: 1, position: 'absolute', left: 80 }}>
-              <Icon name="create-outline" size={20} color={'black'} />
+            <TouchableOpacity style={{ top: 1, position: 'absolute', left: 80 }} onPress={()=>navigation.navigate('EditProfile')}>
+              <Icon name="create-outline" size={20} color={'black'}/>
             </TouchableOpacity>
           </View>
           <Divider width={'90%'} />

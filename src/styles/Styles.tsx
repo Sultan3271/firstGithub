@@ -8,14 +8,13 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: Colors.background,
     flex: 1,
-
   },
 
   iconHeaderText: {
     fontFamily: "JustAnotherHand-Regular",
     textAlignVertical: "center",
     fontSize: 80,
-    color: Colors.secondary,
+    color: Colors.primary,
     paddingLeft: 20
   },
   underLine: {
