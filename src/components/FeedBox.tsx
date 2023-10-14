@@ -31,10 +31,7 @@ export default function FeedBox(props: any) {
             <View style={styles.postHolder}>
                 <Icon name={props.picture} size={150} color='green' />
             </View>
-
             <PostBottom likes={props.likes} contributes={props.contributes} />
-
-
         </View>
     );
 }

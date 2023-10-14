@@ -1,16 +1,14 @@
 /**
  * @file UserProfile.tsx
  * @description ?
- * @ownership ?
+ * @ownership Shan Ayub
+ * 
  * @last modified 9/20/2023
  */
 
-
-import React, { useEffect, useState } from 'react'
-
-import MissionLine from '../components/MissionLine'
-import EditProfile from './EditProfile'
-import { View, Text, Image, ScrollView, TouchableOpacity,FlatList } from 'react-native'
+<<<<<<<<< Temporary merge branch 1
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+import React from 'react'
 import styles from '../styles/Styles'
 import FriendBox from '../components/FriendBox'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -19,29 +17,34 @@ import FeedBox from '../components/FeedBox';
 import { TextInput } from 'react-native-paper';
 import Colors from '../Theme/ScholarColors';
 import Divider from '../components/Divider';
-
+=========
+import { View, Text, Image,ScrollView, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import FriendBox from '../components/FriendBox'
+import styles from '../styles/Styles'
+import MissionLine from '../components/MissionLine'
+import Colors from '../Theme/ScholarColors'
+import EditProfile from './EditProfile'
+>>>>>>>>> Temporary merge branch 2
 
 const UserProfile = ({ navigation }: any) => {
-  
-  
+  const [edit,setEdit] = useState(false);
   return (
-    
-     
     <View style={styles.container}>
 
         <View>
           <View style={styles.profilePicBox}>
             <View style={styles.avatarSection}>
               <Icon name={posts[0].avatar} size={90} color={Colors.primary} />
-            </View> 
+            </View>
             <View style={{ flex: 1, margin: 5, justifyContent: 'center' }}>
               <Text style={styles.userNameStyle}>David Edwards</Text>
               <View style={{ marginTop: 5 }}>
                 <Text style={{ fontFamily: 'Just Another Hand,Inter', fontSize: 20, color: 'black' }}>University of West Florida</Text>
               </View>
             </View>
-            <TouchableOpacity style={{ top: 1, position: 'absolute', left: 80 }}>
-              <Icon name="create-outline" size={20} color={'black'} />
+            <TouchableOpacity style={{ top: 1, position: 'absolute', left: 80 }} onPress={()=>navigation.navigate('EditProfile')}>
+              <Icon name="create-outline" size={20} color={'black'}/>
             </TouchableOpacity>
           </View>
           <Divider width={'90%'} />
@@ -101,11 +104,9 @@ const UserProfile = ({ navigation }: any) => {
             likes={item.likes}
             contributes={item.contributes}
             description={item.description}
-
-          />
-        )}
-      />
-     
+          />)
+        }
+      </ScrollView>
     </View>
     
   )

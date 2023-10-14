@@ -21,6 +21,8 @@ import { getProfile } from '../services/DataService';
  * @param props (nav) property used to pass in the current navigation controls.
  */
 
+
+
 export default function SignUpForm(props: any)
 {
     const [ usrName, setUserName ] = useState("");
@@ -77,6 +79,7 @@ export default function SignUpForm(props: any)
 
 
     function tryAndSignIn() {
+
         setIsSubmitDisabled(true);
 
         if (usrName.length === 0) {
@@ -118,9 +121,10 @@ export default function SignUpForm(props: any)
                 
                 // adds the new user to the Users firestore database collection
                 firestore()
-                   .collection("Users").doc(userId)
-                    .set({ 
 
+        
+                    .collection("Users").doc(userId)
+                    .set({ 
                         usrName: usrName,
                         usrEmail: usrEmail,
                         usrPassword: usrPassword1,
