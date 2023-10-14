@@ -10,7 +10,7 @@ import React, { useEffect, useState } from 'react'
 
 import MissionLine from '../components/MissionLine'
 import EditProfile from './EditProfile'
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, Image, ScrollView, TouchableOpacity,FlatList } from 'react-native'
 import styles from '../styles/Styles'
 import FriendBox from '../components/FriendBox'
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -22,10 +22,8 @@ import Divider from '../components/Divider';
 
 
 const UserProfile = ({ navigation }: any) => {
-  const [edit,setEdit] = useState(false);
-  useEffect(()=>{
-
-  },[]);
+  
+  
   return (
     
      
@@ -35,7 +33,7 @@ const UserProfile = ({ navigation }: any) => {
           <View style={styles.profilePicBox}>
             <View style={styles.avatarSection}>
               <Icon name={posts[0].avatar} size={90} color={Colors.primary} />
-            </View>
+            </View> 
             <View style={{ flex: 1, margin: 5, justifyContent: 'center' }}>
               <Text style={styles.userNameStyle}>David Edwards</Text>
               <View style={{ marginTop: 5 }}>
@@ -76,7 +74,9 @@ const UserProfile = ({ navigation }: any) => {
         </View>
         <View>
         </View>
+          <View>
         <Text style={styles.headingStyle}>Posts</Text>
+        </View>
         <View style={{ margin: 5, flexDirection: 'row', justifyContent: 'space-between', borderWidth: 1, borderColor: 'gray', padding: 10, borderRadius: 10 }}>
           <View>
             <Icon style={{ width: 35, height: 35 }} name={posts[0].avatar} size={30} color={Colors.primary} />
@@ -90,15 +90,21 @@ const UserProfile = ({ navigation }: any) => {
             </TouchableOpacity>
           </View>
         </View>
-        {
-          posts.map(item => <FeedBox admin={item.admin} avatar={item.avatar}
+        <FlatList
+
+        data={posts}
+        renderItem={({ item }) => (
+
+          <FeedBox admin={item.admin} avatar={item.avatar}
             time={item.time}
             picture={item.picture}
             likes={item.likes}
             contributes={item.contributes}
             description={item.description}
-          />) 
-        }
+
+          />
+        )}
+      />
      
     </View>
     

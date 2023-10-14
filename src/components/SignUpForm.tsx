@@ -33,7 +33,7 @@ export default function SignUpForm(props: any)
 
 
 
-    function setInProfile(userID){
+    function setInProfile(userID:any){
      
         console.log(userID);
         console.log("normal", userID);
