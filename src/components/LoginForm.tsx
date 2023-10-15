@@ -10,8 +10,9 @@ import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import styles from '../styles/Styles';
 import auth from '@react-native-firebase/auth';
 import formStyles from '../styles/formStyles';
-import firestore from '@react-native-firebase/firestore';
+
 import { getProfile } from '../services/DataService';
+
 
 /**
  * Used to create a login in form that connects with Firebase.
@@ -46,9 +47,18 @@ export default function LoginForm(props: any)
                 .then(user => {
                     
                     Alert.alert("Login successfull!");
-                 
-                    props.nav.navigate('Splash');
-                    console.log(user);
+                 const userId= user.user.uid.toString();
+                    props.nav.navigate('Splash',{userId});
+                    getProfile(userId)
+                    .then((profile) => {
+                        console.log(profile);
+                        
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        
+                    })
+                    // console.log("user = ",usrId);
                 })
                 .catch(error => {
                     // Alert.alert("Account could not be authenticated!");
