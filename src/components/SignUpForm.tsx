@@ -12,7 +12,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import formStyles from '../styles/formStyles';
 
-import { getProfile } from '../services/DataService';
+import { getProfile, setInProfile } from '../services/DataService';
 
 /**
  * Used to create a sign in form that connects with Firebase.
@@ -20,6 +20,7 @@ import { getProfile } from '../services/DataService';
  * On Submit: Adds the new user to the Users firestore database collection.
  * @param props (nav) property used to pass in the current navigation controls.
  */
+
 
 
 export default function SignUpForm(props: any)
@@ -31,51 +32,6 @@ export default function SignUpForm(props: any)
     const [ errorMsg, setErrorMsg ] = useState("");
     const [ isSubmitDisabled, setIsSubmitDisabled ] = useState(false);
     
-
-
-
-    function setInProfile(userID){
-     
-        console.log(userID);
-        console.log("normal", userID);
-        const profileId= userID+"sp"+userID[3];
-        
-        firestore()
-        .collection("Profile").doc(profileId)
-        .set({ 
-            userId: userID,
-            profileId,
-            bio: '',
-            profilePic:'',
-            schoolName:'',
-            class:'',
-            usrName: usrName,
-            
-        })
-        .then(()=>{
-        console.log("success!");
-        getProfile(profileId)
-        .then((userData) => {
-         
-          console.log('Received user data:', userData[0]);
-        })
-        .catch((error) => {
-          // Handle errors here
-          console.error('Error:', error);
-        });
-       
-        //props.nav.navigate('Splash');
-        
-    
-        })
-        .catch(err =>{
-            console.log(err);
-            
-        })
-      
-      }
-  
-
 
     function tryAndSignIn() {
 
@@ -117,11 +73,13 @@ export default function SignUpForm(props: any)
                 const user = auth().currentUser;
                 const userId= user?.uid;
                 //console.log(userId);
-                
+                 
                 // adds the new user to the Users firestore database collection
                 firestore()
 
-                    .collection("Users").doc(userId)
+        
+                    .collection("Users").doc(userId).collection("Credentials")
+                    .doc(userId)
                     .set({ 
                         usrName: usrName,
                         usrEmail: usrEmail,
@@ -129,10 +87,9 @@ export default function SignUpForm(props: any)
                     })
                     .then(() => {
                         Alert.alert("Success creating account!");
-                        //props.nav.navigate('Splash');
+                        props.nav.navigate('Splash',{userId});
                         console.log(result);
-
-                        setInProfile(userId);
+                        setInProfile(userId,'no bio',' ','no school','no major',usrName)
                         
                     })
                     .catch(error => {

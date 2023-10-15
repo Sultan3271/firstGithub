@@ -34,6 +34,7 @@ function TabBarIcon({ iconName, focused }: any)
 
 
 function ScholarTabs() {
+  
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({

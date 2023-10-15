@@ -5,7 +5,7 @@ import { Fonts } from "../Theme/Fonts";
 const styles = StyleSheet.create({
 
   container: {
-    padding: 10,
+    
     backgroundColor: Colors.background,
     flex: 1,
   },
