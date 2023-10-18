@@ -16,6 +16,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Fonts} from '../Theme/Fonts';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {userId} from '../services/UserId';
+import { launchImageLibrary } from 'react-native-image-picker';
+import { uploadImage } from '../services/UploadFunctions';
+import { Image } from 'react-native';
 
 const EditProfile = (navigation: any) => {
   /**
@@ -28,12 +31,12 @@ const EditProfile = (navigation: any) => {
   const School = route.params?.profileData.schoolName;
   const Major = route.params?.profileData.Class;
   const Bio = route.params?.profileData.bio;
-
+ const prfPic= route.params?.profileData.profilePic
   const [name, setName] = useState(Name);
   const [school, setSchool] = useState(School);
   const [major, setMajor] = useState(Major);
   const [bio, setBio] = useState(Bio);
-  const [profilePic, setProfilePic] = useState('');
+  const [profilePic, setProfilePic] = useState(prfPic);
   navigation = useNavigation();
 
   /**
@@ -48,6 +51,41 @@ const EditProfile = (navigation: any) => {
       navigation.goBack();
     }
   }
+
+
+  const openImagePicker = () => {
+    const options = {
+      title: 'Select Image',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    launchImageLibrary(options, (response) => {
+      if (response.didCancel) {
+        console.log('Image picker was canceled');
+      } else if (response.error) {
+        console.error('Image picker error:', response.error);
+      } else {
+        // Handle the selected image here
+        
+        const uri= response.assets[0].uri;
+        const fileName= response.assets[0].fileName;
+       const path = `images/users/${userId}/profilePictures/${fileName}`.toString();
+          uploadImage(uri, path)
+          .then(imgurl=>{
+            setProfilePic(imgurl);
+          })
+          .catch(err=>{
+            console.log("something went wrong!");
+            
+          })
+      }
+    });
+  };
+
+
   return (
     <View style={{alignContent: 'center', justifyContent: 'center'}}>
       <View style={{margin: 5}}>
@@ -62,6 +100,8 @@ const EditProfile = (navigation: any) => {
           alignContent: 'center',
           alignItems: 'center',
         }}>
+             { 
+                profilePic.length==0 ?
         <Icon
           name={posts[0].avatar}
           size={90}
@@ -73,13 +113,17 @@ const EditProfile = (navigation: any) => {
             padding: 10,
           }}
         />
+        :
+        <Image style={styles.profilePictur} source={{uri:profilePic}} />
+
+}
       </View>
       <View style={{alignItems: 'center', margin: 10}}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={openImagePicker}>
           <Text
             style={{
               fontFamily: Fonts.regular,
-              color: Colors.text,
+              color: Colors.linkColor,
               fontSize: 16,
             }}>
             Edit Profile picture

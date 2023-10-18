@@ -36,6 +36,7 @@ const UserProfile = ({navigation}: any) => {
   const isFocused = useIsFocused();
   const [profileData, setProfileData] = useState({});
   const [edit, setEdit] = useState(false);
+  const [profilePic,setProfilePic] = useState('');
   /**
    * useEffect used for loading data from DB
    */
@@ -43,6 +44,8 @@ const UserProfile = ({navigation}: any) => {
     getProfile(userId)
       .then(profile => {
         setProfileData(profile);
+        setProfilePic(profileData.profilePic)
+        
       })
       .catch(error => {
         console.error('Errffor:', error);
@@ -55,7 +58,16 @@ const UserProfile = ({navigation}: any) => {
         <View>
           <View style={styles.profilePicBox}>
             <View style={styles.avatarSection}>
+
+            {/* 
+              @Sultan: My Emulator stopped working so if you get warning on these lines
+              * it's because of this condition
+            */}
+              {
+                profileData.profilePic == null ?
               <Icon name={posts[0].avatar} size={90} color={Colors.primary} />
+              : <Image style={styles.profilePictur} source={{uri:profileData.profilePic}} />
+}  
             </View>
             <View style={{flex: 1, margin: 5, justifyContent: 'center'}}>
               <Text style={styles.userNameStyle}>{profileData.usrName}</Text>

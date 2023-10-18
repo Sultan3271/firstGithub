@@ -37,13 +37,14 @@ const styles = StyleSheet.create({
   },
 //  profile page style
 profileImage: {
-  width: 120,
-  height: 120,
+  width: 90,
+  height: 90,
   padding: 10,
   backgroundColor: '#FFFF',
   borderRadius: 50,
   margin: 10,
 },
+
 formField: {
   width: 300,
   borderWidth: .8,
@@ -175,11 +176,13 @@ userNameStyle:{
     alignItems: 'center',
   },
   avatarSection: {
-    borderWidth: .5,
     borderRadius: 50,
     padding: 5,
     margin: 1,
-    borderColor: Colors.primary,
+   
+  },
+  profilePictur:{
+    width:100,height:100,backgroundColor:'transparent',borderRadius:50,
   },
   adminSection: {
     marginLeft: 5,
