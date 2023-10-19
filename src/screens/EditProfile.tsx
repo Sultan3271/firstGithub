@@ -29,7 +29,7 @@ const EditProfile = (navigation: any) => {
   const School = route.params?.profileData.schoolName;
   const Major = route.params?.profileData.Class;
   const Bio = route.params?.profileData.bio;
- const prfPic= route.params?.profileData.profilePic
+  const prfPic = route.params?.profileData.profilePic
   const [name, setName] = useState(Name);
   const [school, setSchool] = useState(School);
   const [major, setMajor] = useState(Major);
@@ -67,17 +67,17 @@ const EditProfile = (navigation: any) => {
         console.error('Image picker error:', response.error);
       } else {
         // Handle the selected image here
-        
-        const uri= response.assets[0].uri;
-        const fileName= response.assets[0].fileName;
-       const path = `images/users/${userId}/profilePictures/${fileName}`.toString();
-          uploadImage(uri, path)
-          .then(imgurl=>{
+
+        const uri = response.assets[0].uri;
+        const fileName = response.assets[0].fileName;
+        const path = `images/users/${userId}/profilePictures/${fileName}`.toString();
+        uploadImage(uri, path)
+          .then(imgurl => {
             setProfilePic(imgurl);
           })
-          .catch(err=>{
+          .catch(err => {
             console.log("something went wrong!");
-            
+
           })
       }
     });
@@ -85,8 +85,8 @@ const EditProfile = (navigation: any) => {
 
 
   return (
-    <View style={{alignContent: 'center', justifyContent: 'center'}}>
-      <View style={{margin: 5}}>
+    <View style={{ alignContent: 'center', justifyContent: 'center' }}>
+      <View style={{ margin: 5 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="close-outline" size={30} color={'black'} />
         </TouchableOpacity>
@@ -98,25 +98,24 @@ const EditProfile = (navigation: any) => {
           alignContent: 'center',
           alignItems: 'center',
         }}>
-             { 
-                profilePic.length==0 ?
-        <Icon
-          name={posts[0].avatar}
-          size={90}
-          color={Colors.primary}
-          style={{
-            borderColor: Colors.text,
-            borderWidth: 1,
-            borderRadius: 150,
-            padding: 10,
-          }}
-        />
-        :
-        <Image style={styles.profilePictur} source={{uri:profilePic}} />
-
-}
+        {
+          profilePic.length == 0 ?
+            <Icon
+              name={posts[0].avatar}
+              size={90}
+              color={Colors.primary}
+              style={{
+                borderColor: Colors.text,
+                borderWidth: 1,
+                borderRadius: 150,
+                padding: 10,
+              }}
+            />
+            :
+            <Image style={styles.profilePictur} source={{ uri: profilePic }} />
+        }
       </View>
-      <View style={{alignItems: 'center', margin: 10}}>
+      <View style={{ alignItems: 'center', margin: 10 }}>
         <TouchableOpacity onPress={openImagePicker}>
           <Text
             style={{
@@ -128,29 +127,29 @@ const EditProfile = (navigation: any) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{margin: 10}}>
-        <View style={{margin: 5}}>
+      <View style={{ margin: 10 }}>
+        <View style={{ margin: 5 }}>
           <TextInput
-            style={{backgroundColor: Colors.background, fontSize: 18}}
+            style={{ backgroundColor: Colors.background, fontSize: 18 }}
             value={name}
             placeholder="Your Name"
             onChangeText={text => setName(text)}></TextInput>
         </View>
-        <View style={{margin: 5}}>
+        <View style={{ margin: 5 }}>
           <TextInput
-            style={{backgroundColor: Colors.background, fontSize: 18}}
+            style={{ backgroundColor: Colors.background, fontSize: 18 }}
             value={school}
             placeholder="Edit your College"
             onChangeText={text => setSchool(text)}></TextInput>
         </View>
-        <View style={{margin: 5}}>
+        <View style={{ margin: 5 }}>
           <TextInput
-            style={{backgroundColor: Colors.background, fontSize: 18}}
+            style={{ backgroundColor: Colors.background, fontSize: 18 }}
             placeholder="Your Major"
             value={major}
             onChangeText={text => setMajor(text)}></TextInput>
         </View>
-        <View style={{margin: 5}}>
+        <View style={{ margin: 5 }}>
           <TextInput
             style={{
               backgroundColor: Colors.background,
@@ -178,7 +177,7 @@ const EditProfile = (navigation: any) => {
             alignItems: 'center',
           }}
           onPress={setChanges}>
-          <Text style={{color: Colors.text}}>Apply Changes</Text>
+          <Text style={{ color: Colors.text }}>Apply Changes</Text>
         </TouchableOpacity>
       </View>
     </View>

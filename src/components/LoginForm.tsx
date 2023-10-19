@@ -13,6 +13,8 @@ import auth from '@react-native-firebase/auth';
 import { getProfile } from '../services/DataService';
 import formStyles from '../styles/formStyles';
 import styles from '../styles/Styles';
+import Colors from '../Theme/ScholarColors';
+import SButton from './SButton';
 
 /**
  * Used to create a login in form that connects with Firebase.
@@ -24,6 +26,24 @@ export default function LoginForm(props: any) {
   const [usrPassword, setUserPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+
+  function LoginAnonymously() {
+    auth().signInAnonymously()
+          .then(user => {
+            Alert.alert("Login successfull!");
+            const userId = user.user.uid.toString();
+            props.nav.navigate('Splash', { userId });
+            getProfile(userId)
+              .then((profile) => {
+                console.log(profile);
+
+              })
+              .catch((error) => {
+                console.log(error);
+
+              })
+          })
+  }
 
   function tryAndLogIn() {
     setIsSubmitDisabled(true);
@@ -77,14 +97,11 @@ export default function LoginForm(props: any) {
 
       {/* Submit Button */}
       <View style={formStyles.submitBtnContainer}>
-        <TouchableOpacity style={formStyles.submitBtn} onPress={() => tryAndLogIn()} disabled={isSubmitDisabled}>
-          <Text style={[formStyles.btnText, { color: "white" }]}>Log in</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => props.nav.navigate('SignUp')}>
-          <Text style={formStyles.btnText}>Don't have an account? SignUp</Text>
-        </TouchableOpacity>
+        <SButton text="Log in" action={() => tryAndLogIn()}></SButton>
+        <SButton styleType="Sentence" text="Don't have an account? SignUp" action={() => props.nav.navigate('SignUp')}></SButton>
       </View>
+
+      <SButton styleType="BorderButton" text="Developement Only Login" action={() => LoginAnonymously()}></SButton>
     </View>
   );
 }
