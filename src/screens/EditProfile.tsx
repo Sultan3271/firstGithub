@@ -4,28 +4,26 @@
  * @ownership Shan Ayub
  *
  * @last modified 14/10/2023
- */
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
-import React, {useState} from 'react';
-import {TextInput} from 'react-native-paper';
-import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
-import ScholarBanner from '../components/ScholarBanner';
-import {posts, setInProfile} from '../services/DataService';
+*/
+
+import React, { useState } from 'react';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Fonts} from '../Theme/Fonts';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {userId} from '../services/UserId';
-import { launchImageLibrary } from 'react-native-image-picker';
-import { uploadImage } from '../services/UploadFunctions';
-import { Image } from 'react-native';
+
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import ScholarBanner from '../components/ScholarBanner';
+import { posts, setInProfile } from '../services/DataService';
+import { userId } from '../services/UserId';
+import styles from '../styles/Styles';
+import { Fonts } from '../Theme/Fonts';
+import Colors from '../Theme/ScholarColors';
 
 const EditProfile = (navigation: any) => {
-  /**
-   * getting data from navigation props
-   * @purpose so we can show user it's previous details in fields
-   *
-   */
+  // getting data from navigation props
+  // Purpose: so we can show user it's previous details in fields
+  // This will eventually be replaced by redux
   const route = useRoute();
   const Name = route.params?.profileData.usrName;
   const School = route.params?.profileData.schoolName;

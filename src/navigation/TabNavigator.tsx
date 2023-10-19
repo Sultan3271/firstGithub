@@ -6,13 +6,15 @@
  */
 
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home';
-import Friends from '../screens/Friends';
-import UserProfile from '../screens/UserProfile';
 import MaterialCommunityIcon from 'react-native-vector-icons//MaterialCommunityIcons';
-import Colors from '../Theme/ScholarColors';
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import Friends from '../screens/Friends';
+import Home from '../screens/Home';
 import Notifications from '../screens/Notifications';
+import UserProfile from '../screens/UserProfile';
+import Colors from '../Theme/ScholarColors';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +23,6 @@ const routeIconUrls: { [key: string]: any } = {
   'Friends': 'account-multiple',
   'Notifications': 'bell',
   'UserProfile': 'account',
-  
 };
 
 function TabBarIcon({ iconName, focused }: any) 

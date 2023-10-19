@@ -1,5 +1,6 @@
-import { View, Text } from 'react-native'
-import styles from '../styles/Styles'
+import { Text, View } from 'react-native';
+
+import styles from '../styles/Styles';
 
 export default function Divider(props: any) {
     return (
