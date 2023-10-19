@@ -16,7 +16,7 @@ import styles from '../styles/Styles';
 const Home = ({navigation}: any) => {
   return (
     <View style={{flex: 1}}>
-      <Feed />
+      <Feed /> 
     </View>
   );
 };

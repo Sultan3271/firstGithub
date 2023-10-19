@@ -142,7 +142,6 @@ const UserProfile = ({navigation}: any) => {
 				</View>
 				<MissionLine text="Stay connected" />
 			</View>
-
 			<Feed />
 		</View>
 	);

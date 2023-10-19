@@ -175,11 +175,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatarSection: {
-    borderWidth: .5,
     borderRadius: 50,
     padding: 5,
     margin: 1,
-    borderColor: Colors.primary,
+   
+  },
+  profilePictur:{
+    width:100,height:100,backgroundColor:'transparent',borderRadius:50,
   },
   adminSection: {
     marginLeft: 5,
