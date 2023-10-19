@@ -4,7 +4,6 @@
  * @ownership ?
  * @last modified 9/20/2023
  */
-
 import { View } from 'react-native';
 import React from 'react';
 import styles from '../styles/Styles';
