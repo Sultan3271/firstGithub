@@ -6,12 +6,13 @@
  */
         
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import EditProfile from '../screens/EditProfile';
 import Login from '../screens/Login';
-import UserProfile from '../screens/UserProfile';
 import SignUp from '../screens/SignUp';
 import Splash from '../screens/Splash';
-import EditProfile from '../screens/EditProfile';
-  
+import UserProfile from '../screens/UserProfile';
+
 const Stack = createNativeStackNavigator();
   
 function ScholarStack() { 

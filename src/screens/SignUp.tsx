@@ -5,26 +5,25 @@
  * @last modified 9/20/2023
  */
 
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
-import styles from '../styles/Styles';
-import SignUpForm from '../components/SignUpForm';
+import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { ScrollView } from 'react-native';
-import formStyles from '../styles/formStyles';
+
 import Divider from '../components/Divider';
 import ScholarBanner from '../components/ScholarBanner';
+import SignUpForm from '../components/SignUpForm';
+import formStyles from '../styles/formStyles';
+import styles from '../styles/Styles';
 
-function SignUp({ navigation }: any)
-{
+function SignUp({ navigation }: any) {
   return (
     <ScrollView style={styles.container}>
 
-<ScholarBanner text="Sign Up"/>
+      <ScholarBanner text="Sign Up" />
       {/* Form */}
-      <View style={formStyles.container}>        
-        <SignUpForm nav={navigation}/>
-        <Divider text="OR"/>
+      <View style={formStyles.container}>
+        <SignUpForm nav={navigation} />
+        <Divider text="OR" />
 
         {/* Other Sign In Options */}
         <View>

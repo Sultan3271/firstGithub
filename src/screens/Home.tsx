@@ -5,12 +5,13 @@
  * @last modified 9/20/2023
  */
 
+import React, { useEffect } from 'react';
+import { View } from 'react-native';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {View} from 'react-native';
-import React, {useEffect} from 'react';
-import styles from '../styles/Styles';
+
 import Feed from '../components/Feed';
+import styles from '../styles/Styles';
 
 const Home = ({navigation}: any) => {
   return (

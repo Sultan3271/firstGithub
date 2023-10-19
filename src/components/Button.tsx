@@ -1,6 +1,8 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
-import formStyles from '../styles/formStyles'
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
+
+import formStyles from '../styles/formStyles';
+
 const Button = (props: any) => {
   return (
     <TouchableOpacity style={formStyles.submitBtn} >

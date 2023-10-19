@@ -93,7 +93,6 @@ export const posts = [
  *
  * @description we can call this to set profile data or update the current profile data
  */
-
 export function setInProfile(
   userID,
   bio,
