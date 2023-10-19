@@ -82,10 +82,10 @@ const UserProfile = ({navigation}: any) => {
         <View style={{alignItems: 'center'}}>
           <Text style={styles.headingStyle}>{profileData.Class}</Text>
         </View>
-        <View style={{margin: 5}}>
+        <View>
           <Text style={styles.headingStyle}>Bio</Text>
           <View style={{margin: 5}}>
-            <Text style={styles.contentStyle}>{profileData.bio}</Text>
+            <Text style={styles.contentStyle}>{profileData.bio.trim()}</Text>
           </View>
         </View>
         {/* Friends List */}

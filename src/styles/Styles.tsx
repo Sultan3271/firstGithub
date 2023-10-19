@@ -53,14 +53,14 @@ formField: {
   borderCurve: 'circular',
 },
 headingStyle:{
-  fontFamily: 'times new roman',
+  fontFamily: Fonts.bold,
   fontSize: 20,
   color: 'black',
   fontWeight:'bold' 
 },
 contentStyle:{
   fontFamily: Fonts.regular,
-  fontSize: 20,
+  fontSize: 15,
   color: 'gray' 
 },
 btnText: {
