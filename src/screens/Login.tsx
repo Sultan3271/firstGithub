@@ -5,16 +5,16 @@
  * @last modified 9/20/2023
  */
 
-import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
-import styles from '../styles/Styles';
-import LoginForm from '../components/LoginForm';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { ScrollView } from 'react-native';
-import formStyles from '../styles/formStyles';
+
 import Divider from '../components/Divider';
-import ScholarBanner from '../components/ScholarBanner';
+import LoginForm from '../components/LoginForm';
 import MissionLine from '../components/MissionLine';
+import ScholarBanner from '../components/ScholarBanner';
+import formStyles from '../styles/formStyles';
+import styles from '../styles/Styles';
 
 function Login({ navigation }: any) 
 {
