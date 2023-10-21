@@ -145,11 +145,13 @@ export const getProfile = userID => {
         if (documentSnapshot.exists) {
           resolve(documentSnapshot.data());
         } else {
-          console.log('Profile not exists');
+          console.log('Profile does not exist');
+          resolve(undefined);
         }
       })
       .catch(error => {
         reject(error); // Reject the promise with the error if there's an issue
+        resolve(undefined);
       });
   });
 };

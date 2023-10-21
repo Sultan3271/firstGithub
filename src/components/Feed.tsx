@@ -10,6 +10,8 @@ const Feed = (props: any) => {
     <View style={{ backgroundColor: Colors.feedBackground }}>
       <FlatList
 
+        showsVerticalScrollIndicator={false}
+        scrollEnabled = {props.scrollEnabled}
         data={posts}
         renderItem={({ item }) => (
 

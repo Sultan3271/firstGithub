@@ -23,13 +23,13 @@ import SButton from './SButton';
  * @param props (nav) property used to pass in the current navigation controls.
  */
 export default function SignUpForm(props: any) {
+  
   const [usrName, setUserName] = useState("");
   const [usrEmail, setUserEmail] = useState("");
   const [usrPassword1, setUserPassword1] = useState("");
   const [usrPassword2, setUserPassword2] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
-
 
   function tryAndSignIn() {
 

@@ -10,12 +10,12 @@ import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
 
-import { getProfile } from '../services/DataService';
+import { getProfile, setInProfile } from '../services/DataService';
 import formStyles from '../styles/formStyles';
 import styles from '../styles/Styles';
 import Colors from '../Theme/ScholarColors';
+import { getUserId } from '../utils/auth';
 import SButton from './SButton';
-import { setInProfile } from '../services/DataService';
 
 /**
  * Used to create a login in form that connects with Firebase.
@@ -28,27 +28,39 @@ export default function LoginForm(props: any) {
   const [errorMsg, setErrorMsg] = useState("");
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
+  // Log in anonymously
   function LoginAnonymously() {
+    // use the authentication login system
     auth().signInAnonymously()
+          // if login anonomous successful
           .then(user => {
+
             Alert.alert("Login successfull!");
-            const userId = user.user.uid.toString();
+            const userId = getUserId();
             props.nav.navigate('Splash', { userId });
 
             getProfile(userId)
               .then((profile) => {
+
                 console.log(profile);
+
+                // if could not find a profile for anonomous
                 if (profile === undefined) {
                   console.log("Added profile");
                   setInProfile(userId, 'no bio', ' ', 'no school', 'no major', 'Anonomous');
                 }
+
               })
               .catch((error) => {
                 console.error(error);
               })
           })
+          .catch(error => {
+            console.error(error);
+          });
   }
 
+  // Login with Form data
   function tryAndLogIn() {
     setIsSubmitDisabled(true);
 

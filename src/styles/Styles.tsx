@@ -5,9 +5,8 @@ import { Fonts } from "../Theme/Fonts";
 const styles = StyleSheet.create({
 
   container: {
-
-    backgroundColor: Colors.background,
     flex: 1,
+    backgroundColor: Colors.background,
   },
 
   iconHeaderText: {
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
 
   profilePicBox: {
     flexDirection: 'row',
-    margin: 5,
     alignItems: 'center'
   },
 
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   //  profile page style
   profileImage: {
