@@ -12,6 +12,7 @@ import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import Splash from '../screens/Splash';
 import UserProfile from '../screens/UserProfile';
+import Post from '../screens/Post';
 
 const Stack = createNativeStackNavigator();
   
@@ -23,6 +24,7 @@ function ScholarStack() {
       <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}} />
       <Stack.Screen name="UserProfile" component={UserProfile} options={{headerShown:false}}/>
       <Stack.Screen name="EditProfile" component={EditProfile} options={{headerShown:false}}/>
+      <Stack.Screen name="Post" component={Post} options={{headerShown:false}}/>
       {/* <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} /> */}
     </Stack.Navigator>

@@ -31,31 +31,39 @@ import EditProfile from './EditProfile';
 import Feed from '../components/Feed';
 import { getProfile } from '../services/DataService';
 import { userId } from '../services/UserId';
+import { Fonts } from '../Theme/Fonts';
+
 
 const UserProfile = ({ navigation }: any) => {
 	const isFocused = useIsFocused();
-	const [profileData, setProfileData] = useState({});
-	const [edit, setEdit] = useState(false);
-	/**
-	 * useEffect used for loading data from DB
-	 */
-	useEffect(() => {
-		getProfile(userId)
-			.then(profile => {
-				setProfileData(profile);
-			})
-			.catch(error => {
-				console.error('Error:', error);
-			});
-	}, [isFocused]);
-
+  const [profileData, setProfileData] = useState({});
+  const [edit, setEdit] = useState(false);
+  const [profilePic,setProfilePic] = useState('');
+  /**
+   * useEffect used for loading data from DB
+   */
+  useEffect(() => {
+    getProfile(userId)
+      .then(profile => {
+        setProfileData(profile);
+        setProfilePic(profile.profilePic);
+        
+      })
+      .catch(error => {
+        console.error('Errffor:', error);
+      });
+  }, [isFocused]);
 	return (
 		<View style={styles.container}>
 			<View style={{ padding: 10 }}>
 				<View>
 					<View style={styles.profilePicBox}>
 						<View style={styles.avatarSection}>
-							<Icon name={posts[0].avatar} size={90} color={Colors.primary} />
+							{
+								profileData?.profilePic==null?
+								<Icon name={posts[0].avatar} size={90} color={Colors.primary} />:
+								<Image source={{uri:profileData?.profilePic}} style={styles.profilePictur}/>
+							}
 						</View>
 						<View style={{ flex: 1, margin: 5, justifyContent: 'center' }}>
 							<Text style={styles.userNameStyle}>{profileData.usrName}</Text>
@@ -129,11 +137,13 @@ const UserProfile = ({ navigation }: any) => {
 							color={Colors.primary}
 						/>
 					</View>
-					<View style={{ width: '80%', alignItems: 'center' }}>
-						<TextInput
-							style={{ backgroundColor: 'transparent', height: 30, width: '90%' }}
-							placeholder="Make a post..."></TextInput>
-					</View>
+					<TouchableOpacity style={{flex:1}} onPress={()=>navigation.navigate('Post', { profileData })}>
+						<View style={{ width: '80%', alignItems: 'center',justifyContent:'center' }}>
+							<Text
+								// style={{textAlign:'center', width: '90%',fontSize:Fonts.regular }}
+								>Make a post...</Text>
+						</View>
+					</TouchableOpacity>
 					<View style={{ marginLeft: 5 }}>
 						<TouchableOpacity>
 							<Icon name="image" size={35} color={Colors.primary} />
