@@ -11,7 +11,7 @@ import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import auth from '@react-native-firebase/auth';
 
 import { getProfile, setInProfile } from '../services/DataService';
-import formStyles from '../styles/formStyles';
+import formStyles from '../styles/FormStyles';
 import styles from '../styles/Styles';
 import Colors from '../Theme/ScholarColors';
 import { getUserId } from '../utils/auth';

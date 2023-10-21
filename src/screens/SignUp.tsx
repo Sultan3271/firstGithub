@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Divider from '../components/Divider';
 import ScholarBanner from '../components/ScholarBanner';
 import SignUpForm from '../components/SignUpForm';
-import formStyles from '../styles/formStyles';
+import formStyles from '../styles/FormStyles';
 import styles from '../styles/Styles';
 
 function SignUp({ navigation }: any) {

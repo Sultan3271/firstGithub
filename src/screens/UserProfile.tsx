@@ -20,6 +20,8 @@ import FriendBox from '../components/FriendBox';
 import MissionLine from '../components/MissionLine';
 import { getProfile, posts } from '../services/DataService';
 import { userId } from '../services/UserId';
+import { Fonts } from '../Theme/Fonts';
+
 import styles from '../styles/Styles';
 import Colors from '../Theme/ScholarColors';
 import EditProfile from './EditProfile';

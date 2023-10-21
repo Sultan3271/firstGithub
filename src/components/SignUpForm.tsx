@@ -12,7 +12,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import { getProfile, setInProfile } from '../services/DataService';
-import formStyles from '../styles/formStyles';
+import formStyles from '../styles/FormStyles';
 import styles from '../styles/Styles';
 import SButton from './SButton';
 

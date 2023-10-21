@@ -7,7 +7,7 @@
 */
 
 import React, { useState } from 'react';
-import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -19,6 +19,8 @@ import { userId } from '../services/UserId';
 import styles from '../styles/Styles';
 import { Fonts } from '../Theme/Fonts';
 import Colors from '../Theme/ScholarColors';
+import { uploadImage } from '../services/UploadFunctions';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 const EditProfile = (navigation: any) => {
   // getting data from navigation props
@@ -79,6 +81,7 @@ const EditProfile = (navigation: any) => {
             console.log("something went wrong!");
 
           })
+        
       }
     });
   };

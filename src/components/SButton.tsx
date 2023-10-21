@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 
-import formStyles from '../styles/formStyles';
+import formStyles from '../styles/FormStyles';
 import Colors from '../Theme/ScholarColors';
 
 const SButton = (props: any) => {

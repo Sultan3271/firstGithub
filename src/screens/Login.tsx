@@ -13,7 +13,7 @@ import Divider from '../components/Divider';
 import LoginForm from '../components/LoginForm';
 import MissionLine from '../components/MissionLine';
 import ScholarBanner from '../components/ScholarBanner';
-import formStyles from '../styles/formStyles';
+import formStyles from '../styles/FormStyles';
 import styles from '../styles/Styles';
 
 function Login({ navigation }: any) 
