@@ -15,6 +15,7 @@ import formStyles from '../styles/formStyles';
 import styles from '../styles/Styles';
 import Colors from '../Theme/ScholarColors';
 import SButton from './SButton';
+import { setInProfile } from '../services/DataService';
 
 /**
  * Used to create a login in form that connects with Firebase.
@@ -33,14 +34,17 @@ export default function LoginForm(props: any) {
             Alert.alert("Login successfull!");
             const userId = user.user.uid.toString();
             props.nav.navigate('Splash', { userId });
+
             getProfile(userId)
               .then((profile) => {
                 console.log(profile);
-
+                if (profile === undefined) {
+                  console.log("Added profile");
+                  setInProfile(userId, 'no bio', ' ', 'no school', 'no major', 'Anonomous');
+                }
               })
               .catch((error) => {
-                console.log(error);
-
+                console.error(error);
               })
           })
   }
