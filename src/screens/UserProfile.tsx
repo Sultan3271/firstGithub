@@ -6,31 +6,23 @@
  * @last modified 14/10/2023
  */
 
-import {
-	View,
-	Text,
-	Image,
-	ScrollView,
-	TouchableOpacity,
-	FlatList,
-} from 'react-native';
 import React, { useEffect, useState } from 'react';
-import styles from '../styles/Styles';
-import FriendBox from '../components/FriendBox';
-import Icon from 'react-native-vector-icons/Ionicons';
-import { posts } from '../services/DataService';
-import FeedBox from '../components/FeedBox';
+import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
-import Colors from '../Theme/ScholarColors';
-import Divider from '../components/Divider';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import { useIsFocused } from '@react-navigation/native';
 
-import MissionLine from '../components/MissionLine';
-
-import EditProfile from './EditProfile';
+import Divider from '../components/Divider';
 import Feed from '../components/Feed';
-import { getProfile } from '../services/DataService';
+import FeedBox from '../components/FeedBox';
+import FriendBox from '../components/FriendBox';
+import MissionLine from '../components/MissionLine';
+import { getProfile, posts } from '../services/DataService';
 import { userId } from '../services/UserId';
+import styles from '../styles/Styles';
+import Colors from '../Theme/ScholarColors';
+import EditProfile from './EditProfile';
 
 const UserProfile = ({ navigation }: any) => {
 	const isFocused = useIsFocused();
@@ -51,8 +43,10 @@ const UserProfile = ({ navigation }: any) => {
 
 	return (
 		<View style={styles.container}>
+			{/* Container for user profile */}
 			<View style={{ padding: 10 }}>
 				<View>
+					{/* Profile header */}
 					<View style={styles.profilePicBox}>
 						<View style={styles.avatarSection}>
 							<Icon name={posts[0].avatar} size={90} color={Colors.primary} />
@@ -76,7 +70,7 @@ const UserProfile = ({ navigation }: any) => {
 							<Icon name="create-outline" size={20} color={'black'} />
 						</TouchableOpacity>
 					</View>
-					<Divider width={'90%'} />
+					<Divider/>
 				</View>
 				{/* Year */}
 				<View style={{ alignItems: 'center' }}>
@@ -88,6 +82,7 @@ const UserProfile = ({ navigation }: any) => {
 						<Text style={styles.contentStyle}>{profileData.bio.trim()}</Text>
 					</View>
 				</View>
+
 				{/* Friends List */}
 				<Text style={styles.headingStyle}>Friends</Text>
 				<View style={styles.friendBoxContainer}>

@@ -18,10 +18,9 @@ const styles = StyleSheet.create({
     paddingLeft: 20
   },
   underLine: {
-    width: '90%',
+    flexGrow: 1,
     height: .7,
     backgroundColor: 'black',
-
   },
 
   profilePicBox: {
@@ -31,9 +30,11 @@ const styles = StyleSheet.create({
   },
 
   dividerContainer: {
+    marginTop: 10,
+    marginBottom: 10,
     flexDirection: 'row',
-    margin: 5,
-    alignItems: 'center',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   //  profile page style
   profileImage: {
