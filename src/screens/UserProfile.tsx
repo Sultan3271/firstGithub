@@ -37,7 +37,7 @@ const UserProfile = ({ navigation }: any) => {
 				setProfileData(profile);
 			})
 			.catch(error => {
-				console.error('Errffor:', error);
+				console.error('Error:', error);
 			});
 	}, [isFocused]);
 
@@ -79,7 +79,7 @@ const UserProfile = ({ navigation }: any) => {
 				<View>
 					<Text style={styles.headingStyle}>Bio</Text>
 					<View style={{ margin: 5 }}>
-						<Text style={styles.contentStyle}>{profileData.bio.trim()}</Text>
+						<Text style={styles.contentStyle}>{profileData.bio}</Text>
 					</View>
 				</View>
 

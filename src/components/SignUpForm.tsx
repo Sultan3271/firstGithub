@@ -14,6 +14,7 @@ import firestore from '@react-native-firebase/firestore';
 import { getProfile, setInProfile } from '../services/DataService';
 import formStyles from '../styles/formStyles';
 import styles from '../styles/Styles';
+import SButton from './SButton';
 
 /**
  * Used to create a sign in form that connects with Firebase.
@@ -119,13 +120,8 @@ export default function SignUpForm(props: any) {
 
       {/* Submit Button */}
       <View style={formStyles.submitBtnContainer}>
-        <TouchableOpacity style={formStyles.submitBtn} onPress={() => tryAndSignIn()} disabled={isSubmitDisabled}>
-          <Text style={[formStyles.btnText, { color: "white" }]}>SignUp</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => props.nav.navigate('Login')}>
-          <Text style={formStyles.btnText}>Already have an account? Login</Text>
-        </TouchableOpacity>
+        <SButton text="Sign Up" action={() => tryAndLogIn()}></SButton>
+        <SButton styleType="Sentence" text="Already have an account? Login" action={() => props.nav.navigate('Login')}></SButton>
       </View>
     </View>
   );
