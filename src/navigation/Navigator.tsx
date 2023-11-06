@@ -7,7 +7,7 @@
         
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import EditProfile from '../screens/EditProfile';
+import EditProfile from '../screens/additive/EditProfile';
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
 import Splash from '../screens/Splash';
@@ -16,7 +16,7 @@ import Post from '../screens/Post';
 
 const Stack = createNativeStackNavigator();
   
-function ScholarStack() { 
+function ScholarStack() {
   return ( 
     <Stack.Navigator> 
       <Stack.Screen name="Login"  component={Login} options={{headerShown:false}} />

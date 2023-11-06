@@ -25,14 +25,12 @@ const routeIconUrls: { [key: string]: any } = {
   'UserProfile': 'account',
 };
 
-function TabBarIcon({ iconName, focused }: any) 
+function TabBarIcon({ iconName, focused }: any)
 {
   return (
     <MaterialCommunityIcon name={iconName} color={focused ? Colors.secondary : 'gray'}  size={focused ? 35 : 30} />
   );
 };
-
-
 
 function ScholarTabs() {
   

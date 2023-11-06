@@ -9,6 +9,8 @@ import React from 'react';
 import { Image, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { useNavigation } from '@react-navigation/native';
+
 import Divider from '../components/Divider';
 import ScholarBanner from '../components/ScholarBanner';
 import SignUpForm from '../components/SignUpForm';
