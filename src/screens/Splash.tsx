@@ -10,8 +10,6 @@ import React, { useEffect } from 'react';
 import ScholarTabs from '../navigation/TabNavigator';
 
 const Splash = ({ navigation }: any) => {
-  
-
   return (
     <ScholarTabs />
   ) 

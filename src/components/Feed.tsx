@@ -6,9 +6,26 @@ import { posts } from '../services/DataService';
 import Colors from '../Theme/ScholarColors';
 
 const Feed = (props: any) => {
+
+  function onStartReachedCallback() {
+    if (props.onStartReached !== undefined)
+      props.onStartReached();
+  }
+
+  function onEndReachedCallback() {
+    if (props.onEndReached !== undefined)
+      props.onEndReached();
+  }
+
   return (
     <View style={{ backgroundColor: Colors.feedBackground }}>
       <FlatList
+
+        onStartReached={onStartReachedCallback}
+        onStartReachedThreshold={0.01}
+
+        onEndReached={onEndReachedCallback}
+        onEndReachedThreshold={0.01}
 
         showsVerticalScrollIndicator={false}
         scrollEnabled = {props.scrollEnabled}

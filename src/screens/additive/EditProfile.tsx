@@ -13,16 +13,19 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import ScholarBanner from '../components/ScholarBanner';
-import { posts, setInProfile } from '../services/DataService';
-import { userId } from '../services/UserId';
-import styles from '../styles/Styles';
-import { Fonts } from '../Theme/Fonts';
-import Colors from '../Theme/ScholarColors';
-import { uploadImage } from '../services/UploadFunctions';
+import ScholarBanner from '../../components/ScholarBanner';
+import { posts, setInProfile } from '../../services/DataService';
+import { userId } from '../../services/UserId';
+import styles from '../../styles/Styles';
+import { Fonts } from '../../Theme/Fonts';
+import Colors from '../../Theme/ScholarColors';
+import { uploadImage } from '../../services/UploadFunctions';
 import { launchImageLibrary } from 'react-native-image-picker';
 
-const EditProfile = (navigation: any) => {
+/**
+ * @description This screen is an additive screen
+ */
+const EditProfile = () => {
   // getting data from navigation props
   // Purpose: so we can show user it's previous details in fields
   // This will eventually be replaced by redux
@@ -52,7 +55,6 @@ const EditProfile = (navigation: any) => {
     }
   }
 
-
   const openImagePicker = () => {
     const options = {
       title: 'Select Image',
@@ -81,11 +83,9 @@ const EditProfile = (navigation: any) => {
             console.log("something went wrong!");
 
           })
-        
       }
     });
   };
-
 
   return (
     <View style={{ alignContent: 'center', justifyContent: 'center' }}>

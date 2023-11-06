@@ -24,15 +24,22 @@ import { Fonts } from '../Theme/Fonts';
 
 import styles from '../styles/Styles';
 import Colors from '../Theme/ScholarColors';
-import EditProfile from './EditProfile';
+import EditProfile from './additive/EditProfile';
 import { Screen } from 'react-native-screens';
+import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
+import { Easing, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 
 const UserProfile = ({ navigation }: any) => {
-	
+
 	const isFocused = useIsFocused();
 	const [profileData, setProfileData] = useState({});
 	const [edit, setEdit] = useState(false);
-	
+	const yDelta = useSharedValue(0);
+	const y = useSharedValue(0);
+	const hasHitTopOfList = useSharedValue(false);
+	const canScrollFeed = useSharedValue(false);
+
 	/**
 	 * useEffect used for loading data from DB
 	 */
@@ -46,8 +53,10 @@ const UserProfile = ({ navigation }: any) => {
 			});
 	}, [isFocused]);
 
-	const userProfilePlusPosts = [
-		<View key={1} style={{ padding: 10 }}>
+	const profileView = (
+		<View style={{
+			padding: 10,
+		}}>
 			{/* Profile header */}
 			<View>
 				<View style={styles.profilePicBox}>
@@ -55,7 +64,7 @@ const UserProfile = ({ navigation }: any) => {
 						<Icon name={posts[0].avatar} size={90} color={Colors.primary} />
 					</View>
 					<View style={{ flex: 1, margin: 5, justifyContent: 'center' }}>
-						<Text style={styles.userNameStyle}>{profileData.usrName}</Text>
+						<Text style={styles.userNameStyle}>{profileData?.usrName}</Text>
 						<View style={{ marginTop: 5 }}>
 							<Text
 								style={{
@@ -63,7 +72,7 @@ const UserProfile = ({ navigation }: any) => {
 									fontSize: 20,
 									color: 'black',
 								}}>
-								{profileData.schoolName}
+								{profileData?.schoolName}
 							</Text>
 						</View>
 					</View>
@@ -74,22 +83,22 @@ const UserProfile = ({ navigation }: any) => {
 						<Icon name="create-outline" size={20} color={'black'} />
 					</TouchableOpacity>
 				</View>
-				<Divider/>
+				<Divider />
 			</View>
-			
+
 			{/* Major */}
 			{/* Display content only if profileData.Class is not empty */}
-			{ profileData.Class ?
-					<View style={{ alignItems: 'center' }}>
-						<Text style={styles.headingStyle}>{profileData.Class}</Text>
-					</View> : null
+			{profileData.Class ?
+				<View style={{ alignItems: 'center' }}>
+					<Text style={styles.headingStyle}>{profileData?.Class}</Text>
+				</View> : null
 			}
 
 			{/* Bio */}
 			<View>
 				<Text style={styles.headingStyle}>Bio</Text>
 				<View style={{ margin: 5 }}>
-					<Text style={styles.contentStyle}>{profileData.bio}</Text>
+					<Text style={styles.contentStyle}>{profileData?.bio}</Text>
 				</View>
 			</View>
 
@@ -148,22 +157,57 @@ const UserProfile = ({ navigation }: any) => {
 
 			<MissionLine text="Stay connected" />
 		</View>
-		,
-		<View key={2}>
-			<Feed scrollEnabled = {false} />
-		</View>
-	]; 
+	);
 
-	const handleOnPointerMove = e => {
-		const {x, y} = e.nativeEvent;
+	// TODO: finish this animated crap
 
-		console.log("x: " + x + " y: " + y);
-	}
+	const swipeToFeedGestureHandler = useAnimatedGestureHandler({
+		onStart: (event) => {
+			console.log(event);
+			yDelta.value = event.absoluteY;
+		},
+		onActive: (event) => {
+
+			if (hasHitTopOfList.value === true)
+				y.value = event.translationY;
+			console.log('On active: y value = ' + y.value);
+		},
+		onEnd: (event) => {
+			console.log(event);
+			yDelta.value = event.absoluteY - yDelta.value;
+			console.log(yDelta.value);
+
+			if (yDelta.value < -100)
+			{
+				console.log('Screen should be swiped!');
+
+				hasHitTopOfList.value = false;
+				canScrollFeed.value = true;
+
+				y.value = -500;
+			}
+			else if (hasHitTopOfList.value === true)
+			{
+				y.value = 0;
+			}
+		}
+	});
+
+	const animatedStyle = useAnimatedStyle(() => ({
+		transform: [{ translateY: withTiming(y.value, { duration: 200, easing: Easing.linear }) }]
+	}));
 
 	return (
-		<View onPointerMove={handleOnPointerMove} style={styles.container}>
-			{userProfilePlusPosts}
-		</View>
+		<GestureHandlerRootView style={styles.container}>
+			<PanGestureHandler onGestureEvent={swipeToFeedGestureHandler}>
+				<Animated.View style={animatedStyle}>
+					{profileView}
+					<View>
+						<Feed scrollEnabled={canScrollFeed.value} onStartReached={() => hasHitTopOfList.value = true} />
+					</View>
+				</Animated.View>
+			</PanGestureHandler>
+		</GestureHandlerRootView>
 	);
 };
 
