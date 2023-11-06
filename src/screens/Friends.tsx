@@ -11,11 +11,11 @@ import styles from '../styles/Styles';
 
 const Friends = ({ navigation }: any) => {
 
-  return (
-    <View style={styles.container}>
-      
-    </View>
-  )
+    return (
+        <View style={styles.container}>
+
+        </View>
+    )
 }
 
 export default Friends;

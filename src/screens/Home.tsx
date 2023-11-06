@@ -13,12 +13,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Feed from '../components/Feed';
 import styles from '../styles/Styles';
 
-const Home = ({navigation}: any) => {
-  return (
-    <View style={{flex: 1}}>
-      <Feed /> 
-    </View>
-  );
+const Home = ({ navigation }: any) => {
+    return (
+        <View style={{ flex: 1 }}>
+            <Feed />
+        </View>
+    );
 };
 
 export default Home;

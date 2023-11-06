@@ -9,30 +9,30 @@ import Colors from '../Theme/ScholarColors';
 import PostBottom from './PostBottom';
 
 export default function FeedBox(props: any) {
-  return (
-    <View style={styles.post} >
-      <View style={styles.postAdmin}>
-        <View style={styles.avatarSection}>
-          <Icon name={props.avatar} size={30} color={Colors.primary} />
-        </View>
-        <View style={styles.adminSection}>
+    return (
+        <View style={styles.post} >
+            <View style={styles.postAdmin}>
+                <View style={styles.avatarSection}>
+                    <Icon name={props.avatar} size={30} color={Colors.primary} />
+                </View>
+                <View style={styles.adminSection}>
 
-          <Text style={styles.postAdminName}>{props.admin}</Text>
-          <Text style={{ color: 'gray' }}>
-            {props.time}
-          </Text>
-        </View>
+                    <Text style={styles.postAdminName}>{props.admin}</Text>
+                    <Text style={{ color: 'gray' }}>
+                        {props.time}
+                    </Text>
+                </View>
 
-      </View>
-      <View style={styles.postDescription}>
-        <Text style={styles.postDescText}>
-          {props.description}
-        </Text>
-      </View>
-      <View style={styles.postHolder}>
-        <Icon name={props.picture} size={150} color='green' />
-      </View>
-      <PostBottom likes={props.likes} contributes={props.contributes} />
-    </View>
-  );
+            </View>
+            <View style={styles.postDescription}>
+                <Text style={styles.postDescText}>
+                    {props.description}
+                </Text>
+            </View>
+            <View style={styles.postHolder}>
+                <Icon name={props.picture} size={150} color='green' />
+            </View>
+            <PostBottom likes={props.likes} contributes={props.contributes} />
+        </View>
+    );
 }

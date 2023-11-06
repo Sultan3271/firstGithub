@@ -4,11 +4,11 @@ import { Text, View } from 'react-native';
 import styles from '../styles/Styles';
 
 const Notifications = () => {
-  return (
-   <View style={styles.container}>
+    return (
+        <View style={styles.container}>
 
-   </View>
-  );
+        </View>
+    );
 };
 
 export default Notifications;
