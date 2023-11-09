@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import FeedBox from '../components/FeedBox';
 import { posts } from '../services/DataService';
@@ -23,6 +23,17 @@ const Feed = (props: any) => {
 
         )}
       />
+      {/* <ScrollView>
+      {
+        posts.map((item, index) =><FeedBox key={index} admin={item.admin} avatar={item.avatar}
+        time={item.time}
+        picture={item.picture}
+        likes={item.likes}
+        contributes={item.contributes}
+        description={item.description}
+      />)
+      }
+      </ScrollView> */}
     </View>
   )
 }

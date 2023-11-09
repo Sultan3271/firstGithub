@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import Colors from "../Theme/ScholarColors";
 import { Fonts } from "../Theme/Fonts";
 
@@ -215,9 +215,53 @@ const styles = StyleSheet.create({
 
   actionBtn: {
     padding: 2,
-  }
-
-
+  },
+  //post page styling
+  postHeaderProfile:{
+    height:40,
+    width:40,
+    borderRadius:50
+  },
+  filledCircle:{
+    width:15,height:15,borderColor:'black',borderWidth:1,borderRadius:50,backgroundColor:'black'
+  },
+  unFilledCircle:{
+    width:15,height:15,borderColor:'black',borderWidth:1,borderRadius:50,
+  },
+  postInputStyle:{ 
+    margin: 5,
+    height: 200,
+    textAlignVertical: 'top',
+    borderWidth: 1 
+  },
+  imageIconContainer:{ 
+    width: '10%',
+    margin: 5
+   },
+   postButtonStyle:{ 
+    backgroundColor: Colors.primary, 
+    margin: 5,
+    textAlign: 'center',
+    padding: 5,
+    borderRadius: 10 
+  },
+  postButtonContainer:{
+    flex: 1, 
+    flexDirection: 'row', 
+    alignContent: 'center', 
+    margin: 10
+  },
+  selectedImageContainer:{
+    margin: 10, 
+    flex: 1 
+  },
+  selectedImageStyle:{ 
+    flexWrap: 'nowrap', 
+    borderRadius: 10, 
+    width: Dimensions.get('screen').width - 30, 
+    height: (Dimensions.get('screen').height) / 4 
+  },
+  cancelButtonStyle:{ position: 'absolute', zIndex: 99 }
 });
 
 export default styles;

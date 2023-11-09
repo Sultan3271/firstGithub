@@ -7,7 +7,9 @@
  */
 
 import firestore from '@react-native-firebase/firestore';
+import { firebase } from '@react-native-firebase/firestore';
 
+import userId from '../services/UserId'
 /**
  * Dummy data
  */
@@ -108,6 +110,7 @@ export function setInProfile(
     .doc(userID)
     .set(
       {
+        userID,
         bio,
         profilePic,
         schoolName,
@@ -123,6 +126,32 @@ export function setInProfile(
       console.log(err);
     });
 }
+
+export function setInPost(userID,image,description,time,status){
+  const postCollection = firestore().collection('Users').doc(userID).collection('Posts');
+  const newPostDoc = postCollection.doc(); // This creates a new document reference with an auto-generated ID
+const newPostId = newPostDoc.id;
+  firestore()
+    .collection('Users')
+    .doc(userID)
+    .collection('Posts')
+    .doc(newPostId)
+    .set({
+    userID,
+    postId:newPostId, 
+    image,
+    description,
+    time,
+    status,
+  })
+  .then(() => {
+    console.log('success!');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+}
+
 
 /**
  *
@@ -141,15 +170,126 @@ export const getProfile = userID => {
       .get()
       .then(documentSnapshot => {
         console.log('User exists: ', documentSnapshot.exists);
-
+     
         if (documentSnapshot.exists) {
           resolve(documentSnapshot.data());
         } else {
           console.log('Profile not exists');
         }
-      })
-      .catch(error => {
-        reject(error); // Reject the promise with the error if there's an issue
-      });
+   
+  })
+  .catch(error => {
+    reject(error); // Reject the promise with the error if there's an issue
   });
+      });
+      
+  
 };
+export const deletePostLike=async(postID,userID)=>{
+  const likeCollectionRef = firestore()
+    .collection('Users')
+    .doc(userID)
+    .collection('Posts')
+    .doc(postID)
+    .collection('Likes');
+    const likeQuery = likeCollectionRef.where('userID', '==', userID);
+  likeQuery.get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.delete()
+          .then(() => {
+            console.log("post Disliked");
+          })
+          .catch((error) => {
+            console.error('Error removing like:', error);
+          });
+      });
+    })
+    .catch((error) => {
+      console.error('Error querying likes:', error);
+    });
+}
+export const setPostLike=async(postID,userID)=>{
+  
+  const LikeCollection = firestore().collection('Users').doc(userID).collection('Posts').doc(postID).collection('Likes');
+  const newLikeDoc = LikeCollection.doc(); // This creates a new document reference with an auto-generated ID
+  const likeId = newLikeDoc.id;
+  console.log("likeId:"+likeId);
+  console.log("userID:"+userID);
+  console.log("postID:"+postID);
+
+
+  firestore()
+    .collection('Users')
+    .doc(userID)
+    .collection('Posts')
+    .doc(postID)
+    .collection('Likes')
+    .doc(likeId)
+    .set({
+    userID,
+    postId:postID,
+    likeID:likeId
+  })
+  .then(() => {
+    console.log('success!');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+}
+export const getPostLikes=async (postID,userID)=>{
+  return new Promise((resolve, reject) => {
+    const subcollectionRef = firestore()
+    .collection('Users')
+    .doc(userID)
+    .collection('Posts')
+    .doc(postID)
+    .collection('Likes');
+    var likes=[]
+    subcollectionRef.get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        likes.push(doc.data());
+      });
+      resolve(likes);
+    })
+    .catch((error) => {
+      console.error("Error getting documents: ", error);
+      reject(error);
+    });
+  })
+}
+export const fetchPosts = async (userID) => {
+  return new Promise((resolve, reject) => {
+    const subcollectionRef = firestore().collection('Users').doc(userID).collection('Posts');
+    var posts=[];
+    subcollectionRef.get()
+    .then((querySnapshot) => {
+      
+      querySnapshot.forEach((doc) => {
+        posts.push(doc.data());
+      });
+      resolve(posts);
+    })
+    .catch((error) => {
+      console.error("Error getting documents: ", error);
+      reject(error);
+    });
+  });
+}
+export const fetchData = async () => {
+  
+  try {
+    const profileCollection = await firestore()
+      .collectionGroup('Profile')
+      .get();
+      
+    const profiles = profileCollection.docs.map((doc) => doc.data());
+    
+    //console.log('All profiles:', profiles);
+  } catch (error) {
+    console.error('Error fetching profiles:', error);
+  }
+};
+

@@ -47,6 +47,8 @@ const EditProfile = (navigation: any) => {
       Alert.alert('Name cannot be Empty!');
     } else {
       setInProfile(userId, bio, profilePic, school, major, name);
+      console.log(userId);
+      
       Alert.alert('Updated!');
       navigation.goBack();
     }
@@ -69,19 +71,19 @@ const EditProfile = (navigation: any) => {
         console.error('Image picker error:', response.error);
       } else {
         // Handle the selected image here
-
-        const uri = response.assets[0].uri;
+        const uri:any = response.assets[0].uri;
         const fileName = response.assets[0].fileName;
         const path = `images/users/${userId}/profilePictures/${fileName}`.toString();
+        console.log("uri: " + uri);
+        console.log("fileName: " + fileName);
+        
         uploadImage(uri, path)
-          .then(imgurl => {
+          .then(imgurl => { 
             setProfilePic(imgurl);
           })
           .catch(err => {
             console.log("something went wrong!");
-
           })
-        
       }
     });
   };
@@ -102,7 +104,7 @@ const EditProfile = (navigation: any) => {
           alignItems: 'center',
         }}>
         {
-          profilePic.length == 0 ?
+          profilePic == " " || profilePic ==null ?
             <Icon
               name={posts[0].avatar}
               size={90}
