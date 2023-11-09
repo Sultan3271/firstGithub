@@ -33,11 +33,11 @@ export default function FeedBox(props: any) {
         </View>
         <View style={styles.adminSection}>
 
-          <Text style={styles.postAdminName}>{props.admin}</Text>
-          <Text style={{ color: 'gray' }}>
-            {props.time}
-          </Text>
-        </View>
+                    <Text style={styles.postAdminName}>{props.admin}</Text>
+                    <Text style={{ color: 'gray' }}>
+                        {props.time}
+                    </Text>
+                </View>
 
       </View>
       <View style={styles.postDescription}>

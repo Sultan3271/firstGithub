@@ -10,11 +10,9 @@ import React, { useEffect } from 'react';
 import ScholarTabs from '../navigation/TabNavigator';
 
 const Splash = ({ navigation }: any) => {
-  
-
-  return (
-    <ScholarTabs />
-  ) 
+    return (
+        <ScholarTabs />
+    )
 }
 
 export default Splash

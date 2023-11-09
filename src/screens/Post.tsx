@@ -143,6 +143,6 @@ export default function Post(navigation: any) {
       </View>
     </View>
 
-  )
+    )
 }
 

@@ -33,10 +33,10 @@ const PostBottom = (props: any) => {
         <View>
           <Text style={{ color: Colors.text, padding: 2 }}>
 
-          </Text>
-        </View>
-        <View>
-          <Text style={{ color: Colors.text, padding: 2 }}>
+                    </Text>
+                </View>
+                <View>
+                    <Text style={{ color: Colors.text, padding: 2 }}>
 
           </Text>
         </View>

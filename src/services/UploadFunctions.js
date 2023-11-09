@@ -18,17 +18,17 @@ import storage from '@react-native-firebase/storage';
 export const uploadImage = async (uri, path) => {
     return new Promise(async (resolve, reject) => {
         try {
-          const storageRef = storage().ref(path);
-          const localUri = Platform.OS === 'ios' ? `file://${uri}` : uri; 
-          await storageRef.putFile(localUri);
-          
-    
-          const imageUrl = await storageRef.getDownloadURL();
-         
-          resolve(imageUrl); 
+            const storageRef = storage().ref(path);
+            const localUri = Platform.OS === 'ios' ? `file://${uri}` : uri;
+            await storageRef.putFile(localUri);
+
+
+            const imageUrl = await storageRef.getDownloadURL();
+
+            resolve(imageUrl);
         } catch (error) {
-          console.error('Error uploading image:', error);
-          reject(error); 
+            console.error('Error uploading image:', error);
+            reject(error);
         }
       });
   };
