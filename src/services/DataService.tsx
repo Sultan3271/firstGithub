@@ -94,13 +94,13 @@ export const posts = [
  * @description we can call this to set profile data or update the current profile data
  */
 export function setInProfile(
-    userID,
-    bio,
-    profilePic,
-    schoolName,
-    Class,
-    usrName,
-) {
+    userID: string,
+    bio: string,
+    profilePic: string,
+    schoolName: string,
+    Class: string,
+    usrName: string,
+): void {
     firestore()
         .collection('Users')
         .doc(userID)
@@ -131,7 +131,7 @@ export function setInProfile(
  * @description this is used to get the user profile data, and this unction can be called in any
  * component if you have userId there
  */
-export const getProfile = userID => {
+export const getProfile = (userID: string) => {
     return new Promise((resolve, reject) => {
         firestore()
             .collection('Users')

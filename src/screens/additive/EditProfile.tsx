@@ -21,6 +21,7 @@ import { Fonts } from '../../Theme/Fonts';
 import Colors from '../../Theme/ScholarColors';
 import { uploadImage } from '../../services/UploadFunctions';
 import { launchImageLibrary } from 'react-native-image-picker';
+import { useUserProfileStore } from '../../zustand/UserProfileStore';
 
 /**
  * @description This screen is an additive screen
@@ -29,18 +30,14 @@ const EditProfile = () => {
     // getting data from navigation props
     // Purpose: so we can show user it's previous details in fields
     // This will eventually be replaced by redux
-    const route = useRoute();
-    const Name = route.params?.profileData.usrName;
-    const School = route.params?.profileData.schoolName;
-    const Major = route.params?.profileData.Class;
-    const Bio = route.params?.profileData.bio;
-    const prfPic = route.params?.profileData.profilePic
-    const [name, setName] = useState(Name);
-    const [school, setSchool] = useState(School);
-    const [major, setMajor] = useState(Major);
-    const [bio, setBio] = useState(Bio);
-    const [profilePic, setProfilePic] = useState(prfPic);
-    navigation = useNavigation();
+    const userProfile = useUserProfileStore(store => store)
+
+    const [name, setName] = useState(userProfile.usrName);
+    const [school, setSchool] = useState(userProfile.schoolName);
+    const [major, setMajor] = useState(userProfile.Class);
+    const [bio, setBio] = useState(userProfile.bio);
+    const [profilePic, setProfilePic] = useState(userProfile.profilePic);
+    const navigation = useNavigation();
 
     /**
      * updating information
@@ -56,7 +53,7 @@ const EditProfile = () => {
     }
 
     const openImagePicker = () => {
-        const options = {
+        const options: any = {
             title: 'Select Image',
             storageOptions: {
                 skipBackup: true,
@@ -64,7 +61,7 @@ const EditProfile = () => {
             },
         };
 
-        launchImageLibrary(options, (response) => {
+        launchImageLibrary(options, (response: any) => {
             if (response.didCancel) {
                 console.log('Image picker was canceled');
             } else if (response.error) {
@@ -79,9 +76,8 @@ const EditProfile = () => {
                     .then(imgurl => {
                         setProfilePic(imgurl);
                     })
-                    .catch(err => {
+                    .catch(() => {
                         console.log("something went wrong!");
-
                     })
             }
         });

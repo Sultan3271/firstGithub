@@ -15,30 +15,29 @@ import { useIsFocused } from '@react-navigation/native';
 
 import Divider from '../components/Divider';
 import Feed from '../components/Feed';
-import FeedBox from '../components/FeedBox';
 import FriendBox from '../components/FriendBox';
 import MissionLine from '../components/MissionLine';
 import { getProfile, posts } from '../services/DataService';
 import { userId } from '../services/UserId';
-import { Fonts } from '../Theme/Fonts';
 
 import styles from '../styles/Styles';
 import Colors from '../Theme/ScholarColors';
-import EditProfile from './additive/EditProfile';
-import { Screen } from 'react-native-screens';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 import { Easing, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Animated from 'react-native-reanimated';
+import { useUserProfileStore } from '../zustand/UserProfileStore';
 
 const UserProfile = ({ navigation }: any) => {
 
     const isFocused = useIsFocused();
-    const [profileData, setProfileData] = useState({});
     const [edit, setEdit] = useState(false);
     const yDelta = useSharedValue(0);
     const y = useSharedValue(0);
     const hasHitTopOfList = useSharedValue(false);
     const canScrollFeed = useSharedValue(false);
+
+    const setProfileData = useUserProfileStore(store=>store.setProfileData)
+    const userProfile = useUserProfileStore(store=>store);
 
     /**
      * useEffect used for loading data from DB
@@ -64,7 +63,7 @@ const UserProfile = ({ navigation }: any) => {
                         <Icon name={posts[0].avatar} size={90} color={Colors.primary} />
                     </View>
                     <View style={{ flex: 1, margin: 5, justifyContent: 'center' }}>
-                        <Text style={styles.userNameStyle}>{profileData?.usrName}</Text>
+                        <Text style={styles.userNameStyle}>{userProfile?.usrName}</Text>
                         <View style={{ marginTop: 5 }}>
                             <Text
                                 style={{
@@ -72,14 +71,14 @@ const UserProfile = ({ navigation }: any) => {
                                     fontSize: 20,
                                     color: 'black',
                                 }}>
-                                {profileData?.schoolName}
+                                {userProfile?.schoolName}
                             </Text>
                         </View>
                     </View>
                     {/* Edit profile button */}
                     <TouchableOpacity
                         style={{ top: 1, position: 'absolute', left: 80 }}
-                        onPress={() => navigation.push('EditProfile', { profileData })}>
+                        onPress={() => navigation.push('EditProfile', { userProfile })}>
                         <Icon name="create-outline" size={20} color={'black'} />
                     </TouchableOpacity>
                 </View>
@@ -88,9 +87,9 @@ const UserProfile = ({ navigation }: any) => {
 
             {/* Major */}
             {/* Display content only if profileData.Class is not empty */}
-            {profileData.Class ?
+            {userProfile.Class ?
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={styles.headingStyle}>{profileData?.Class}</Text>
+                    <Text style={styles.headingStyle}>{userProfile?.Class}</Text>
                 </View> : null
             }
 
@@ -98,7 +97,7 @@ const UserProfile = ({ navigation }: any) => {
             <View>
                 <Text style={styles.headingStyle}>Bio</Text>
                 <View style={{ margin: 5 }}>
-                    <Text style={styles.contentStyle}>{profileData?.bio}</Text>
+                    <Text style={styles.contentStyle}>{userProfile?.bio}</Text>
                 </View>
             </View>
 
