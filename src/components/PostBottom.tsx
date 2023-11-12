@@ -5,7 +5,7 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 
 const PostBottom = (props: any) => {
     return (

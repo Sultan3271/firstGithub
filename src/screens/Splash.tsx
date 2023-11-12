@@ -8,7 +8,7 @@
 import React, { useEffect } from 'react';
 
 import ScholarTabs from '../navigation/TabNavigator';
-import { useUserProfileStore } from '../zustand/UserProfileStore';
+import useUserProfileStore from '../zustand/UserProfileStore';
 
 const Splash = ({ navigation }: any) => {
 

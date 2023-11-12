@@ -2,7 +2,7 @@ import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 
 export default function ScholarBanner(props: any) {
     const iconColor = Colors.primary

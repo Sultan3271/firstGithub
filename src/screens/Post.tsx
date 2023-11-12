@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import styles from '../styles/Styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 
-import Colors from '../Theme/ScholarColors'
+import Colors from '../theme/ScholarColors'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { uploadImage } from '../services/UploadFunctions'
 import { launchImageLibrary } from 'react-native-image-picker'

@@ -3,7 +3,7 @@ import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 
 import FeedBox from '../components/FeedBox';
 import { posts } from '../services/DataService';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 
 const Feed = (props: any) => {
 

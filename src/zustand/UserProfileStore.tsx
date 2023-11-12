@@ -16,16 +16,14 @@ interface UserProfileStore {
     setUsrName: (state: string) => void,
 }
 
-export const useUserProfileStore = create<UserProfileStore>((set) => ({
+const useUserProfileStore = create<UserProfileStore>((set) => ({
     userID: '',
     bio: '',
     profilePic: '',
     schoolName: '',
     Class: '',
     usrName: '',
-    setProfileData: (state) => set(store=>{
-        console.log('UserID: ' + state.bio)
-
+    setProfileData: (state) => set(()=>{
         return {
             userID: state.userID,
             bio: state.bio,
@@ -42,3 +40,5 @@ export const useUserProfileStore = create<UserProfileStore>((set) => ({
     setClass: (state: string) => set(()=>({ Class: state })),
     setUsrName: (state: string) => set(()=>({ usrName: state })),
 }))
+
+export default useUserProfileStore;

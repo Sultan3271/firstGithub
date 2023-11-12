@@ -4,8 +4,8 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
-import { Fonts } from '../Theme/Fonts';
-import Colors from '../Theme/ScholarColors';
+import { Fonts } from '../theme/Fonts';
+import Colors from '../theme/ScholarColors';
 import PostBottom from './PostBottom';
 
 export default function FeedBox(props: any) {

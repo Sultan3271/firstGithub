@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Dimensions, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -21,11 +21,11 @@ import { getProfile, posts } from '../services/DataService';
 import { userId } from '../services/UserId';
 
 import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
 import { Easing, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Animated from 'react-native-reanimated';
-import { useUserProfileStore } from '../zustand/UserProfileStore';
+import useUserProfileStore from '../zustand/UserProfileStore';
 
 const UserProfile = ({ navigation }: any) => {
 
