@@ -9,7 +9,6 @@ import { uploadImage } from '../services/UploadFunctions'
 import { launchImageLibrary } from 'react-native-image-picker'
 import { setInPost } from '../services/DataService'
 import { userId } from '../services/UserId'
-// import { current } from '@reduxjs/toolkit'
 
 export default function Post(navigation: any) {
   const route = useRoute();
@@ -142,7 +141,5 @@ export default function Post(navigation: any) {
         </View>
       </View>
     </View>
-
     )
 }
-

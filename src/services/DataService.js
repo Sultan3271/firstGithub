@@ -128,11 +128,11 @@ export function setInProfile(
 }
 
 export function setInPost(userID,image,description,time,status){
-  const postCollection = firestore().collection('Users').doc(userID).collection('Posts');
+  const postCollection = firestore().collection('AllPosts'). doc(userID).collection('Posts');
   const newPostDoc = postCollection.doc(); // This creates a new document reference with an auto-generated ID
 const newPostId = newPostDoc.id;
   firestore()
-    .collection('Users')
+    .collection('AllPosts')
     .doc(userID)
     .collection('Posts')
     .doc(newPostId)
@@ -187,7 +187,7 @@ export const getProfile = userID => {
 };
 export const deletePostLike=async(postID,userID)=>{
   const likeCollectionRef = firestore()
-    .collection('Users')
+    .collection('AllPosts')
     .doc(userID)
     .collection('Posts')
     .doc(postID)
@@ -220,7 +220,7 @@ export const setPostLike=async(postID,userID)=>{
 
 
   firestore()
-    .collection('Users')
+    .collection('AllPosts')
     .doc(userID)
     .collection('Posts')
     .doc(postID)
@@ -241,7 +241,7 @@ export const setPostLike=async(postID,userID)=>{
 export const getPostLikes=async (postID,userID)=>{
   return new Promise((resolve, reject) => {
     const subcollectionRef = firestore()
-    .collection('Users')
+    .collection('AllPosts')
     .doc(userID)
     .collection('Posts')
     .doc(postID)
@@ -262,7 +262,7 @@ export const getPostLikes=async (postID,userID)=>{
 }
 export const fetchPosts = async (userID) => {
   return new Promise((resolve, reject) => {
-    const subcollectionRef = firestore().collection('Users').doc(userID).collection('Posts');
+    const subcollectionRef = firestore().collection('AllPosts').doc(userID).collection('Posts');
     var posts=[];
     subcollectionRef.get()
     .then((querySnapshot) => {

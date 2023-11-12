@@ -59,21 +59,21 @@ export default function SignUpForm(props: any) {
             return;
         }
 
-    if (usrPassword1 !== usrPassword2) {
-      Alert.alert("Passwords do not match!");
-      setIsSubmitDisabled(false);
-      return;
-    }
+        if (usrPassword1 !== usrPassword2) {
+            Alert.alert("Passwords do not match!");
+            setIsSubmitDisabled(false);
+            return;
+        }
 
-    // creates and authenticates a new user
-    auth().createUserWithEmailAndPassword(usrEmail, usrPassword1)
-      .then(result => {
-        const user = auth().currentUser;
-        const userId = user?.uid;
-        //console.log(userId);
+        // creates and authenticates a new user
+        auth().createUserWithEmailAndPassword(usrEmail, usrPassword1)
+            .then(result => {
+                const user = auth().currentUser;
+                const userId = user?.uid;
+                //console.log(userId);
 
-        // adds the new user to the Users firestore database collection
-        firestore()
+                // adds the new user to the Users firestore database collection
+                firestore()
 
 
                     .collection("Users").doc(userId).collection("Credentials")
@@ -118,10 +118,11 @@ export default function SignUpForm(props: any) {
 
             <Text style={{ color: "red" }}>{errorMsg.toString()}</Text>
 
-      {/* Submit Button */}
-      <View style={formStyles.submitBtnContainer}>
-        <SButton text="Sign Up" action={() => tryAndSignIn()}></SButton>
-        <SButton styleType="Sentence" text="Already have an account? Login" action={() => props.nav.navigate('Login')}></SButton>
-      </View>
-    }
+            {/* Submit Button */}
+            <View style={formStyles.submitBtnContainer}>
+                <SButton text="Sign Up" action={() => tryAndSignIn()}></SButton>
+                <SButton styleType="Sentence" text="Already have an account? Login" action={() => props.nav.navigate('Login')}></SButton>
+            </View>
+        </View>)
 }
+
