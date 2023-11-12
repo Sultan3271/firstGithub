@@ -120,9 +120,9 @@ export default function SignUpForm(props: any) {
 
             {/* Submit Button */}
             <View style={formStyles.submitBtnContainer}>
-                <SButton text="Sign Up" action={() => tryAndLogIn()}></SButton>
+                <SButton text="Sign Up" action={() => tryAndSignIn()}></SButton>
                 <SButton styleType="Sentence" text="Already have an account? Login" action={() => props.nav.navigate('Login')}></SButton>
             </View>
-        </View>
-    );
+        </View>)
 }
+

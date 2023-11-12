@@ -30,5 +30,5 @@ export const uploadImage = async (uri, path) => {
             console.error('Error uploading image:', error);
             reject(error);
         }
-    });
-};
+      });
+  };

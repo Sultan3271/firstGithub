@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 
 import FeedBox from '../components/FeedBox';
 import { posts } from '../services/DataService';
