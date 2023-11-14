@@ -17,8 +17,8 @@ import ScholarBanner from '../../components/ScholarBanner';
 import { posts, setInProfile } from '../../services/DataService';
 import { userId } from '../../services/UserId';
 import styles from '../../styles/Styles';
-import { Fonts } from '../../Theme/Fonts';
-import Colors from '../../Theme/ScholarColors';
+import { Fonts } from '../../theme/Fonts';
+import Colors from '../../theme/ScholarColors';
 import { uploadImage } from '../../services/UploadFunctions';
 import { launchImageLibrary } from 'react-native-image-picker';
 

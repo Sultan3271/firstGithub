@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import React from 'react';
+import { Text, TouchableOpacity } from 'react-native';
 
 import formStyles from '../styles/FormStyles';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 
 const SButton = (props: any) => {
 

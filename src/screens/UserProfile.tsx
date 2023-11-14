@@ -7,38 +7,26 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Dimensions, FlatList, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { TextInput } from 'react-native-paper';
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { fetchData, fetchPosts, getPostLikes, posts } from '../services/DataService';
+import { fetchPosts, getPostLikes, posts } from '../services/DataService';
 import FeedBox from '../components/FeedBox';
 
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 import Divider from '../components/Divider';
 import { useIsFocused } from '@react-navigation/native';
 
-import Feed from '../components/Feed';
 import FriendBox from '../components/FriendBox';
 import MissionLine from '../components/MissionLine';
 import { getProfile } from '../services/DataService';
 import { userId } from '../services/UserId';
 
 import styles from '../styles/Styles';
-import EditProfile from './additive/EditProfile';
-import { Screen } from 'react-native-screens';
-import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
-import { Easing, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import Animated from 'react-native-reanimated';
 
 const UserProfile = ({ navigation }: any) => {
 
 	const isFocused = useIsFocused();
 	const [profileData, setProfileData] = useState({});
-	const [edit, setEdit] = useState(false);
-	const yDelta = useSharedValue(0);
-	const y = useSharedValue(0);
-	const hasHitTopOfList = useSharedValue(false);
-	const canScrollFeed = useSharedValue(false);
 
 	/**
 	 * useEffect used for loading data from DB

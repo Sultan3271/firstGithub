@@ -1,15 +1,11 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
-import { Fonts } from '../Theme/Fonts';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 import PostBottom from './PostBottom';
 import { posts } from '../services/DataService';
-import { useEffect } from 'react';
-import { Route, useRoute } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 
 export default function FeedBox(props: any) {
   let navigation = useRoute()

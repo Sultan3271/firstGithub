@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { posts } from '../services/DataService';
 import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 
 const FriendBox = (props: any) => {
     return (

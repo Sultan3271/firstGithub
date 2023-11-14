@@ -14,7 +14,7 @@ import Friends from '../screens/Friends';
 import Home from '../screens/Home';
 import Notifications from '../screens/Notifications';
 import UserProfile from '../screens/UserProfile';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 
 const Tab = createBottomTabNavigator();
 

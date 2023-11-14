@@ -5,10 +5,8 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
+import Colors from '../theme/ScholarColors';
 import { deletePostLike, setPostLike } from '../services/DataService';
-
-
 
 const PostBottom = (props: any) => {
   const [LikeIcon,setLikeIcon]=useState('like2');
