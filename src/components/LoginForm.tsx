@@ -13,9 +13,9 @@ import auth from '@react-native-firebase/auth';
 import { getProfile, setInProfile } from '../services/DataService';
 import formStyles from '../styles/FormStyles';
 import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
-import { getUserId } from '../utils/auth';
+import { getUserId } from '../utils/Auth';
 import SButton from './SButton';
+import useUserProfileStore from '../zustand/UserProfileStore';
 
 /**
  * Used to create a login in form that connects with Firebase.
@@ -28,19 +28,23 @@ export default function LoginForm(props: any) {
     const [errorMsg, setErrorMsg] = useState("");
     const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
+    const userProfile = useUserProfileStore(store=>store)
+
+    const setProfileData = useUserProfileStore(store=>store.setProfileData)
+
     // Log in anonymously
     function LoginAnonymously() {
         // use the authentication login system
         auth().signInAnonymously()
             // if login anonomous successful
-            .then(user => {
+            .then(() => {
 
                 Alert.alert("Login successfull!");
                 const userId = getUserId();
                 props.nav.navigate('Splash', { userId });
 
                 getProfile(userId)
-                    .then((profile) => {
+                    .then((profile: any) => {
 
                         console.log(profile);
 
@@ -49,7 +53,8 @@ export default function LoginForm(props: any) {
                             console.log("Added profile");
                             setInProfile(userId, 'no bio', ' ', 'no school', 'no major', 'Anonomous');
                         }
-
+                        
+                        setProfileData({ userID: getUserId(), ...profile })
                     })
                     .catch((error) => {
                         console.error(error);
@@ -91,13 +96,10 @@ export default function LoginForm(props: any) {
                         console.log(error);
 
                     })
-                // console.log("user = ",usrId);
             })
             .catch(error => {
-                // Alert.alert("Account could not be authenticated!");
                 setErrorMsg(error);
                 console.log(error);
-
                 setIsSubmitDisabled(false);
             });
     }
