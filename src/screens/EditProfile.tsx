@@ -101,7 +101,7 @@ const EditProfile = (navigation: any) => {
           alignItems: 'center',
         }}>
              { 
-                profilePic.length==0 ?
+                profilePic==" " ?
         <Icon
           name={posts[0].avatar}
           size={90}

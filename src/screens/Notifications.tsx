@@ -5,9 +5,6 @@ import styles from '../styles/Styles';
 
 
 const Notifications = () => {
-  
-
-  
 
   return (
    <View style={styles.container}>

@@ -7,6 +7,7 @@
  */
 
 import firestore from '@react-native-firebase/firestore';
+import { userId } from './UserId';
 
 /**
  * Dummy data
@@ -154,3 +155,17 @@ export const getProfile = userID => {
       });
   });
 };
+
+export const getPosts= async ()=>{
+  const subcollectionRef = firestore().collection('Users').doc(userId).collection('Posts');
+
+  subcollectionRef.get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+      });
+    }) 
+    .catch((error) => {
+      console.error("Error getting documents: ", error);
+    });
+}

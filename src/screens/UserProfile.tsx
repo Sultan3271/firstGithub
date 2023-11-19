@@ -18,7 +18,7 @@ import React, {useEffect, useState} from 'react';
 import styles from '../styles/Styles';
 import FriendBox from '../components/FriendBox';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {posts} from '../services/DataService';
+import {getPosts, posts} from '../services/DataService';
 import FeedBox from '../components/FeedBox';
 import {TextInput} from 'react-native-paper';
 import Colors from '../Theme/ScholarColors';
@@ -44,12 +44,13 @@ const UserProfile = ({navigation}: any) => {
     getProfile(userId)
       .then(profile => {
         setProfileData(profile);
-        setProfilePic(profileData.profilePic)
+        setProfilePic(profile.profilePic);
         
       })
       .catch(error => {
         console.error('Errffor:', error);
       });
+      getPosts();
   }, [isFocused]);
 
   return (
@@ -64,11 +65,11 @@ const UserProfile = ({navigation}: any) => {
               * it's because of this condition
             */}
               {
-                profileData.profilePic == null ?
+                profileData.profilePic == " " ?
               <Icon name={posts[0].avatar} size={90} color={Colors.primary} />
               : <Image style={styles.profilePictur} source={{uri:profileData.profilePic}} />
 }  
-            </View>
+            </View> 
             <View style={{flex: 1, margin: 5, justifyContent: 'center'}}>
               <Text style={styles.userNameStyle}>{profileData.usrName}</Text>
               <View style={{marginTop: 5}}>
