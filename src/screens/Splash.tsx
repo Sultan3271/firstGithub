@@ -8,13 +8,17 @@
 import React, { useEffect } from 'react';
 
 import ScholarTabs from '../navigation/TabNavigator';
+import useUserProfileStore from '../zustand/UserProfileStore';
 
 const Splash = ({ navigation }: any) => {
-  
 
-  return (
-    <ScholarTabs />
-  ) 
+    const userProfile = useUserProfileStore(store=>store);
+
+    console.log('User Profile: ' + JSON.stringify(userProfile, null, 2));
+
+    return (
+        <ScholarTabs />
+    )
 }
 
 export default Splash
