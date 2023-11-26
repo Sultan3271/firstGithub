@@ -15,7 +15,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 
 import ScholarBanner from '../../components/ScholarBanner';
 import { posts, setInProfile } from '../../services/DataService';
-import { userId } from '../../services/UserId';
+import { getUserId } from '../../utils/Auth';
 import styles from '../../styles/Styles';
 import { Fonts } from '../../theme/Fonts';
 import Colors from '../../theme/ScholarColors';
@@ -38,6 +38,8 @@ const EditProfile = () => {
     const [bio, setBio] = useState(userProfile.bio);
     const [profilePic, setProfilePic] = useState(userProfile.profilePic);
     const navigation = useNavigation();
+
+    const userId = getUserId();
 
     /**
      * updating information
@@ -73,8 +75,8 @@ const EditProfile = () => {
                 const fileName = response.assets[0].fileName;
                 const path = `images/users/${userId}/profilePictures/${fileName}`.toString();
                 uploadImage(uri, path)
-                    .then(imgurl => {
-                        setProfilePic(imgurl);
+                    .then((imgUrl: any) => {
+                        setProfilePic(imgUrl);
                     })
                     .catch(() => {
                         console.log("something went wrong!");

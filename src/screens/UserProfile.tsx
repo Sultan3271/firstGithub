@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { fetchPosts, getPostLikes, posts } from '../services/DataService';
+import { getPostLikes, fetchPosts, posts } from '../services/DataService';
 import FeedBox from '../components/FeedBox';
 
 import Colors from '../theme/ScholarColors';
@@ -19,67 +19,75 @@ import { useIsFocused } from '@react-navigation/native';
 import FriendBox from '../components/FriendBox';
 import MissionLine from '../components/MissionLine';
 import { getProfile } from '../services/DataService';
-import { userId } from '../services/UserId';
 
 import styles from '../styles/Styles';
+import { getUserId } from '../utils/Auth';
+import useUserProfileStore from '../zustand/UserProfileStore';
 
 const UserProfile = ({ navigation }: any) => {
 
 	const isFocused = useIsFocused();
-	const [profileData, setProfileData] = useState({});
+    const userProfile = useUserProfileStore(store => store)
+    const setProfilePic = useUserProfileStore(store => store.setProfilePic)
+    const setProfileData = useUserProfileStore(store => store.setProfileData);
 
 	/**
 	 * useEffect used for loading data from DB
 	 */
-	const [profilePic, setProfilePic] = useState('');
 	const [postsData, setPostsData]: any = useState([]);
 	const [allLikes, setAllLikes] = useState('');
+
 	/**
 	 * useEffect used for loading data from DB
 	 */
 	const PostLikes = (postID: string, userID: string) => {
 		var likesArray: any = [];
-		getPostLikes(postID, userID).then((likes) => {
+		getPostLikes(postID, userID).then((likes: any) => {
 			likes.forEach((like: any) => {
 				likesArray.push(like);
 			})
 		})
 			.catch((error) => { console.log("error:" + error); });
 		setAllLikes(likesArray);
-
 	}
+
 	const setAllPosts = (posts: any) => {
 		let allPosts: any = [];
+
 		posts.forEach((post: any) => {
 			console.log("=>" + post.time);
 			allPosts.push(post);
-
 		})
+
 		allPosts.map((post: any) => { console.log("unSorted posts :" + post.time); })
 		const postsWithDateObjects = allPosts.map((post: any) => ({
 			...post,
 			dateObject: new Date(post.time)
 		}));
+
 		// Sort the posts in descending order
 		postsWithDateObjects.sort((a: any, b: any) => b.dateObject.getTime() - a.dateObject.getTime());
 		setPostsData(postsWithDateObjects);
 		postsWithDateObjects.map((post: any) => { console.log("Sorted posts :" + post.time); })
 	}
+
 	const extractTime = (time: string) => {
 		const timestamp = new Date(time);
 		const hours = timestamp.getHours();
 		const minutes = timestamp.getMinutes();
 		let dayOrNight = "PM";
+
 		if (hours < 12) {
 			dayOrNight = "AM"
 		}
+
 		console.log("Hours: " + hours + " minutes" + minutes);
 		return (hours + ":" + minutes + " " + dayOrNight);
 	}
+
 	useEffect(() => {
-		
-		getProfile(userId)
-			.then(profile => {
+		getProfile(getUserId())
+			.then((profile : any) => {
 				setProfileData(profile);
 				setProfilePic(profile.profilePic);
 			})
@@ -87,31 +95,32 @@ const UserProfile = ({ navigation }: any) => {
 				console.error('Errffor :', error);
 			});
 	}, [isFocused]);
+
 	useEffect(() => {
-		fetchPosts(userId).then(posts => {
+		fetchPosts(getUserId()).then((posts: any) => {
 			setAllPosts(posts);
 			console.log("Hy");
 			
-		}).catch(err => console.log("No posts"))
+		}).catch((err: any) => console.log("No posts"))
 	},[isFocused])
+
 	return (
 		<ScrollView>
 		<View style={{
 			padding: 10,
 		}}>
 			{/* Profile header */}
-		
 			<View>
 				<View style={styles.profilePicBox}>
 					<View style={styles.avatarSection}>
 						{
-							profileData?.profilePic == " " || profileData?.profilePic == null ?
+							userProfile.profilePic == " " || userProfile.profilePic == null ?
 								<Icon name={posts[0].avatar} size={90} color={Colors.primary} /> :
-								<Image source={{ uri: profileData?.profilePic }} style={styles.profilePictur} />
+								<Image source={{ uri: userProfile.profilePic }} style={styles.profilePictur} />
 						}
 					</View>
 					<View style={{ flex: 1, margin: 5, justifyContent: 'center' }}>
-						<Text style={styles.userNameStyle}>{profileData.usrName}</Text>
+						<Text style={styles.userNameStyle}>{userProfile.usrName}</Text>
 						<View style={{ marginTop: 5 }}>
 							<Text
 								style={{
@@ -119,26 +128,26 @@ const UserProfile = ({ navigation }: any) => {
 									fontSize: 20,
 									color: 'black',
 								}}>
-								{profileData.schoolName}
+								{userProfile.schoolName}
 							</Text>
 						</View>
 					</View>
 					<TouchableOpacity
 						style={{ top: 1, position: 'absolute', left: 80 }}
-						onPress={() => navigation.push('EditProfile', { profileData })}>
+						onPress={() => navigation.push('EditProfile', { userProfile })}>
 						<Icon name="create-outline" size={20} color={'black'} />
 					</TouchableOpacity>
 				</View>
-				<Divider width={'90%'} />
+				<Divider />
 			</View>
 			{/* Year */}
 			<View style={{ alignItems: 'center' }}>
-				<Text style={styles.headingStyle}>{profileData.Class}</Text>
+				<Text style={styles.headingStyle}>{userProfile.Class}</Text>
 			</View>
 			<View>
 				<Text style={styles.headingStyle}>Bio</Text>
 				<View style={{ margin: 5 }}>
-					<Text style={styles.contentStyle}>{profileData.bio}</Text>
+					<Text style={styles.contentStyle}>{userProfile.bio}</Text>
 				</View>
 			</View>
 			{/* Friends List */}
@@ -182,7 +191,7 @@ const UserProfile = ({ navigation }: any) => {
 						color={Colors.primary}
 					/>
 				</View>
-				<TouchableOpacity style={{ flex: 1 }} onPress={() => navigation.push('Post', { profileData })}>
+				<TouchableOpacity style={{ flex: 1 }} onPress={() => navigation.push('Post', { userProfile })}>
 					<View style={{ width: '80%', alignItems: 'center', justifyContent: 'center' }}>
 						<Text
 						// style={{textAlign:'center', width: '90%',fontSize:Fonts.regular }}
@@ -200,8 +209,8 @@ const UserProfile = ({ navigation }: any) => {
 								<View style={{ padding: 10 }}>
 									{/* <Feed /> */}
 									<View style={{ backgroundColor: Colors.feedBackground }}>
-										{postsData.map((item: any, index: Int16Array) =>
-											<FeedBox key={index} admin={profileData?.usrName} avatar={profileData?.profilePic}
+										{postsData.map((item: any, index: Int16Array) => // FIXME make sure can be indexed
+											<FeedBox admin={userProfile.usrName} avatar={userProfile.profilePic}
 												time={extractTime(item.time)}
 												picture={item.image}
 												likes={allLikes.length}

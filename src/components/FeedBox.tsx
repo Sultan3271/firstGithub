@@ -5,10 +5,21 @@ import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
 import PostBottom from './PostBottom';
 import { posts } from '../services/DataService';
-import { useRoute } from '@react-navigation/native';
 
-export default function FeedBox(props: any) {
-  let navigation = useRoute()
+type FeedBoxProps = {
+    navigation?: any,
+    avatar?: string,
+    admin?: string,
+    time?: string,
+    description?: string,
+    picture?: string,
+    likes?: number,
+    contributes?: any,
+    postID?: string,
+    userID?: string
+}
+
+export default function FeedBox(props: FeedBoxProps) {
   return (
     <View style={styles.post} >
       <View style={styles.postAdmin}>
@@ -43,7 +54,7 @@ export default function FeedBox(props: any) {
       </View>
       <View style={styles.postHolder}>
         {
-          props.picture !== ' ' || props.picture !== null ?
+          props.picture !== undefined || props.picture !== null ?
             <Image source={{ uri: props.picture }} style={{ resizeMode: 'cover', width: '100%', height: '100%' }}></Image>
             : null
         }

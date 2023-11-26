@@ -6,7 +6,7 @@
  */
 
 import React, { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, View } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
 
@@ -17,11 +17,15 @@ import { getUserId } from '../utils/Auth';
 import SButton from './SButton';
 import useUserProfileStore from '../zustand/UserProfileStore';
 
+type LoginFormProps = {
+    nav: any
+}
+
 /**
  * Used to create a login in form that connects with Firebase.
  * @param props (nav) property used to pass in the current navigation controls.
  */
-export default function LoginForm(props: any) {
+export default function LoginForm(props: LoginFormProps) {
 
     const [usrEmail, setUserEmail] = useState("");
     const [usrPassword, setUserPassword] = useState("");

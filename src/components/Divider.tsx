@@ -3,7 +3,11 @@ import { Text, View } from 'react-native';
 import styles from '../styles/Styles';
 import { Fonts } from '../theme/Fonts';
 
-export default function Divider(props: any) {
+type DividerProps = {
+    text?: string
+}
+
+export default function Divider(props: DividerProps) {
 
     if (!props.text) {
         return (

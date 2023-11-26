@@ -1,11 +1,19 @@
 import React from 'react';
-import { FlatList, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import FeedBox from '../components/FeedBox';
 import { posts } from '../services/DataService';
 import Colors from '../theme/ScholarColors';
 
-const Feed = (props: any) => {
+type FeedProps = {
+    scrollEnabled?: boolean,
+    startReachedThreshold?: number,
+    endReachedThreshold?: number,
+    onStartReached?: () => void,
+    onEndReached?: () => void,
+}
+
+const Feed = (props: FeedProps) => {
 
     function onStartReachedCallback() {
         if (props.onStartReached !== undefined)

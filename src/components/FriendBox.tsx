@@ -6,7 +6,11 @@ import { posts } from '../services/DataService';
 import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
 
-const FriendBox = (props: any) => {
+type FriendBoxProps = {
+    data?: any
+}
+
+const FriendBox = (props: FriendBoxProps) => {
     return (
         <View style={styles.friendBoxStyle}>
             <Icon style={[styles.profileImage, { height: 70, width: 70 }]} name={posts[0].avatar} size={50} color={Colors.primary} />
