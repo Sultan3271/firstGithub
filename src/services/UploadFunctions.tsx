@@ -7,6 +7,7 @@
  */
 
 import storage from '@react-native-firebase/storage';
+import { Platform } from 'react-native';
 
 /**
  * 
@@ -15,13 +16,12 @@ import storage from '@react-native-firebase/storage';
  * @returns imgUrl 
  */
 
-export const uploadImage = async (uri, path) => {
+export const uploadImage = async (uri: string, path: string) => {
     return new Promise(async (resolve, reject) => {
         try {
             const storageRef = storage().ref(path);
             const localUri = Platform.OS === 'ios' ? `file://${uri}` : uri;
             await storageRef.putFile(localUri);
-
 
             const imageUrl = await storageRef.getDownloadURL();
 
