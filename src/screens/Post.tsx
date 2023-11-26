@@ -4,7 +4,7 @@ import styles from '../styles/Styles'
 import Icon from 'react-native-vector-icons/Ionicons'
 
 import Colors from '../theme/ScholarColors'
-import { useNavigation, useRoute } from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { uploadImage } from '../services/UploadFunctions'
 import { launchImageLibrary } from 'react-native-image-picker'
 import { setInPost } from '../services/DataService'
@@ -61,7 +61,7 @@ export default function Post(navigation: any) {
         let img = "";
         if ((selectedImage.length == 0 || selectedImage == null) && (postDesc.length == 0 || postDesc == null)) {
             Alert.alert("You cannot share an empty post");
-        } else {
+        } else if (picName.length !== 0) {
             uploadImage(picName, filePath)
                 .then((imgUrl: any) => {
                     if (isPrivate) {
@@ -75,6 +75,16 @@ export default function Post(navigation: any) {
                 .catch(err => {
                     console.log("something went wrong!");
                 })
+            Alert.alert("Done!")
+            navigation.goBack();
+        } else {
+            if (isPrivate) {
+                setPostStatus("private");
+            } else {
+                setPostStatus("public");
+            }
+            const time = getCurrentTime().toString();
+            setInPost(adminId, '', postDesc, time, postStatus);
             Alert.alert("Done!")
             navigation.goBack();
         }

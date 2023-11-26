@@ -40,12 +40,14 @@ const Feed = (props: FeedProps) => {
                 data={posts}
                 renderItem={({ item }) => (
 
-                    <FeedBox admin={item.admin} avatar={item.avatar}
+                    <FeedBox key={0} admin={item.admin} avatar={item.avatar}
                         time={item.time}
                         picture={item.picture}
                         likes={item.likes}
                         contributes={item.contributes}
                         description={item.description}
+                        postID={''}
+                        userID={''}
                     />
 
                 )}

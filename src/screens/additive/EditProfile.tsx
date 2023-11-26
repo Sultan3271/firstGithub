@@ -11,7 +11,7 @@ import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import ScholarBanner from '../../components/ScholarBanner';
 import { posts, setInProfile } from '../../services/DataService';

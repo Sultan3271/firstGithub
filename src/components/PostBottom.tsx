@@ -11,7 +11,7 @@ import { deletePostLike, setPostLike } from '../services/DataService';
 type PostBottomProps = {
     postID: string,
     userID: string,
-    likes?: number,
+    likes?: any,
     contributes?: any
 }
 
@@ -31,6 +31,21 @@ const PostBottom = (props: PostBottomProps) => {
 
     return (
         <View>
+            <View style={styles.postBottom}>
+                <TouchableOpacity style={styles.actionBtn} onPress={likePost}>
+                    <AntDesign name={LikeIcon} size={20} color={Colors.secondary} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.actionBtn}>
+                    <EvilIcons name='comment' size={20} color={Colors.secondary} />
+                </TouchableOpacity >
+                <TouchableOpacity style={styles.actionBtn}>
+                    <Icon name='share-outline' size={20} color={Colors.secondary} />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.actionBtn}>
+                    <Icon name='people-outline' size={20} color={Colors.secondary} />
+                </TouchableOpacity>
+            </View>
+
             <View style={styles.postBottom}>
                 <View>
                     <Text style={{ color: Colors.text, padding: 2 }}>
@@ -52,20 +67,6 @@ const PostBottom = (props: PostBottomProps) => {
                         {props.contributes}
                     </Text>
                 </View>
-            </View>
-            <View style={styles.postBottom}>
-                <TouchableOpacity style={styles.actionBtn} /* onPress={likePost} */>
-                    <AntDesign name={LikeIcon} size={20} color={Colors.secondary} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.actionBtn}>
-                    <EvilIcons name='comment' size={20} color={Colors.secondary} />
-                </TouchableOpacity >
-                <TouchableOpacity style={styles.actionBtn}>
-                    <Icon name='share-outline' size={20} color={Colors.secondary} />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.actionBtn}>
-                    <Icon name='people-outline' size={20} color={Colors.secondary} />
-                </TouchableOpacity>
             </View>
         </View>
     )

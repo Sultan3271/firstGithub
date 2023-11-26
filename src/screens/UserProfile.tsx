@@ -22,7 +22,7 @@ import { getProfile } from '../services/DataService';
 
 import styles from '../styles/Styles';
 import { getUserId } from '../utils/Auth';
-import useUserProfileStore from '../zustand/UserProfileStore';
+import useUserProfileStore, { useLikesStore, usePostsStore } from '../zustand/UserProfileStore';
 
 const UserProfile = ({ navigation }: any) => {
 
@@ -34,8 +34,10 @@ const UserProfile = ({ navigation }: any) => {
 	/**
 	 * useEffect used for loading data from DB
 	 */
-	const [postsData, setPostsData]: any = useState([]);
-	const [allLikes, setAllLikes] = useState('');
+    const allPosts = usePostsStore(store => store.posts)
+    const setPostsData = usePostsStore(store => store.setAllPosts)
+    const allLikes = useLikesStore(store => store.likes)
+    const setAllLikes = useLikesStore(store => store.setAllLikes)
 
 	/**
 	 * useEffect used for loading data from DB
@@ -209,8 +211,8 @@ const UserProfile = ({ navigation }: any) => {
 								<View style={{ padding: 10 }}>
 									{/* <Feed /> */}
 									<View style={{ backgroundColor: Colors.feedBackground }}>
-										{postsData.map((item: any, index: Int16Array) => // FIXME make sure can be indexed
-											<FeedBox admin={userProfile.usrName} avatar={userProfile.profilePic}
+										{allPosts.map((item: any, index: number) => // FIXME make sure can be indexed
+											<FeedBox key={index} admin={userProfile.usrName} avatar={userProfile.profilePic}
 												time={extractTime(item.time)}
 												picture={item.image}
 												likes={allLikes.length}

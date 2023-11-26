@@ -127,9 +127,11 @@ export function setInProfile(
 }
 
 export function setInPost(userID: string, image: string, description: string, time: string, status: string) {
+
     const postCollection = firestore().collection('AllPosts').doc(userID).collection('Posts');
     const newPostDoc = postCollection.doc(); // This creates a new document reference with an auto-generated ID
     const newPostId = newPostDoc.id;
+    
     firestore()
         .collection('AllPosts')
         .doc(userID)
