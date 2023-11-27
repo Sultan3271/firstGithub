@@ -14,7 +14,9 @@ const Colors = {
     background: '#f2f2f2',
     feedBackground: '#adb5bd',
     // link text color
-    linkColor: '#006d77'
+    linkColor: '#006d77',
+    lightBackground: '#2a9d9049'
+
 };
 
 export default Colors;

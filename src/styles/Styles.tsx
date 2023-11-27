@@ -8,7 +8,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.background,
     },
-
+    innerContainer: {
+       
+    },
     iconHeaderText: {
         fontFamily: "JustAnotherHand-Regular",
         textAlignVertical: "center",
