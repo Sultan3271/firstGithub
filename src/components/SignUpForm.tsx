@@ -6,15 +6,19 @@
  */
 
 import React, { useState } from 'react';
-import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, BackHandler, Text, TextInput, View } from 'react-native';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-import { getProfile, setInProfile } from '../services/DataService';
+import { setInProfile } from '../services/DataService';
 import formStyles from '../styles/FormStyles';
 import styles from '../styles/Styles';
 import SButton from './SButton';
+
+type SignUpFormProps = {
+    nav?: any,
+}
 
 /**
  * Used to create a sign in form that connects with Firebase.
@@ -22,7 +26,7 @@ import SButton from './SButton';
  * On Submit: Adds the new user to the Users firestore database collection.
  * @param props (nav) property used to pass in the current navigation controls.
  */
-export default function SignUpForm(props: any) {
+export default function SignUpForm(props: SignUpFormProps) {
 
     const [usrName, setUserName] = useState("");
     const [usrEmail, setUserEmail] = useState("");
@@ -74,8 +78,6 @@ export default function SignUpForm(props: any) {
 
                 // adds the new user to the Users firestore database collection
                 firestore()
-
-
                     .collection("Users").doc(userId).collection("Credentials")
                     .doc(userId)
                     .set({
@@ -87,6 +89,14 @@ export default function SignUpForm(props: any) {
                         Alert.alert("Success creating account!");
                         props.nav.navigate('Splash', { userId });
                         console.log(result);
+
+                        // if userId is undefined app should not continue
+                        if (userId === undefined) {
+                            console.error("Error: userId was undefined!")
+                            BackHandler.exitApp();
+                            return;
+                        }
+
                         setInProfile(userId, 'no bio', ' ', 'no school', 'no major', usrName)
 
                     })
