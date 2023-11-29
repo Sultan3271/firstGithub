@@ -4,18 +4,18 @@
  * @ownership ?
  * @last modified 9/20/2023
  */
-
-import { View } from 'react-native';
 import React from 'react';
+import { View } from 'react-native';
+
 import styles from '../styles/Styles';
 
 const Friends = ({ navigation }: any) => {
 
-  return (
-    <View style={styles.container}>
-      
-    </View>
-  )
+    return (
+        <View style={styles.container}>
+
+        </View>
+    )
 }
 
 export default Friends;

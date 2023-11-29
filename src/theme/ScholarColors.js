@@ -12,9 +12,9 @@ const Colors = {
     secondary: '#3498db',
     text: '#333333',
     background: '#f2f2f2',
-    feedBackground:'#adb5bd',
+    feedBackground: '#adb5bd',
     // link text color
-    linkColor:'#006d77'
-  };
-  
-  export default Colors;
+    linkColor: '#006d77'
+};
+
+export default Colors;

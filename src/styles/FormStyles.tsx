@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
-import Colors from "../Theme/ScholarColors";
+import Colors from "../theme/ScholarColors";
+import { Fonts } from "../theme/Fonts";
 
 const formStyles = StyleSheet.create({
     submitContainer: {
@@ -24,6 +25,7 @@ const formStyles = StyleSheet.create({
     btnText: {
         fontSize: 15,
         color: Colors.linkColor,
+        fontFamily: Fonts.regular
     },
     container: {
         margin: 10,

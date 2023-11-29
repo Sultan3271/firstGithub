@@ -5,14 +5,16 @@
  * @last modified 9/23/2023
  */
 
-import React, { useState } from 'react'
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import styles from '../styles/Styles';
+import React, { useState } from 'react';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
+
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import formStyles from '../styles/formStyles';
 
 import { getProfile, setInProfile } from '../services/DataService';
+import formStyles from '../styles/FormStyles';
+import styles from '../styles/Styles';
+import SButton from './SButton';
 
 /**
  * Used to create a sign in form that connects with Firebase.
@@ -20,18 +22,14 @@ import { getProfile, setInProfile } from '../services/DataService';
  * On Submit: Adds the new user to the Users firestore database collection.
  * @param props (nav) property used to pass in the current navigation controls.
  */
+export default function SignUpForm(props: any) {
 
-
-
-export default function SignUpForm(props: any)
-{
-    const [ usrName, setUserName ] = useState("");
-    const [ usrEmail, setUserEmail ] = useState("");
-    const [ usrPassword1, setUserPassword1 ] = useState("");
-    const [ usrPassword2, setUserPassword2 ] = useState("");
-    const [ errorMsg, setErrorMsg ] = useState("");
-    const [ isSubmitDisabled, setIsSubmitDisabled ] = useState(false);
-    
+    const [usrName, setUserName] = useState("");
+    const [usrEmail, setUserEmail] = useState("");
+    const [usrPassword1, setUserPassword1] = useState("");
+    const [usrPassword2, setUserPassword2] = useState("");
+    const [errorMsg, setErrorMsg] = useState("");
+    const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
     function tryAndSignIn() {
 
@@ -71,26 +69,26 @@ export default function SignUpForm(props: any)
         auth().createUserWithEmailAndPassword(usrEmail, usrPassword1)
             .then(result => {
                 const user = auth().currentUser;
-                const userId= user?.uid;
+                const userId = user?.uid;
                 //console.log(userId);
-                 
+
                 // adds the new user to the Users firestore database collection
                 firestore()
 
-        
+
                     .collection("Users").doc(userId).collection("Credentials")
                     .doc(userId)
-                    .set({ 
+                    .set({
                         usrName: usrName,
                         usrEmail: usrEmail,
                         usrPassword: usrPassword1,
                     })
                     .then(() => {
                         Alert.alert("Success creating account!");
-                        props.nav.navigate('Splash',{userId});
+                        props.nav.navigate('Splash', { userId });
                         console.log(result);
-                        setInProfile(userId,'no bio',' ','no school','no major',usrName)
-                        
+                        setInProfile(userId, 'no bio', ' ', 'no school', 'no major', usrName)
+
                     })
                     .catch(error => {
                         setErrorMsg(error);
@@ -107,7 +105,7 @@ export default function SignUpForm(props: any)
                 setIsSubmitDisabled(false);
             });
     }
-    
+
     return (
         <View style={formStyles.submitContainer}>
             {/* Input Fields */}
@@ -122,14 +120,9 @@ export default function SignUpForm(props: any)
 
             {/* Submit Button */}
             <View style={formStyles.submitBtnContainer}>
-                <TouchableOpacity style={formStyles.submitBtn} onPress={() => tryAndSignIn()} disabled={isSubmitDisabled}>
-                    <Text style={[formStyles.btnText, { color: "white" }]}>SignUp</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => props.nav.navigate('Login')}>
-                    <Text style={formStyles.btnText}>Already have an account? Login</Text>
-                </TouchableOpacity>
+                <SButton text="Sign Up" action={() => tryAndSignIn()}></SButton>
+                <SButton styleType="Sentence" text="Already have an account? Login" action={() => props.nav.navigate('Login')}></SButton>
             </View>
-        </View>
-    );
+        </View>)
 }
+

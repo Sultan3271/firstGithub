@@ -4,34 +4,34 @@
  * @ownership Shan Ayub
  *
  * @last modified 14/10/2023
- */
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
-import React, {useState} from 'react';
-import {TextInput} from 'react-native-paper';
-import styles from '../styles/Styles';
-import Colors from '../Theme/ScholarColors';
-import ScholarBanner from '../components/ScholarBanner';
-import {posts, setInProfile} from '../services/DataService';
+*/
+
+import React, { useState } from 'react';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import { TextInput } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {Fonts} from '../Theme/Fonts';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import {userId} from '../services/UserId';
-import { launchImageLibrary } from 'react-native-image-picker';
+
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import ScholarBanner from '../components/ScholarBanner';
+import { posts, setInProfile } from '../services/DataService';
+import { userId } from '../services/UserId';
+import styles from '../styles/Styles';
+import { Fonts } from '../Theme/Fonts';
+import Colors from '../Theme/ScholarColors';
 import { uploadImage } from '../services/UploadFunctions';
-import { Image } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 const EditProfile = (navigation: any) => {
-  /**
-   * getting data from navigation props
-   * @purpose so we can show user it's previous details in fields
-   *
-   */
+  // getting data from navigation props
+  // Purpose: so we can show user it's previous details in fields
+  // This will eventually be replaced by redux
   const route = useRoute();
   const Name = route.params?.profileData.usrName;
   const School = route.params?.profileData.schoolName;
   const Major = route.params?.profileData.Class;
   const Bio = route.params?.profileData.bio;
- const prfPic= route.params?.profileData.profilePic
+  const prfPic = route.params?.profileData.profilePic
   const [name, setName] = useState(Name);
   const [school, setSchool] = useState(School);
   const [major, setMajor] = useState(Major);
@@ -47,6 +47,8 @@ const EditProfile = (navigation: any) => {
       Alert.alert('Name cannot be Empty!');
     } else {
       setInProfile(userId, bio, profilePic, school, major, name);
+      console.log(userId);
+      
       Alert.alert('Updated!');
       navigation.goBack();
     }
@@ -69,17 +71,18 @@ const EditProfile = (navigation: any) => {
         console.error('Image picker error:', response.error);
       } else {
         // Handle the selected image here
+        const uri:any = response.assets[0].uri;
+        const fileName = response.assets[0].fileName;
+        const path = `images/users/${userId}/profilePictures/${fileName}`.toString();
+        console.log("uri: " + uri);
+        console.log("fileName: " + fileName);
         
-        const uri= response.assets[0].uri;
-        const fileName= response.assets[0].fileName;
-       const path = `images/users/${userId}/profilePictures/${fileName}`.toString();
-          uploadImage(uri, path)
-          .then(imgurl=>{
+        uploadImage(uri, path)
+          .then(imgurl => { 
             setProfilePic(imgurl);
           })
-          .catch(err=>{
+          .catch(err => {
             console.log("something went wrong!");
-            
           })
       }
     });
@@ -87,8 +90,8 @@ const EditProfile = (navigation: any) => {
 
 
   return (
-    <View style={{alignContent: 'center', justifyContent: 'center'}}>
-      <View style={{margin: 5}}>
+    <View style={{ alignContent: 'center', justifyContent: 'center' }}>
+      <View style={{ margin: 5 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="close-outline" size={30} color={'black'} />
         </TouchableOpacity>
@@ -100,25 +103,24 @@ const EditProfile = (navigation: any) => {
           alignContent: 'center',
           alignItems: 'center',
         }}>
-             { 
-                profilePic==" " ?
-        <Icon
-          name={posts[0].avatar}
-          size={90}
-          color={Colors.primary}
-          style={{
-            borderColor: Colors.text,
-            borderWidth: 1,
-            borderRadius: 150,
-            padding: 10,
-          }}
-        />
-        :
-        <Image style={styles.profilePictur} source={{uri:profilePic}} />
-
-}
+        {
+          profilePic == " " || profilePic ==null ?
+            <Icon
+              name={posts[0].avatar}
+              size={90}
+              color={Colors.primary}
+              style={{
+                borderColor: Colors.text,
+                borderWidth: 1,
+                borderRadius: 150,
+                padding: 10,
+              }}
+            />
+            :
+            <Image style={styles.profilePictur} source={{ uri: profilePic }} />
+        }
       </View>
-      <View style={{alignItems: 'center', margin: 10}}>
+      <View style={{ alignItems: 'center', margin: 10 }}>
         <TouchableOpacity onPress={openImagePicker}>
           <Text
             style={{
@@ -130,29 +132,29 @@ const EditProfile = (navigation: any) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <View style={{margin: 10}}>
-        <View style={{margin: 5}}>
+      <View style={{ margin: 10 }}>
+        <View style={{ margin: 5 }}>
           <TextInput
-            style={{backgroundColor: Colors.background, fontSize: 18}}
+            style={{ backgroundColor: Colors.background, fontSize: 18 }}
             value={name}
             placeholder="Your Name"
             onChangeText={text => setName(text)}></TextInput>
         </View>
-        <View style={{margin: 5}}>
+        <View style={{ margin: 5 }}>
           <TextInput
-            style={{backgroundColor: Colors.background, fontSize: 18}}
+            style={{ backgroundColor: Colors.background, fontSize: 18 }}
             value={school}
             placeholder="Edit your College"
             onChangeText={text => setSchool(text)}></TextInput>
         </View>
-        <View style={{margin: 5}}>
+        <View style={{ margin: 5 }}>
           <TextInput
-            style={{backgroundColor: Colors.background, fontSize: 18}}
+            style={{ backgroundColor: Colors.background, fontSize: 18 }}
             placeholder="Your Major"
             value={major}
             onChangeText={text => setMajor(text)}></TextInput>
         </View>
-        <View style={{margin: 5}}>
+        <View style={{ margin: 5 }}>
           <TextInput
             style={{
               backgroundColor: Colors.background,
@@ -180,7 +182,7 @@ const EditProfile = (navigation: any) => {
             alignItems: 'center',
           }}
           onPress={setChanges}>
-          <Text style={{color: Colors.text}}>Apply Changes</Text>
+          <Text style={{ color: Colors.text }}>Apply Changes</Text>
         </TouchableOpacity>
       </View>
     </View>
