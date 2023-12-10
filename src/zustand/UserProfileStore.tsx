@@ -109,4 +109,5 @@ const useLikesStore = create<UserProfileLikeStore>((set) => ({
 }))
 
 export default useUserProfileStore
+export type { UserProfileLike, UserProfilePost }
 export { usePostsStore, useLikesStore }

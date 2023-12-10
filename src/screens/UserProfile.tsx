@@ -22,7 +22,7 @@ import { getProfile } from '../services/DataService';
 
 import styles from '../styles/Styles';
 import { getUserId } from '../utils/Auth';
-import useUserProfileStore, { useLikesStore, usePostsStore } from '../zustand/UserProfileStore';
+import useUserProfileStore, { useLikesStore, usePostsStore, UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
 
 const UserProfile = ({ navigation }: any) => {
 
