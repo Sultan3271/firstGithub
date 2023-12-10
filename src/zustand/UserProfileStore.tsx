@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 
+// define interfaces for classes/objects
 interface UserProfileLike {
     likeID: string,
     postId: string,
@@ -10,7 +11,8 @@ interface UserProfileLikeStore {
     likes: UserProfileLike[],
     addLike: (like: UserProfileLike) => void,
     removeLike: (likeId: string) => void,
-    setAllLikes: (likes: UserProfileLike[]) => void
+    setAllLikes: (likes: UserProfileLike[]) => void,
+    addLikes: (likes: UserProfileLike[]) => void
 }
 
 interface UserProfilePost {
@@ -26,7 +28,8 @@ interface UserProfilePostStore {
     posts: UserProfilePost[],
     addPost: (post: UserProfilePost) => void,
     removePost: (postId: string) => void,
-    setAllPosts: (posts: UserProfilePost[]) => void
+    setAllPosts: (posts: UserProfilePost[]) => void,
+    addPosts: (posts: UserProfilePost[]) => void
 }
 
 interface UserProfileStore {
@@ -45,6 +48,7 @@ interface UserProfileStore {
     setUsrName: (state: string) => void,
 }
 
+// create stores
 const useUserProfileStore = create<UserProfileStore>((set) => ({
     userID: '',
     bio: '',
@@ -83,7 +87,8 @@ const usePostsStore = create<UserProfilePostStore>((set) => ({
 
         return ({ posts: [ ...state.posts ] });
     }),
-    setAllPosts: posts => set(() => ({ posts }))
+    setAllPosts: posts => set(() => ({ posts })),
+    addPosts: posts => set(state => ({ posts: [ ...state.posts, ...posts ] }))
 }))
 
 const useLikesStore = create<UserProfileLikeStore>((set) => ({
@@ -99,7 +104,8 @@ const useLikesStore = create<UserProfileLikeStore>((set) => ({
         
         return ({ likes: [ ...state.likes ] })
     }),
-    setAllLikes: likes => set(() => ({ likes }))
+    setAllLikes: likes => set(() => ({ likes })),
+    addLikes: likes => set(state => ({ likes: [ ...state.likes, ...likes ] }))
 }))
 
 export default useUserProfileStore
