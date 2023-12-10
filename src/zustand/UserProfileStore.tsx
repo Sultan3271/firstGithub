@@ -11,7 +11,7 @@ interface UserProfileLikeStore {
     addLike: (like: UserProfileLike) => void,
     removeLike: (likeId: string) => void,
     setAllLikes: (likes: UserProfileLike[]) => void
-}
+} 
 
 interface UserProfilePost {
     description: string,
@@ -83,7 +83,7 @@ const usePostsStore = create<UserProfilePostStore>((set) => ({
 
         return ({ posts: [ ...state.posts ] });
     }),
-    setAllPosts: posts => set(() => ({ posts }))
+    setAllPosts: posts => set(() => ({ posts })) 
 }))
 
 const useLikesStore = create<UserProfileLikeStore>((set) => ({

@@ -30,13 +30,13 @@ const UserProfile = ({ navigation }: any) => {
     const userProfile = useUserProfileStore(store => store)
     const setProfilePic = useUserProfileStore(store => store.setProfilePic)
     const setProfileData = useUserProfileStore(store => store.setProfileData);
-
+    
 	/**
 	 * useEffect used for loading data from DB
 	 */
-    const allPosts = usePostsStore(store => store.posts)
-    const setPostsData = usePostsStore(store => store.setAllPosts)
-    const allLikes = useLikesStore(store => store.likes)
+    const allPosts = usePostsStore(store => store.posts) 
+    const setPostsData = usePostsStore(store => store.setAllPosts) 
+    const allLikes = useLikesStore(store => store.likes)  
     const setAllLikes = useLikesStore(store => store.setAllLikes)
 
 	/**
@@ -47,7 +47,7 @@ const UserProfile = ({ navigation }: any) => {
 		getPostLikes(postID, userID).then((likes: any) => {
 			likes.forEach((like: any) => {
 				likesArray.push(like);
-			})
+			}) 
 		})
 			.catch((error) => { console.log("error:" + error); });
 		setAllLikes(likesArray);
@@ -64,8 +64,8 @@ const UserProfile = ({ navigation }: any) => {
 		allPosts.map((post: any) => { console.log("unSorted posts :" + post.time); })
 		const postsWithDateObjects = allPosts.map((post: any) => ({
 			...post,
-			dateObject: new Date(post.time)
-		}));
+			dateObject: new Date(post.time) 
+		})); 
 
 		// Sort the posts in descending order
 		postsWithDateObjects.sort((a: any, b: any) => b.dateObject.getTime() - a.dateObject.getTime());
@@ -81,15 +81,15 @@ const UserProfile = ({ navigation }: any) => {
 
 		if (hours < 12) {
 			dayOrNight = "AM"
-		}
-
+		} 
+ 
 		console.log("Hours: " + hours + " minutes" + minutes);
 		return (hours + ":" + minutes + " " + dayOrNight);
 	}
 
 	useEffect(() => {
-		getProfile(getUserId())
-			.then((profile : any) => {
+		getProfile(getUserId()) 
+			.then((profile : any) => { 
 				setProfileData(profile);
 				setProfilePic(profile.profilePic);
 			})
@@ -105,7 +105,16 @@ const UserProfile = ({ navigation }: any) => {
 			
 		}).catch((err: any) => console.log("No posts"))
 	},[isFocused])
-
+	useEffect(() => {
+		
+		allPosts.forEach((post) => {
+			
+			 getPostLikes(post.postId,post.userID)
+			 .then((like) =>{
+				
+			 })
+		})
+	},[isFocused])
 	return (
 		<ScrollView>
 		<View style={{
