@@ -4,6 +4,7 @@ import { FlatList, View } from 'react-native';
 import FeedBox from '../components/FeedBox';
 import { posts } from '../services/DataService';
 import Colors from '../theme/ScholarColors';
+import { UserProfileLike } from '../zustand/UserProfileStore';
 
 type FeedProps = {
     scrollEnabled?: boolean,
@@ -14,6 +15,7 @@ type FeedProps = {
 }
 
 const Feed = (props: FeedProps) => {
+
 
     function onStartReachedCallback() {
         if (props.onStartReached !== undefined)
@@ -27,7 +29,7 @@ const Feed = (props: FeedProps) => {
 
     return (
         <View style={{ backgroundColor: Colors.feedBackground }}>
-            <FlatList
+            {/* <FlatList
 
                 onStartReached={onStartReachedCallback}
                 onStartReachedThreshold={0.01}
@@ -37,13 +39,14 @@ const Feed = (props: FeedProps) => {
 
                 showsVerticalScrollIndicator={false}
                 scrollEnabled={props.scrollEnabled}
-                data={posts}
+                data={posts} 
                 renderItem={({ item }) => (
 
                     <FeedBox key={0} admin={item.admin} avatar={item.avatar}
                         time={item.time}
                         picture={item.picture}
                         likes={item.likes}
+                        
                         contributes={item.contributes}
                         description={item.description}
                         postID={''}
@@ -51,7 +54,7 @@ const Feed = (props: FeedProps) => {
                     />
 
                 )}
-            />
+            /> */}
         </View>
     )
 }

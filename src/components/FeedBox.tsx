@@ -5,6 +5,7 @@ import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
 import PostBottom from './PostBottom';
 import { posts } from '../services/DataService';
+import { UserProfileLike } from '../zustand/UserProfileStore';
 
 type FeedBoxProps = {
     key: number,
@@ -14,7 +15,7 @@ type FeedBoxProps = {
     time?: string,
     description?: string,
     picture?: string,
-    likes?: number,
+    likes?: UserProfileLike[],
     contributes?: any,
     postID: string,
     userID: string

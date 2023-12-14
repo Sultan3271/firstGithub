@@ -22,7 +22,8 @@ import { getProfile } from '../services/DataService';
 
 import styles from '../styles/Styles';
 import { getUserId } from '../utils/Auth';
-import useUserProfileStore, { useLikesStore, usePostsStore } from '../zustand/UserProfileStore';
+import useUserProfileStore, { useLikesStore, usePostsStore, UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
+import { colors } from 'react-native-tailwindcss';
 
 const UserProfile = ({ navigation }: any) => {
 
@@ -37,21 +38,9 @@ const UserProfile = ({ navigation }: any) => {
     const allPosts = usePostsStore(store => store.posts) 
     const setPostsData = usePostsStore(store => store.setAllPosts) 
     const allLikes = useLikesStore(store => store.likes)  
-    const setAllLikes = useLikesStore(store => store.setAllLikes)
-
-	/**
-	 * useEffect used for loading data from DB
-	 */
-	const PostLikes = (postID: string, userID: string) => {
-		var likesArray: any = [];
-		getPostLikes(postID, userID).then((likes: any) => {
-			likes.forEach((like: any) => {
-				likesArray.push(like);
-			}) 
-		})
-			.catch((error) => { console.log("error:" + error); });
-		setAllLikes(likesArray);
-	}
+    const addLikes = useLikesStore(store => store.addLikes);
+	
+	
 
 	const setAllPosts = (posts: any) => {
 		let allPosts: any = [];
@@ -110,10 +99,10 @@ const UserProfile = ({ navigation }: any) => {
 		allPosts.forEach((post) => {
 			
 			 getPostLikes(post.postId,post.userID)
-			 .then((like) =>{
-				
+			 .then((likes:any) =>{
+				addLikes(likes); 
 			 })
-		})
+		}) 
 	},[isFocused])
 	return (
 		<ScrollView>
@@ -216,15 +205,15 @@ const UserProfile = ({ navigation }: any) => {
 				</View>
 			</View>
 			<MissionLine text="Stay connected" />
-			<View style={styles.container}>
-								<View style={{ padding: 10 }}>
-									{/* <Feed /> */}
+			<View>
+								<View style={{backgroundColor:Colors.feedBackground}}>
+									{/* <Feed /> */} 
 									<View style={{ backgroundColor: Colors.feedBackground }}>
 										{allPosts.map((item: any, index: number) => // FIXME make sure can be indexed
 											<FeedBox key={index} admin={userProfile.usrName} avatar={userProfile.profilePic}
 												time={extractTime(item.time)}
 												picture={item.image}
-												likes={allLikes.length}
+												likes={allLikes.filter(like => like.postId==item.postId)} 
 												contributes={0}
 												description={item.description}
 												postID={item.postId}

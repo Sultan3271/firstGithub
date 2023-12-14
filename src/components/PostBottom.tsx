@@ -6,17 +6,21 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
-import { deletePostLike, setPostLike } from '../services/DataService';
+import { deletePostLike, getPostLikes, setPostLike } from '../services/DataService';
+import { UserProfileLike, useLikesStore } from '../zustand/UserProfileStore';
 
 type PostBottomProps = {
     postID: string,
     userID: string,
-    likes?: any,
+    likes?: UserProfileLike[],
     contributes?: any
 }
 
 const PostBottom = (props: PostBottomProps) => {
-
+    const allLikes = useLikesStore(store => store.likes)  
+    const addLike = useLikesStore(store => store.addLike);
+    const removeLike = useLikesStore(store => store.removeLike);
+    
     const [LikeIcon, setLikeIcon] = useState('like2');
 
     function likePost() {
@@ -24,7 +28,16 @@ const PostBottom = (props: PostBottomProps) => {
             deletePostLike(props.postID, props.userID)
             setLikeIcon('like2');
         } else {
+           
             setPostLike(props.postID, props.userID);
+            getPostLikes(props.postID,props.userID)
+            .then((likes:any) =>{
+                const postLikes = allLikes.filter(l => l.postId == props.postID);
+                likes.forEach((like: any) => {
+                    if (!postLikes.includes(like.postId))
+                        addLike(like); 
+                });
+            })  
             setLikeIcon('like1');
         }
     }
@@ -48,9 +61,11 @@ const PostBottom = (props: PostBottomProps) => {
 
             <View style={styles.postBottom}>
                 <View>
-                    <Text style={{ color: Colors.text, padding: 2 }}>
-                        {props.likes}
+                   <TouchableOpacity onPress={()=>{}}>
+                   <Text style={{ color: Colors.text, padding: 2 }}>
+                        {props.likes?.length}
                     </Text>
+                   </TouchableOpacity>
                 </View>
                 <View>
                     <Text style={{ color: Colors.text, padding: 2 }}>
