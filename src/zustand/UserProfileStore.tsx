@@ -7,15 +7,8 @@ interface UserProfileLike {
     userID: string
 }
 
-interface UserProfileLikeStore {
-    likes: UserProfileLike[],
-    addLike: (like: UserProfileLike) => void,
-    removeLike: (likeId: string) => void,
-    setAllLikes: (likes: UserProfileLike[]) => void,
-    addLikes: (likes: UserProfileLike[]) => void
-}
-
 interface UserProfilePost {
+    likes: UserProfileLike[],
     description: string,
     image: string,
     postId: string,
@@ -29,7 +22,11 @@ interface UserProfilePostStore {
     addPost: (post: UserProfilePost) => void,
     removePost: (postId: string) => void,
     setAllPosts: (posts: UserProfilePost[]) => void,
-    addPosts: (posts: UserProfilePost[]) => void
+    addPosts: (posts: UserProfilePost[]) => void,
+
+    addLike: (like: UserProfileLike, postId: string) => void,
+    addLikes: (likes: UserProfileLike[], postId: string) => void,
+    removeLike: (likeId: string, postId: string) => void
 }
 
 interface UserProfileStore {
@@ -88,26 +85,33 @@ const usePostsStore = create<UserProfilePostStore>((set) => ({
         return ({ posts: [ ...state.posts ] });
     }),
     setAllPosts: posts => set(() => ({ posts })),
-    addPosts: posts => set(state => ({ posts: [ ...state.posts, ...posts ] }))
-}))
-
-const useLikesStore = create<UserProfileLikeStore>((set) => ({
-    likes: [],
-    addLike: like => set(state => ({
-        likes: [ ...state.likes, like ]
-    })),
-    removeLike: likeId => set(state => {
-        let index = state.likes.findIndex(value => value.likeID === likeId);
-
-        if (index > -1)
-            state.likes.splice(index, 1);
-        
-        return ({ likes: [ ...state.likes ] })
+    addPosts: posts => set(state => ({ posts: [ ...state.posts, ...posts ] })),
+    addLike: (like, postId) => set(state => {
+        state.posts.forEach(post => {
+            if (post.postId === postId)
+                post.likes = [ ...post.likes, like ]
+        })
+        return ({ posts: state.posts })
     }),
-    setAllLikes: likes => set(() => ({ likes })),
-    addLikes: likes => set(state => ({ likes: [ ...state.likes, ...likes ] }))
+    addLikes: (likes, postId) => set(state => {
+        state.posts.forEach(post => {
+            if (post.postId === postId)
+                post.likes = [ ...post.likes, ...likes ]
+        })
+        return ({ posts: state.posts })
+    }),
+    removeLike: (likeId, postId) => set(state => {
+        state.posts.forEach(post => {
+            if (post.postId === postId)
+            {
+                const index = post.likes.findIndex(l => l.likeID === likeId)
+                post.likes.splice(index, 1)
+            }
+        })
+        return ({ posts: state.posts })
+    })
 }))
 
 export default useUserProfileStore
 export type { UserProfileLike, UserProfilePost }
-export { usePostsStore, useLikesStore }
+export { usePostsStore }
