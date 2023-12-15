@@ -27,7 +27,7 @@ const routeIconUrls: { [key: string]: any } = {
 
 function TabBarIcon({ iconName, focused }: any) {
     return (
-        <MaterialCommunityIcon name={iconName} color={focused ? Colors.secondary : 'gray'} size={focused ? 35 : 30} />
+        <MaterialCommunityIcon name={iconName} color={focused ? Colors.primary : 'gray'} size={focused ? 35 : 30} />
     );
 };
 
