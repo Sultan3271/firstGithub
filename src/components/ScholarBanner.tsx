@@ -3,7 +3,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
-import { Fonts } from "../theme/Fonts";
 type ScholarBannerProps = {
     text: string,
 }

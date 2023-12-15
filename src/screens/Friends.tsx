@@ -12,43 +12,14 @@ import { ScholarMiniBanner } from '../components/ScholarBanner';
 import Divider from '../components/Divider';
 import Colors from '../theme/ScholarColors';
 import Icon from 'react-native-vector-icons/Ionicons';
+import PopUp from '../components/PopUp';
 
 
 const Friends = ({ navigation }: any) => {
-    const PopUp = (props: any) => {
-        return (
-            <View style={{
-                position: 'absolute',
-                zIndex: 99,
-                alignSelf: 'center',
-                backgroundColor: 'white',
-                alignItems: 'center',
-                height: 200,
-                width: 300,
-                margin: 250,
-                borderRadius: 10,
-                flexDirection: 'column'
-            }}>
-                <TouchableOpacity style={{ position: 'absolute', right: 270 }}>
-                    <Icon name="close-outline" color={Colors.text} size={30} />
-                </TouchableOpacity>
-                <View>
-                    <View style={{ flexDirection: 'row', alignSelf: 'center', alignContent: 'space-between' }}>
-                        <Text>Message Classmate</Text>
-                        <Icon name="direct-outline" color={Colors.text} size={30} />
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                        <Text>Remove Classmate</Text>
-                        <Icon name="close-outline" color={Colors.text} size={30} />
-                    </View>
-                </View>
-            </View>
-        )
-    }
+    
     return (
-
         <View style={styles.container}>
-            <PopUp></PopUp>
+            <PopUp />
             <View style={{ marginLeft: 15 }}>
                 <ScholarMiniBanner text="Classmates" size={49} />
             </View>

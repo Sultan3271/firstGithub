@@ -16,18 +16,18 @@ const PopUp = (props: any) => {
             borderRadius: 10,
             flexDirection: 'column'
         }}>
-            <TouchableOpacity style={{ position: 'absolute',right:2 }}>
-                <Icon name="circle-with-cross" color={Colors.text} size={30} />
-            </TouchableOpacity>
+            
             <View style={{flex:1, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', alignContent: 'center'}}>
                 <View style={{ marginTop: 20, flexDirection: 'row', alignSelf: 'center', alignContent: 'space-between' }}>
                 <View style={{margin:10}}><Text>Message Classmate</Text></View>
                     <Icon name="message" color={Colors.text} size={30} />
                 </View>
+
                 <View style={{ flexDirection: 'row', marginTop: 20 }}>
                     <View style={{margin:10}}><Text>Remove Classmate</Text></View>
                     <Icon name="remove-user" color={Colors.text} size={30} />
                 </View>
+
             </View>
         </View>
     )

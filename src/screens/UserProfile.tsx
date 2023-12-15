@@ -93,12 +93,16 @@ const UserProfile = ({ navigation }: any) => {
 	},[isFocused])
 	useEffect(() => { 
 		
-		allPosts.forEach((post) => {
-			
+		allPosts.forEach((post) => {	
 			 getPostLikes(post.postId,post.userID)
 			 .then((likes:any) =>{
+				console.log(likes);
                   addLikes(likes,post.postId);
+
+				
 			 }) 
+			 
+			 
 		}) 
 	},[isFocused]) 
 	return (

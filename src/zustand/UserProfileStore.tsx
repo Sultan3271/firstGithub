@@ -89,10 +89,10 @@ const usePostsStore = create<UserProfilePostStore>((set) => ({
     addLike: (like, postId) => set(state => {
         state.posts.forEach(post => {
             if (post.postId === postId)
-                post.likes = [ ...post.likes, like ]
+                post.likes = [ ...post.likes, like ] 
         })   
         return ({ posts: state.posts })
-    }),
+    }), 
     addLikes: (likes, postId) => set(state => {
         state.posts.forEach(post => {
             if (post.postId === postId)
