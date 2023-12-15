@@ -23,11 +23,12 @@ interface UserProfilePostStore {
     removePost: (postId: string) => void,
     setAllPosts: (posts: UserProfilePost[]) => void,
     addPosts: (posts: UserProfilePost[]) => void,
-    addLike: (like: UserProfileLike, postId: string) => void,
-    addLikes: (likes: UserProfileLike[], postId: string) => void,
-    removeLike: (likeId: string, postId: string) => void
-} 
 
+    addLikeToPost: (like: UserProfileLike, postId: string) => void,
+    addLikesToPost: (likes: UserProfileLike[], postId: string) => void,
+    removeLikeFromPost: (likeId: string, postId: string) => void,
+    removeAllLikesFromPost: (postId: string) => void,
+}
 
 interface UserProfileStore {
     userID: string,
@@ -86,28 +87,44 @@ const usePostsStore = create<UserProfilePostStore>((set) => ({
     }),
     setAllPosts: posts => set(() => ({ posts })),
     addPosts: posts => set(state => ({ posts: [ ...state.posts, ...posts ] })),
-    addLike: (like, postId) => set(state => {
-        state.posts.forEach(post => {
-            if (post.postId === postId)
-                post.likes = [ ...post.likes, like ] 
-        })   
-        return ({ posts: state.posts })
-    }), 
-    addLikes: (likes, postId) => set(state => {
-        state.posts.forEach(post => {
-            if (post.postId === postId)
-                post.likes = [ ...post.likes, ...likes ] 
-        }) 
+    addLikeToPost: (like, postId) => set(state => {
+        
+        for (let i = 0; i < state.posts.length; i++) {
+            if (state.posts[i].postId === postId)
+                state.posts[i].likes = [ ...state.posts[i].likes, like ]
+        }
+        
         return ({ posts: state.posts })
     }),
-    removeLike: (likeId, postId) => set(state => {
-        state.posts.forEach(post => {
-            if (post.postId === postId)
-            {
-                const index = post.likes.findIndex(l => l.likeID === likeId)
-                post.likes.splice(index, 1)
+    addLikesToPost: (likes, postId) => set(state => {
+
+        for (let i = 0; i < state.posts.length; i++) {
+            if (state.posts[i].postId === postId){
+                console.log("we are inside",state.posts[i].postId);
+                state.posts[i].likes = [ ...state.posts[i].likes, ...likes ]
+            } 
+        }  
+
+        return ({ posts: state.posts })
+    }),
+    removeLikeFromPost: (likeId, postId) => set(state => {
+
+        for (let i = 0; i < state.posts.length; i++) {
+            if (state.posts[i].postId === postId) {
+                const indexToRemove = state.posts[i].likes.findIndex(l => l.likeID === likeId);
+                state.posts[i].likes.splice(indexToRemove, 1);
             }
-        })
+        }
+
+        return ({ posts: state.posts })
+    }),
+    removeAllLikesFromPost: postId => set(state => {
+        
+        for (let i = 0; i < state.posts.length; i++) {
+            if (state.posts[i].postId === postId)
+                state.posts[i].likes = [];
+        }
+
         return ({ posts: state.posts })
     })
 }))

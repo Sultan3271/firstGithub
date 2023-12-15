@@ -16,18 +16,12 @@ type FeedBoxProps = {
     time?: string,
     description?: string,
     picture?: string,
-    likes?: UserProfileLike[],
     contributes?: any,
     postID: string,
     userID: string
 }
 
 export default function FeedBox(props: FeedBoxProps) {
-    const lehLikes=()=>{
-        console.log("leh");
-       console.log(props.likes);   
-      
-    } 
     return ( 
         <View style={styles.post} >
             <View style={styles.postAdmin}>
@@ -70,7 +64,7 @@ export default function FeedBox(props: FeedBoxProps) {
                     </View> 
                     : <></>
             } 
-            <PostBottom likes={props.likes} contributes={props.contributes} postID={props.postID} userID={props.userID} />
+            <PostBottom contributes={props.contributes} postID={props.postID} userID={props.userID} />
         </View>
     );
 }

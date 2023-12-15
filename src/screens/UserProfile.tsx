@@ -37,8 +37,9 @@ const UserProfile = ({ navigation }: any) => {
 	 */
     const allPosts = usePostsStore(store => store.posts) 
     const setPostsData = usePostsStore(store => store.setAllPosts) 
-    const addLikes = usePostsStore(store => store.addLikes);
-	const addLike = usePostsStore(store => store.addLike);
+    const addLikesToPost = usePostsStore(store => store.addLikesToPost);
+	const addLikeToPost = usePostsStore(store => store.addLikeToPost);
+	
 	const setAllPosts = (posts: any) => {
 		let allPosts: any = [];
 
@@ -86,25 +87,30 @@ const UserProfile = ({ navigation }: any) => {
 
 	useEffect(() => {
 		fetchPosts(getUserId()).then((posts: any) => {
-			setAllPosts(posts);
-			console.log("Hy");
+			setAllPosts(posts); //posts here right
 			
-		}).catch((err: any) => console.log("No posts"))
+			
+			
+		})
+		.catch((err: any) => console.log("No posts"))
 	},[isFocused])
+	
 	useEffect(() => { 
-		
 		allPosts.forEach((post) => {	
 			 getPostLikes(post.postId,post.userID)
-			 .then((likes:any) =>{
-				console.log(likes);
-                  addLikes(likes,post.postId);
+				.then((likes: UserProfileLike[]) => {
+
+					addLikesToPost(likes,post.postId);
 
 				
-			 }) 
-			 
-			 
-		}) 
-	},[isFocused]) 
+				}) 
+				.catch(err => {
+					console.log(err)
+				})
+			}) 
+		},[isFocused])
+		
+	
 	return (
 		<ScrollView>
 		<View style={{
@@ -214,7 +220,6 @@ const UserProfile = ({ navigation }: any) => {
 											<FeedBox key={index} admin={userProfile.usrName} avatar={userProfile.profilePic}
 												time={extractTime(item.time)}
 												picture={item.image}
-												likes={item.likes}
 												contributes={0}
 												description={item.description}
 												postID={item.postId}

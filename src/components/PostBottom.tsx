@@ -12,14 +12,13 @@ import { UserProfileLike, usePostsStore } from '../zustand/UserProfileStore';
 type PostBottomProps = {
     postID: string,
     userID: string,
-    likes?: UserProfileLike[],
     contributes?: any
 }
 
 const PostBottom = (props: PostBottomProps) => {
-    
-    const addLike = usePostsStore(store => store.addLike);
-    const removeLike = usePostsStore(store => store.removeLike);
+    const allPosts=usePostsStore(store=> store.posts);
+    const addLikeToPost = usePostsStore(store => store.addLikeToPost);
+    const removeLikeFromPost = usePostsStore(store => store.removeLikeFromPost);
     
     const [LikeIcon, setLikeIcon] = useState('like2');
 
@@ -28,8 +27,6 @@ const PostBottom = (props: PostBottomProps) => {
             deletePostLike(props.postID, props.userID)
             setLikeIcon('like2');
         } else {
-            console.log("length = ",props.likes);
-            
             setPostLike(props.postID, props.userID);
             // getPostLikes(props.postID,props.userID)
             // .then((likes:any) =>{
@@ -64,7 +61,7 @@ const PostBottom = (props: PostBottomProps) => {
                 <View>
                    <TouchableOpacity onPress={()=>{}}>
                    <Text style={{ color: Colors.text, padding: 2 }}>
-                        {props.likes?.length}
+                        {allPosts.find(x => x.postId == props.postID)?.likes?.length}
                     </Text>
                    </TouchableOpacity>
                 </View>

@@ -9,11 +9,12 @@
 import firestore from '@react-native-firebase/firestore';
 
 import { getUserId } from '../utils/Auth';
+import { UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
 /**
  * Dummy data
  */
 export const posts = [
-    { 
+    {
         key: '1',
         admin: 'David Edwards',
         avatar: 'person',
@@ -212,7 +213,10 @@ export const deletePostLike = async (postID: string, userID: string) => {
 export const setPostLike = async (postID: string, userID: string) => {
     const LikeCollection = firestore().collection('Users').doc(userID).collection('Posts').doc(postID).collection('Likes');
     const newLikeDoc = LikeCollection.doc(); // This creates a new document reference with an auto-generated ID
-    const likeId:string = newLikeDoc.id;
+    const likeId = newLikeDoc.id;
+    console.log("likeId:" + likeId);
+    console.log("userID:" + userID);
+    console.log("postID:" + postID);
 
     firestore()
         .collection('AllPosts')
@@ -234,8 +238,8 @@ export const setPostLike = async (postID: string, userID: string) => {
         });
 }
 
-export const getPostLikes = async (postID: string, userID: string) => {
-    return new Promise((resolve, reject) => {
+export const getPostLikes = async (postID: string, userID: string): Promise<UserProfileLike[]> => {
+    return new Promise<UserProfileLike[]>((resolve, reject) => {
         const subcollectionRef = firestore()
             .collection('AllPosts')
             .doc(userID)
@@ -243,15 +247,13 @@ export const getPostLikes = async (postID: string, userID: string) => {
             .doc(postID)
             .collection('Likes');
         
-        var likes: any = []
+        var likes: UserProfileLike[] = []
 
         subcollectionRef.get()
             .then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
+                querySnapshot.forEach((doc: any) => {
                     likes.push(doc.data());
-                  
                 });
-                
                 resolve(likes);
             })
             .catch((error) => {
@@ -261,8 +263,8 @@ export const getPostLikes = async (postID: string, userID: string) => {
     })
 }
 
-export const fetchPosts = async (userID: string) => {
-    return new Promise((resolve, reject) => {
+export const fetchPosts = async (userID: string): Promise<UserProfilePost[]> => {
+    return new Promise<UserProfilePost[]>((resolve, reject) => {
         const subcollectionRef = firestore().collection('AllPosts').doc(userID).collection('Posts');
 
         var posts: any = [];
@@ -282,3 +284,18 @@ export const fetchPosts = async (userID: string) => {
     });
 }
 
+// TODO: check if exists anywhere else in code
+// export const fetchData = async () => {
+//     try {
+//         const profileCollection = await firestore()
+//             .collectionGroup('Profile')
+//             .get();
+
+//         const profiles = profileCollection.docs.map((doc) => doc.data());
+
+//         //console.log('All profiles:', profiles);
+//         return profiles;
+//     } catch (error) {
+//         console.error('Error fetching profiles:', error);
+//     }
+// };
