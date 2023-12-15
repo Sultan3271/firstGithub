@@ -6,8 +6,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
-import { deletePostLike, getPostLikes, setPostLike } from '../services/DataService';
-import { UserProfileLike, useLikesStore } from '../zustand/UserProfileStore';
+import { deletePostLike, getPostLikes, posts, setPostLike } from '../services/DataService';
+import { UserProfileLike, usePostsStore } from '../zustand/UserProfileStore';
 
 type PostBottomProps = {
     postID: string,
@@ -17,9 +17,9 @@ type PostBottomProps = {
 }
 
 const PostBottom = (props: PostBottomProps) => {
-    const allLikes = useLikesStore(store => store.likes)  
-    const addLike = useLikesStore(store => store.addLike);
-    const removeLike = useLikesStore(store => store.removeLike);
+    
+    const addLike = usePostsStore(store => store.addLike);
+    const removeLike = usePostsStore(store => store.removeLike);
     
     const [LikeIcon, setLikeIcon] = useState('like2');
 
@@ -28,16 +28,17 @@ const PostBottom = (props: PostBottomProps) => {
             deletePostLike(props.postID, props.userID)
             setLikeIcon('like2');
         } else {
-           
+            console.log("length = ",props.likes);
+            
             setPostLike(props.postID, props.userID);
-            getPostLikes(props.postID,props.userID)
-            .then((likes:any) =>{
-                const postLikes = allLikes.filter(l => l.postId == props.postID);
-                likes.forEach((like: any) => {
-                    if (!postLikes.includes(like.postId))
-                        addLike(like); 
-                });
-            })  
+            // getPostLikes(props.postID,props.userID)
+            // .then((likes:any) =>{
+            //     const postLikes = posts.filter(l => l.postId == props.postID);
+            //     likes.forEach((like: any) => {
+            //         if (!postLikes.includes(like.postId))
+            //             addLike(like, like.postID); 
+            //     });
+            // })  
             setLikeIcon('like1');
         }
     }
@@ -57,8 +58,8 @@ const PostBottom = (props: PostBottomProps) => {
                 <TouchableOpacity style={styles.actionBtn}>
                     <Icon name='people-outline' size={20} color={Colors.secondary} />
                 </TouchableOpacity>
-            </View>
-
+            </View> 
+    
             <View style={styles.postBottom}>
                 <View>
                    <TouchableOpacity onPress={()=>{}}>

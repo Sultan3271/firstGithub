@@ -22,8 +22,8 @@ import { getProfile } from '../services/DataService';
 
 import styles from '../styles/Styles';
 import { getUserId } from '../utils/Auth';
-import useUserProfileStore, { useLikesStore, usePostsStore, UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
-import { colors } from 'react-native-tailwindcss';
+import useUserProfileStore, { usePostsStore, UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
+
 
 const UserProfile = ({ navigation }: any) => {
 
@@ -37,11 +37,8 @@ const UserProfile = ({ navigation }: any) => {
 	 */
     const allPosts = usePostsStore(store => store.posts) 
     const setPostsData = usePostsStore(store => store.setAllPosts) 
-    const allLikes = useLikesStore(store => store.likes)  
-    const addLikes = useLikesStore(store => store.addLikes);
-	
-	
-
+    const addLikes = usePostsStore(store => store.addLikes);
+	const addLike = usePostsStore(store => store.addLike);
 	const setAllPosts = (posts: any) => {
 		let allPosts: any = [];
 
@@ -94,16 +91,16 @@ const UserProfile = ({ navigation }: any) => {
 			
 		}).catch((err: any) => console.log("No posts"))
 	},[isFocused])
-	useEffect(() => {
+	useEffect(() => { 
 		
 		allPosts.forEach((post) => {
 			
 			 getPostLikes(post.postId,post.userID)
 			 .then((likes:any) =>{
-				addLikes(likes); 
-			 })
+                  addLikes(likes,post.postId);
+			 }) 
 		}) 
-	},[isFocused])
+	},[isFocused]) 
 	return (
 		<ScrollView>
 		<View style={{
@@ -213,7 +210,7 @@ const UserProfile = ({ navigation }: any) => {
 											<FeedBox key={index} admin={userProfile.usrName} avatar={userProfile.profilePic}
 												time={extractTime(item.time)}
 												picture={item.image}
-												likes={allLikes.filter(like => like.postId==item.postId)} 
+												likes={item.likes}
 												contributes={0}
 												description={item.description}
 												postID={item.postId}

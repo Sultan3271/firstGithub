@@ -13,7 +13,7 @@ import { getUserId } from '../utils/Auth';
  * Dummy data
  */
 export const posts = [
-    {
+    { 
         key: '1',
         admin: 'David Edwards',
         avatar: 'person',
@@ -212,10 +212,7 @@ export const deletePostLike = async (postID: string, userID: string) => {
 export const setPostLike = async (postID: string, userID: string) => {
     const LikeCollection = firestore().collection('Users').doc(userID).collection('Posts').doc(postID).collection('Likes');
     const newLikeDoc = LikeCollection.doc(); // This creates a new document reference with an auto-generated ID
-    const likeId = newLikeDoc.id;
-    console.log("likeId:" + likeId);
-    console.log("userID:" + userID);
-    console.log("postID:" + postID);
+    const likeId:string = newLikeDoc.id;
 
     firestore()
         .collection('AllPosts')
@@ -252,7 +249,9 @@ export const getPostLikes = async (postID: string, userID: string) => {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     likes.push(doc.data());
+                  
                 });
+                
                 resolve(likes);
             })
             .catch((error) => {
@@ -283,18 +282,3 @@ export const fetchPosts = async (userID: string) => {
     });
 }
 
-// TODO: check if exists anywhere else in code
-// export const fetchData = async () => {
-//     try {
-//         const profileCollection = await firestore()
-//             .collectionGroup('Profile')
-//             .get();
-
-//         const profiles = profileCollection.docs.map((doc) => doc.data());
-
-//         //console.log('All profiles:', profiles);
-//         return profiles;
-//     } catch (error) {
-//         console.error('Error fetching profiles:', error);
-//     }
-// };

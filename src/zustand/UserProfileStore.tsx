@@ -17,17 +17,17 @@ interface UserProfilePost {
     userID: string
 }
 
-interface UserProfilePostStore {
+interface UserProfilePostStore { 
     posts: UserProfilePost[],
     addPost: (post: UserProfilePost) => void,
     removePost: (postId: string) => void,
     setAllPosts: (posts: UserProfilePost[]) => void,
     addPosts: (posts: UserProfilePost[]) => void,
-
     addLike: (like: UserProfileLike, postId: string) => void,
     addLikes: (likes: UserProfileLike[], postId: string) => void,
     removeLike: (likeId: string, postId: string) => void
-}
+} 
+
 
 interface UserProfileStore {
     userID: string,
@@ -90,14 +90,14 @@ const usePostsStore = create<UserProfilePostStore>((set) => ({
         state.posts.forEach(post => {
             if (post.postId === postId)
                 post.likes = [ ...post.likes, like ]
-        })
+        })   
         return ({ posts: state.posts })
     }),
     addLikes: (likes, postId) => set(state => {
         state.posts.forEach(post => {
             if (post.postId === postId)
-                post.likes = [ ...post.likes, ...likes ]
-        })
+                post.likes = [ ...post.likes, ...likes ] 
+        }) 
         return ({ posts: state.posts })
     }),
     removeLike: (likeId, postId) => set(state => {

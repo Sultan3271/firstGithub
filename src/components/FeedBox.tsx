@@ -5,7 +5,8 @@ import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
 import PostBottom from './PostBottom';
 import { posts } from '../services/DataService';
-import { UserProfileLike } from '../zustand/UserProfileStore';
+import { UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
+import { useEffect } from 'react';
 
 type FeedBoxProps = {
     key: number,
@@ -22,7 +23,12 @@ type FeedBoxProps = {
 }
 
 export default function FeedBox(props: FeedBoxProps) {
-    return (
+    const lehLikes=()=>{
+        console.log("leh");
+       console.log(props.likes);   
+      
+    } 
+    return ( 
         <View style={styles.post} >
             <View style={styles.postAdmin}>
                 <View style={{ left: 350, top: 10, zIndex: 2, position: 'absolute' }}>
@@ -52,7 +58,9 @@ export default function FeedBox(props: FeedBoxProps) {
             <View style={styles.postDescription}>
                 <Text style={styles.postDescText}>
                     {props.description}
+                    
                 </Text>
+             
             </View>
             {
                 props.picture !== undefined && props.picture !== null && props.picture.length !== 0 && props.picture !== ' ' ?
@@ -61,7 +69,7 @@ export default function FeedBox(props: FeedBoxProps) {
                         {/* /<Icon name={props.picture} size={150} color='green' /> */}
                     </View> 
                     : <></>
-            }
+            } 
             <PostBottom likes={props.likes} contributes={props.contributes} postID={props.postID} userID={props.userID} />
         </View>
     );
