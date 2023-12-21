@@ -5,8 +5,6 @@ import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
 import PostBottom from './PostBottom';
 import { posts } from '../services/DataService';
-import { UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
-import { useEffect } from 'react';
 
 type FeedBoxProps = {
     key: number,
@@ -38,7 +36,7 @@ export default function FeedBox(props: FeedBoxProps) {
                             <Icon name={posts[0].avatar} size={30} color={Colors.primary} /> :
                             <Image source={{ uri: props.avatar }} style={styles.postHeaderProfile} />
                     }
-                    {/* <Icon name={props.avatar} size={30} color={Colors.primary} /> */}
+                 
                 </View>
                 <View style={styles.adminSection}>
 
@@ -60,7 +58,7 @@ export default function FeedBox(props: FeedBoxProps) {
                 props.picture !== undefined && props.picture !== null && props.picture.length !== 0 && props.picture !== ' ' ?
                     <View style={styles.postHolder}>
                         <Image source={{ uri: props.picture }} style={{ resizeMode: 'cover', width: '100%', height: '100%' }}/>
-                        {/* /<Icon name={props.picture} size={150} color='green' /> */}
+                       
                     </View> 
                     : <></>
             } 

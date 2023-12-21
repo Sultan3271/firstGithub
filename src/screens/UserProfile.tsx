@@ -22,8 +22,8 @@ import { getProfile } from '../services/DataService';
 
 import styles from '../styles/Styles';
 import { getUserId } from '../utils/Auth';
-import useUserProfileStore, { usePostsStore, UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
-
+import useUserProfileStore, { usePostLikesStore, usePostsStore, UserProfileLike, UserProfilePost } from '../zustand/UserProfileStore';
+import { extractTime } from '../utils/utilityFunctions';
 
 const UserProfile = ({ navigation }: any) => {
 
@@ -37,18 +37,16 @@ const UserProfile = ({ navigation }: any) => {
 	 */
     const allPosts = usePostsStore(store => store.posts) 
     const setPostsData = usePostsStore(store => store.setAllPosts) 
-    const addLikesToPost = usePostsStore(store => store.addLikesToPost);
-	const addLikeToPost = usePostsStore(store => store.addLikeToPost);
+    const addLikesToPost = usePostLikesStore(store => store.addLikesToPost);
 	
 	const setAllPosts = (posts: any) => {
 		let allPosts: any = [];
 
 		posts.forEach((post: any) => {
-			console.log("=>" + post.time);
 			allPosts.push(post);
 		})
 
-		allPosts.map((post: any) => { console.log("unSorted posts :" + post.time); })
+		  
 		const postsWithDateObjects = allPosts.map((post: any) => ({
 			...post,
 			dateObject: new Date(post.time) 
@@ -57,22 +55,10 @@ const UserProfile = ({ navigation }: any) => {
 		// Sort the posts in descending order
 		postsWithDateObjects.sort((a: any, b: any) => b.dateObject.getTime() - a.dateObject.getTime());
 		setPostsData(postsWithDateObjects);
-		postsWithDateObjects.map((post: any) => { console.log("Sorted posts :" + post.time); })
+		
 	}
 
-	const extractTime = (time: string) => {
-		const timestamp = new Date(time);
-		const hours = timestamp.getHours();
-		const minutes = timestamp.getMinutes();
-		let dayOrNight = "PM";
-
-		if (hours < 12) {
-			dayOrNight = "AM"
-		} 
- 
-		console.log("Hours: " + hours + " minutes" + minutes);
-		return (hours + ":" + minutes + " " + dayOrNight);
-	}
+	
 
 	useEffect(() => {
 		getProfile(getUserId()) 
@@ -88,9 +74,6 @@ const UserProfile = ({ navigation }: any) => {
 	useEffect(() => {
 		fetchPosts(getUserId()).then((posts: any) => {
 			setAllPosts(posts); //posts here right
-			
-			
-			
 		})
 		.catch((err: any) => console.log("No posts"))
 	},[isFocused])
@@ -108,7 +91,7 @@ const UserProfile = ({ navigation }: any) => {
 					console.log(err)
 				})
 			}) 
-		},[isFocused])
+		},[isFocused,allPosts])
 		
 	
 	return (
@@ -163,7 +146,7 @@ const UserProfile = ({ navigation }: any) => {
 				<ScrollView horizontal={true} nestedScrollEnabled={true}>
 					<View style={styles.friendBoxes}>
 						<FriendBox data={{ friendName: 'Shaan' }} />
-						<FriendBox data={{ friendName: 'Sultan' }} />
+				 		<FriendBox data={{ friendName: 'Sultan' }} />
 						<FriendBox data={{ friendName: 'Christian' }} />
 						<FriendBox data={{ friendName: 'Amy' }} />
 						<FriendBox data={{ friendName: 'John' }} />
@@ -189,7 +172,7 @@ const UserProfile = ({ navigation }: any) => {
 					borderColor: 'gray',
 					padding: 10,
 					borderRadius: 10,
-				}}>
+				}}> 
 				<View>
 					<Icon
 						style={{ width: 35, height: 35 }}

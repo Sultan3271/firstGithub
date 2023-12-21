@@ -8,7 +8,7 @@ interface UserProfileLike {
 }
 
 interface UserProfilePost {
-    likes: UserProfileLike[],
+   
     description: string,
     image: string,
     postId: string,
@@ -24,12 +24,15 @@ interface UserProfilePostStore {
     setAllPosts: (posts: UserProfilePost[]) => void,
     addPosts: (posts: UserProfilePost[]) => void,
 
-    addLikeToPost: (like: UserProfileLike, postId: string) => void,
-    addLikesToPost: (likes: UserProfileLike[], postId: string) => void,
-    removeLikeFromPost: (likeId: string, postId: string) => void,
-    removeAllLikesFromPost: (postId: string) => void,
+   
 }
-
+interface PostLikesStore {
+    likes: { [postId: string]: UserProfileLike[] };
+    addLikeToPost: (like: UserProfileLike, postId: string) => void;
+    addLikesToPost: (likes: UserProfileLike[], postId: string) => void;
+    removeLikeFromPost: (likeId: string, postId: string) => void;
+    removeAllLikesFromPost: (postId: string) => void;
+}
 interface UserProfileStore {
     userID: string,
     bio: string,
@@ -87,48 +90,55 @@ const usePostsStore = create<UserProfilePostStore>((set) => ({
     }),
     setAllPosts: posts => set(() => ({ posts })),
     addPosts: posts => set(state => ({ posts: [ ...state.posts, ...posts ] })),
-    addLikeToPost: (like, postId) => set(state => {
-        
-        for (let i = 0; i < state.posts.length; i++) {
-            if (state.posts[i].postId === postId)
-                state.posts[i].likes = [ ...state.posts[i].likes, like ]
-        }
-        
-        return ({ posts: state.posts })
-    }),
-    addLikesToPost: (likes, postId) => set(state => {
-
-        for (let i = 0; i < state.posts.length; i++) {
-            if (state.posts[i].postId === postId){
-                console.log("we are inside",state.posts[i].postId);
-                state.posts[i].likes = [ ...state.posts[i].likes, ...likes ]
-            } 
-        }  
-
-        return ({ posts: state.posts })
-    }),
-    removeLikeFromPost: (likeId, postId) => set(state => {
-
-        for (let i = 0; i < state.posts.length; i++) {
-            if (state.posts[i].postId === postId) {
-                const indexToRemove = state.posts[i].likes.findIndex(l => l.likeID === likeId);
-                state.posts[i].likes.splice(indexToRemove, 1);
-            }
-        }
-
-        return ({ posts: state.posts })
-    }),
-    removeAllLikesFromPost: postId => set(state => {
-        
-        for (let i = 0; i < state.posts.length; i++) {
-            if (state.posts[i].postId === postId)
-                state.posts[i].likes = [];
-        }
-
-        return ({ posts: state.posts })
-    })
+   
 }))
+interface UserProfileLike {
+    likeId: string;
+    userId: string;
+    // Add any other properties that are relevant to a like
+}
+
+
+
+// now we willl save post likes in a likes object in which there is an array stored on the key of postId
+/// postIds are the keys of likes object . every key has an array of like objects
+const usePostLikesStore = create<PostLikesStore>((set) => ({
+    likes: {},
+
+    addLikeToPost: (like, postId) =>
+        set((state) => {
+            const updatedLikes = { ...state.likes };
+            if (!(postId in updatedLikes)) {
+                updatedLikes[postId] = [];
+            }
+            updatedLikes[postId] = [...updatedLikes[postId], like];
+            return { ...state, likes: updatedLikes };
+        }),
+
+    addLikesToPost: (likes, postId) =>
+        set((state) => {
+            const updatedLikes = { ...state.likes };
+            updatedLikes[postId] = likes;
+            return { ...state, likes: updatedLikes };
+        }),
+
+    removeLikeFromPost: (likeId, postId) =>
+        set((state) => {
+            const updatedLikes = { ...state.likes };
+            if (postId in updatedLikes) {
+                updatedLikes[postId] = updatedLikes[postId].filter((like) => like.likeId !== likeId);
+            }
+            return { ...state, likes: updatedLikes };
+        }),
+
+    removeAllLikesFromPost: (postId) =>
+        set((state) => {
+            const updatedLikes = { ...state.likes };
+            delete updatedLikes[postId];
+            return { ...state, likes: updatedLikes };
+        }),
+}));
 
 export default useUserProfileStore
 export type { UserProfileLike, UserProfilePost }
-export { usePostsStore }
+export { usePostsStore,usePostLikesStore }

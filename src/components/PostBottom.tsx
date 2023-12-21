@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import styles from '../styles/Styles';
 import Colors from '../theme/ScholarColors';
 import { deletePostLike, getPostLikes, posts, setPostLike } from '../services/DataService';
-import { UserProfileLike, usePostsStore } from '../zustand/UserProfileStore';
+import { usePostLikesStore } from '../zustand/UserProfileStore';
 
 type PostBottomProps = {
     postID: string,
@@ -16,26 +16,27 @@ type PostBottomProps = {
 }
 
 const PostBottom = (props: PostBottomProps) => {
-    const allPosts=usePostsStore(store=> store.posts);
-    const addLikeToPost = usePostsStore(store => store.addLikeToPost);
-    const removeLikeFromPost = usePostsStore(store => store.removeLikeFromPost);
     
+    const addLikeToPost = usePostLikesStore(store => store.addLikeToPost);
+    const removeLikeFromPost = usePostLikesStore(store => store.removeLikeFromPost);
+    const allLikes = usePostLikesStore(store => store.likes);
     const [LikeIcon, setLikeIcon] = useState('like2');
 
     function likePost() {
         if (LikeIcon === 'like1') {
-            deletePostLike(props.postID, props.userID)
+            deletePostLike(props.postID, props.userID);
+            
             setLikeIcon('like2');
         } else {
             setPostLike(props.postID, props.userID);
-            // getPostLikes(props.postID,props.userID)
-            // .then((likes:any) =>{
-            //     const postLikes = posts.filter(l => l.postId == props.postID);
-            //     likes.forEach((like: any) => {
-            //         if (!postLikes.includes(like.postId))
-            //             addLike(like, like.postID); 
-            //     });
-            // })  
+            getPostLikes(props.postID,props.userID)
+            .then((likes:any) =>{
+                const postLikes = likes.filter((l:any) => l.postId == props.postID);
+                likes.forEach((like: any) => {
+                    if (!postLikes.includes(like.postId))
+                        addLikeToPost(like, like.postID); 
+                });
+            })  
             setLikeIcon('like1');
         }
     }
@@ -61,7 +62,7 @@ const PostBottom = (props: PostBottomProps) => {
                 <View>
                    <TouchableOpacity onPress={()=>{}}>
                    <Text style={{ color: Colors.text, padding: 2 }}>
-                        {allPosts.find(x => x.postId == props.postID)?.likes?.length}
+                        {allLikes[props.postID]? allLikes[props.postID].length: 0}
                     </Text>
                    </TouchableOpacity>
                 </View>

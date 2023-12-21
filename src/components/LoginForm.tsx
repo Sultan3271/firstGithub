@@ -39,33 +39,27 @@ export default function LoginForm(props: LoginFormProps) {
     // Log in anonymously
     function LoginAnonymously() {
         // use the authentication login system
-        auth().signInAnonymously()
-            // if login anonomous successful
-            .then(() => {
+       
+        auth().signInWithEmailAndPassword("nerdup@gmail.com", "nerdup")
+            .then(user => {
 
                 Alert.alert("Login successfull!");
-                const userId = getUserId();
+                const userId = user.user.uid.toString();
                 props.nav.navigate('Splash', { userId });
-
                 getProfile(userId)
-                    .then((profile: any) => {
-
+                    .then((profile) => {
                         console.log(profile);
 
-                        // if could not find a profile for anonomous
-                        if (profile === undefined) {
-                            console.log("Added profile");
-                            setInProfile(userId, 'no bio', ' ', 'no school', 'no major', 'Anonomous');
-                        }
-                        
-                        setProfileData({ userID: getUserId(), ...profile })
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.log(error);
+
                     })
             })
             .catch(error => {
-                console.error(error);
+                setErrorMsg(error);
+                console.log(error);
+                setIsSubmitDisabled(false);
             });
     }
 
