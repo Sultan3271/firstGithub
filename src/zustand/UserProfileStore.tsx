@@ -26,6 +26,7 @@ interface UserProfilePostStore {
 
    
 }
+
 interface PostLikesStore {
     likes: { [postId: string]: UserProfileLike[] };
     addLikeToPost: (like: UserProfileLike, postId: string) => void;

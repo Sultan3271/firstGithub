@@ -10,7 +10,7 @@ import { View,FlatList } from 'react-native';
 
 import {  usePostsStore } from '../zustand/UserProfileStore';
 import FeedBox from '../components/FeedBox';
-import { extractTime } from '../utils/utilityFunctions';
+import { extractTime } from '../utils/UtilityFunctions';
 const Home = ({ navigation }: any) => {
     const allPosts = usePostsStore(store => store.posts) 
 
